@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Persistence.DataModel", "NoteManager.Persistence.DataModel\NoteManager.Persistence.DataModel.csproj", "{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager", "NoteManager\NoteManager.csproj", "{C786F5CD-5750-4D50-A442-EE09D89A5FBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C786F5CD-5750-4D50-A442-EE09D89A5FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C786F5CD-5750-4D50-A442-EE09D89A5FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C786F5CD-5750-4D50-A442-EE09D89A5FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C786F5CD-5750-4D50-A442-EE09D89A5FBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
