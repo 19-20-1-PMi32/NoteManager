@@ -79,6 +79,9 @@
     <Compile Include="ReminderAdd.xaml.cs">
       <DependentUpon>ReminderAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowStart.xaml.cs">
+      <DependentUpon>WindowStart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowVideos.xaml.cs">
       <DependentUpon>WindowVideos.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
     <Page Include="Themes\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowStart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowVideos.xaml">
       <SubType>Designer</SubType>
