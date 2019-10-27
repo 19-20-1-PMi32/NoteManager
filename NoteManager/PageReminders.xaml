@@ -1,0 +1,87 @@
+﻿<Page x:Class="NoteManager.PageReminders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NoteManager"
+      xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageReminders">
+
+    <!-- Задачі
+    
+    Розібратись з маштабуванням - зміна розмірів елементів при зміні розміру вікна
+    Реалізувати кнопку Menu - повернутись в головне меню
+    Заміники картинку заднього фону
+    Написати залежність вікна ReminderAdd від поточного 
+        - поки не закриєм відно ReminderAdd не можемо керувати поточним вікном
+    
+    -->
+
+    <Grid>
+        <!-- Background picture-->
+        <Grid.Background>
+            <ImageBrush 
+        		
+        			ImageSource="Resources/Pictures/BlackWallPaper.jpg" 
+        			Stretch="UniformToFill" 					
+        			AlignmentY="Center"        					
+        			AlignmentX="Center"
+                
+        		/>
+        </Grid.Background>
+
+        <!-- ListView з нагадуваннями -->
+        <ListView 
+            Name="textReminderList" 
+            ItemsSource="{DynamicResource ResourceKey=reminders}"
+            Margin="0, 0, 0, 50"
+            >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Text}"  Header="Текст" Width="635"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="auto"/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <col:ArrayList x:Key="reminders">
+                    <local:Reminder Text="Купити качку" Time="2019,10,15" />
+                    <local:Reminder Text="Пограбувати банк" Time="2019,10,15" />
+                    <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+
+                </col:ArrayList>
+            </ListView.Resources>
+        </ListView>
+
+        <!--Button Add-->
+        <Button 
+            Click="ButtonAddClick"
+            Content="Add" 
+            HorizontalAlignment="Left" 
+            Margin="10,0,0,10" 
+            VerticalAlignment="Bottom" 
+            Width="100"
+            FontSize="24" 
+            Foreground="Lime" 
+            FontFamily="Franklin Gothic Demi"
+            
+            />
+
+        <!--Button Menu-->
+        <Button 
+            Click="buttonClickMenu"
+            Content="Menu" 
+            HorizontalAlignment="Right" 
+            Margin="0,0,10,10" 
+            VerticalAlignment="Bottom" 
+            Width="100"
+            FontSize="24" 
+            Foreground="Lime" 
+            FontFamily="Franklin Gothic Demi"
+                
+                />
+
+
+    </Grid>
+</Page>
