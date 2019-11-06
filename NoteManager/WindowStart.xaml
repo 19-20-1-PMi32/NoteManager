@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoteManager"
         mc:Ignorable="d"
-        Title="WindowStart" Height="450" Width="800">
-	<Grid>
+        Title="WindowStart" Height="450" Width="800" Icon="Resources/Pictures/icon1.ico">
+    <Window.Resources>
+        <ContextMenu x:Key="TrayMenu">
+            <MenuItem Header="Hide" Click="ShowHideMainWindow" />
+            <MenuItem Header="Item2" />
+            <Separator />
+            <MenuItem Header="Exit" Click="MenuExitClick" />
+        </ContextMenu>
+    </Window.Resources>
+    <Grid>
 		<Frame x:Name="f1" NavigationUIVisibility="Hidden"/>
 	</Grid>
 </Window>
