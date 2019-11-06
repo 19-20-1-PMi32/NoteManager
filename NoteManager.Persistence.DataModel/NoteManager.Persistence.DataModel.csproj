@@ -51,9 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Music.cs" />
     <Compile Include="Database\Note.cs" />
     <Compile Include="Database\Picture.cs" />
     <Compile Include="Database\Plan.cs" />
+    <Compile Include="Database\Record.cs" />
     <Compile Include="Database\Reminder.cs" />
     <Compile Include="Database\User.cs" />
     <Compile Include="Database\Video.cs" />

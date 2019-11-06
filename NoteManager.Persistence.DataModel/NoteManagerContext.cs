@@ -138,6 +138,33 @@ namespace NoteManager.Persistence.DataModel
                 .Property(e => e.CreationTime)
                 .IsRequired();
 
+            // Music configuration
+            modelBuilder
+                .Entity<Music>()
+                .HasKey(e => e.Id);
+            modelBuilder
+                .Entity<Music>()
+                .Property(e => e.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder
+                .Entity<Music>()
+                .Property(e => e.CreationTime)
+                .IsRequired();
+
+            // Record configuration
+            modelBuilder
+                .Entity<Record>()
+                .HasKey(e => e.Id);
+            modelBuilder
+                .Entity<Record>()
+                .Property(e => e.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder
+                .Entity<Record>()
+                .Property(e => e.CreationTime)
+                .IsRequired();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace NoteManager.Persistence.DataModel.Database
             Pictures = new HashSet<Picture>();
             Videos = new HashSet<Video>();
             Plans = new HashSet<Plan>();
+            Musics = new HashSet<Music>();
+            Records = new HashSet<Record>();
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -18,6 +20,8 @@ namespace NoteManager.Persistence.DataModel.Database
         public IEnumerable<Picture> Pictures { get; set; }
         public IEnumerable<Video> Videos { get; set; }
         public IEnumerable<Plan> Plans { get; set; }
+        public IEnumerable<Music> Musics { get; set; }
+        public IEnumerable<Record> Records { get; set; }
 
     }
 }
