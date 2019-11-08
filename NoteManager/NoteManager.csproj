@@ -60,9 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PageNotes.xaml.cs">
       <DependentUpon>PageNotes.xaml</DependentUpon>
     </Compile>
@@ -96,10 +93,6 @@
     <Compile Include="WindowVideos.xaml.cs">
       <DependentUpon>WindowVideos.xaml</DependentUpon>
     </Compile>
-    <Page Include="Page1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PageNotes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
