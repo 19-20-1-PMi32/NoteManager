@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NoteManager.Showcase;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace NoteManager
 {
@@ -12,6 +14,7 @@ namespace NoteManager
         public PageReminders()
         {
             InitializeComponent();
+            MyNotifyIcon.Visibility = Visibility.Hidden;
         }
 
         // відкрити вікно добавлення нагадування
@@ -25,6 +28,13 @@ namespace NoteManager
         private void buttonClickMenu(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+
+        private void buttonClickSampleNotify(object sender, RoutedEventArgs e)
+        {
+            FancyBalloon balloon = new FancyBalloon();
+            balloon.BalloonText = "Custom Balloon";
+            MyNotifyIcon.ShowCustomBalloon(balloon, PopupAnimation.Slide, 4000);
         }
     }
 
