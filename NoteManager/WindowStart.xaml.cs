@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SourceWeave.Controls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,7 +9,7 @@ namespace NoteManager
     /// Interaction logic for WindowStart.xaml
     /// Referenses on sources TrayIcon https://4px.livejournal.com/126058.html
     /// </summary>
-    public partial class WindowStart : Window
+    public partial class WindowStart : SWWindow
     {
         public WindowStart()
         {
