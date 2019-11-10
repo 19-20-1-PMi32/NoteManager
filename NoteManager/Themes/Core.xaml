@@ -4237,6 +4237,7 @@
     </Style>
     
     <!-- Frame -->
+    <!--
     <Style x:Key="FrameButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Command" Value="NavigationCommands.BrowseBack"/>
@@ -4480,7 +4481,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+    -->
     <!-- NavigationWindow -->
     <Style x:Key="NavigationWindowButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
