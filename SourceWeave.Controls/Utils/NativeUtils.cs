@@ -1,24 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SourceWeave.Controls.Utils
 {
     internal static class NativeUtils
     {
-        internal static uint TPM_LEFTALIGN;
-
-        internal static uint TPM_RETURNCMD;
-
-        static NativeUtils()
-        {
-            NativeUtils.TPM_LEFTALIGN = 0;
-            NativeUtils.TPM_RETURNCMD = 256;
-        }
+        internal const uint TPM_LEFTALIGN = 0;
+        internal const  uint TPM_RETURNCMD = 256;
 
         [DllImport("user32.dll", CharSet = CharSet.None, ExactSpelling = false)]
         internal static extern IntPtr PostMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
@@ -34,25 +23,21 @@ namespace SourceWeave.Controls.Utils
     }
 
     [Serializable]
-    internal struct RECT
+    internal struct Rect
     {
         public int Left;
-
         public int Top;
-
         public int Right;
-
         public int Bottom;
-
         public int Height
         {
             get
             {
-                return this.Bottom - this.Top;
+                return Bottom - Top;
             }
             set
             {
-                this.Bottom = this.Top + value;
+                Bottom = Top + value;
             }
         }
 
@@ -60,7 +45,7 @@ namespace SourceWeave.Controls.Utils
         {
             get
             {
-                return new Point((double)this.Left, (double)this.Top);
+                return new Point(Left, Top);
             }
         }
 
@@ -68,7 +53,7 @@ namespace SourceWeave.Controls.Utils
         {
             get
             {
-                return new Size((double)this.Width, (double)this.Height);
+                return new Size(Width, Height);
             }
         }
 
@@ -76,52 +61,41 @@ namespace SourceWeave.Controls.Utils
         {
             get
             {
-                return this.Right - this.Left;
+                return Right - Left;
             }
             set
             {
-                this.Right = this.Left + value;
+                Right = Left + value;
             }
         }
 
-        public RECT(int left, int top, int right, int bottom)
+        public Rect(int left, int top, int right, int bottom)
         {
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
+            Left = left;
+            Top = top;
+            Right = right;
+            Bottom = bottom;
         }
 
-        public RECT(Rect rect)
+        public Rect(Rect rect)
         {
-            this.Left = (int)rect.Left;
-            this.Top = (int)rect.Top;
-            this.Right = (int)rect.Right;
-            this.Bottom = (int)rect.Bottom;
+            Left = rect.Left;
+            Top = rect.Top;
+            Right = rect.Right;
+            Bottom = rect.Bottom;
         }
 
         public void Offset(int dx, int dy)
         {
-            this.Left += dx;
-            this.Right += dx;
-            this.Top += dy;
-            this.Bottom += dy;
+            Left += dx;
+            Right += dx;
+            Top += dy;
+            Bottom += dy;
         }
 
         public Int32Rect ToInt32Rect()
         {
-            return new Int32Rect(this.Left, this.Top, this.Width, this.Height);
+            return new Int32Rect(Left, Top, Width, Height);
         }
-    }
-
-    internal struct NCCALCSIZE_PARAMS
-    {
-        internal RECT rect0;
-
-        internal RECT rect1;
-
-        internal RECT rect2;
-
-        internal IntPtr lppos;
     }
 }

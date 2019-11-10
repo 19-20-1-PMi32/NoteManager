@@ -1,13 +1,7 @@
-﻿using Microsoft.Win32;
-using SourceWeave.Controls.Utils;
+﻿using SourceWeave.Controls.Utils;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -73,37 +67,37 @@ namespace SourceWeave.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Screen screen = Screen.FromHandle((new WindowInteropHelper(this)).Handle);
-            double width = (double)screen.WorkingArea.Width;
+            double width = screen.WorkingArea.Width;
             Rectangle workingArea = screen.WorkingArea;
-            this.previousScreenBounds = new System.Windows.Point(width, (double)workingArea.Height);
+            previousScreenBounds = new System.Windows.Point(width, workingArea.Height);
         }
 
         private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
         {
             Screen screen = Screen.FromHandle((new WindowInteropHelper(this)).Handle);
-            double width = (double)screen.WorkingArea.Width;
+            double width = screen.WorkingArea.Width;
             Rectangle workingArea = screen.WorkingArea;
-            this.previousScreenBounds = new System.Windows.Point(width, (double)workingArea.Height);
-            this.RefreshWindowState();
+            previousScreenBounds = new System.Windows.Point(width, workingArea.Height);
+            RefreshWindowState();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (base.WindowState == WindowState.Normal)
             {
-                this.HeightBeforeMaximize = base.ActualHeight;
-                this.WidthBeforeMaximize = base.ActualWidth;
+                HeightBeforeMaximize = ActualHeight;
+                WidthBeforeMaximize = ActualWidth;
                 return;
             }
-            if (base.WindowState == WindowState.Maximized)
+            if (WindowState == WindowState.Maximized)
             {
                 Screen screen = Screen.FromHandle((new WindowInteropHelper(this)).Handle);
-                if (this.previousScreenBounds.X != (double)screen.WorkingArea.Width || this.previousScreenBounds.Y != (double)screen.WorkingArea.Height)
+                if (previousScreenBounds.X != screen.WorkingArea.Width || previousScreenBounds.Y != screen.WorkingArea.Height)
                 {
-                    double width = (double)screen.WorkingArea.Width;
+                    double width = screen.WorkingArea.Width;
                     Rectangle workingArea = screen.WorkingArea;
-                    this.previousScreenBounds = new System.Windows.Point(width, (double)workingArea.Height);
-                    this.RefreshWindowState();
+                    previousScreenBounds = new System.Windows.Point(width, workingArea.Height);
+                    RefreshWindowState();
                 }
             }
         }
@@ -112,90 +106,90 @@ namespace SourceWeave.Controls
         {
             Screen screen = Screen.FromHandle((new WindowInteropHelper(this)).Handle);
             Thickness thickness = new Thickness(0);
-            if (this.WindowState != WindowState.Maximized)
+            if (WindowState != WindowState.Maximized)
             {
 
-                double currentDPIScaleFactor = (double)SystemHelper.GetCurrentDPIScaleFactor();
+                double currentDPIScaleFactor = SystemHelper.GetCurrentDPIScaleFactor();
                 Rectangle workingArea = screen.WorkingArea;
-                this.MaxHeight = (double)(workingArea.Height + 16) / currentDPIScaleFactor;
-                this.MaxWidth = double.PositiveInfinity;
+                MaxHeight = (workingArea.Height + 16) / currentDPIScaleFactor;
+                MaxWidth = double.PositiveInfinity;
 
-                if (this.WindowState != WindowState.Maximized)
+                if (WindowState != WindowState.Maximized)
                 {
-                    this.SetMaximizeButtonsVisibility(Visibility.Visible, Visibility.Collapsed);
+                    SetMaximizeButtonsVisibility(Visibility.Visible, Visibility.Collapsed);
                 }
             }
             else
             {
 
-                thickness = this.GetDefaultMarginForDpi();
-                if (this.PreviousState == WindowState.Minimized || this.Left == this.positionBeforeDrag.X && this.Top == this.positionBeforeDrag.Y)
+                thickness = GetDefaultMarginForDpi();
+                if (PreviousState == WindowState.Minimized || Left == positionBeforeDrag.X && Top == positionBeforeDrag.Y)
                 {
-                    thickness = this.GetFromMinimizedMarginForDpi();
+                    thickness = GetFromMinimizedMarginForDpi();
                 }
 
-                this.SetMaximizeButtonsVisibility(Visibility.Collapsed, Visibility.Visible);
+                SetMaximizeButtonsVisibility(Visibility.Collapsed, Visibility.Visible);
             }
 
-            this.LayoutRoot.Margin = thickness;
-            this.PreviousState = this.WindowState;
+            LayoutRoot.Margin = thickness;
+            PreviousState = WindowState;
         }
 
         private void OnMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (!this.isMouseButtonDown)
+            if (!isMouseButtonDown)
             {
                 return;
             }
 
-            double currentDPIScaleFactor = (double)SystemHelper.GetCurrentDPIScaleFactor();
+            double currentDPIScaleFactor = SystemHelper.GetCurrentDPIScaleFactor();
             System.Windows.Point position = e.GetPosition(this);
             System.Diagnostics.Debug.WriteLine(position);
-            System.Windows.Point screen = base.PointToScreen(position);
-            double x = this.mouseDownPosition.X - position.X;
-            double y = this.mouseDownPosition.Y - position.Y;
+            System.Windows.Point screen = PointToScreen(position);
+            double x = mouseDownPosition.X - position.X;
+            double y = mouseDownPosition.Y - position.Y;
             if (Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)) > 1)
             {
-                double actualWidth = this.mouseDownPosition.X;
+                double actualWidth = mouseDownPosition.X;
 
-                if (this.mouseDownPosition.X <= 0)
+                if (mouseDownPosition.X <= 0)
                 {
                     actualWidth = 0;
                 }
-                else if (this.mouseDownPosition.X >= base.ActualWidth)
+                else if (mouseDownPosition.X >= ActualWidth)
                 {
-                    actualWidth = this.WidthBeforeMaximize;
+                    actualWidth = WidthBeforeMaximize;
                 }
 
-                if (base.WindowState == WindowState.Maximized)
+                if (WindowState == WindowState.Maximized)
                 {
-                    this.ToggleWindowState();
-                    this.Top = (screen.Y - position.Y) / currentDPIScaleFactor;
-                    this.Left = (screen.X - actualWidth) / currentDPIScaleFactor;
-                    this.CaptureMouse();
+                    ToggleWindowState();
+                    Top = (screen.Y - position.Y) / currentDPIScaleFactor;
+                    Left = (screen.X - actualWidth) / currentDPIScaleFactor;
+                    CaptureMouse();
                 }
 
-                this.isManualDrag = true;
+                isManualDrag = true;
 
-                this.Top = (screen.Y - this.mouseDownPosition.Y) / currentDPIScaleFactor;
-                this.Left = (screen.X - actualWidth) / currentDPIScaleFactor;
+                Top = (screen.Y - mouseDownPosition.Y) / currentDPIScaleFactor;
+                Left = (screen.X - actualWidth) / currentDPIScaleFactor;
             }
         }
 
 
         private void OnMouseButtonUp(object sender, MouseButtonEventArgs e)
         {
-            this.isMouseButtonDown = false;
-            this.isManualDrag = false;
-            this.ReleaseMouseCapture();
+            isMouseButtonDown = false;
+            isManualDrag = false;
+            ReleaseMouseCapture();
         }
 
         private void RefreshWindowState()
         {
-            if (base.WindowState == WindowState.Maximized)
+            if (WindowState == WindowState.Maximized)
             {
-                this.ToggleWindowState();
-                this.ToggleWindowState();
+                ToggleWindowState();
+                ToggleWindowState();
             }
         }
 
