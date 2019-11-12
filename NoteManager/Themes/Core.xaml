@@ -7,7 +7,7 @@
         <ResourceDictionary Source="Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Button -->
+    <!-- Button --> <!--
     <Style TargetType="{x:Type Button}">
         <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
         <Setter Property="Foreground" Value="{StaticResource ControlForeground}"/>
@@ -71,7 +71,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+-->
     <!-- ToggleButton -->
     <Style TargetType="{x:Type ToggleButton}">
         <Setter Property="TextOptions.TextHintingMode" Value="Animated" />

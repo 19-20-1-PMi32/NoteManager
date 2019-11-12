@@ -28,17 +28,18 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontFamily" Value="Webdings"/>
         <Setter Property="FontSize" Value="13.333" />
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="Gray" />
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="LightGray" />
+                <Setter Property="Background" Value="#4c535b" />
+                <Setter Property="Foreground" Value="LightGray" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style TargetType="local:SWWindow" x:Key="SWWindowStyle">
-        <Setter Property="Background" Value="Gray"/>
+        <Setter Property="Background" Value="#3a4047"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="MinHeight" Value="320"/>
         <Setter Property="MinWidth" Value="480"/>
@@ -87,7 +88,7 @@
                                            Panel.ZIndex="0"
                                            IsEnabled="{TemplateBinding IsActive}"/>
 
-                                <Grid x:Name="WindowControlsGrid" Grid.Column="2" Background="Gray">
+                                <Grid x:Name="WindowControlsGrid" Grid.Column="2" Background="#3a4047">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="20"/>
