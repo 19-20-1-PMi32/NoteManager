@@ -75,9 +75,6 @@
     <Compile Include="PageSignIn.xaml.cs">
       <DependentUpon>PageSignIn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageStart.xaml.cs">
-      <DependentUpon>PageStart.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PageStartMenu.xaml.cs">
       <DependentUpon>PageStartMenu.xaml</DependentUpon>
     </Compile>
@@ -112,10 +109,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageSignIn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PageStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
