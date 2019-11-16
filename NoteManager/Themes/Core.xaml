@@ -375,7 +375,7 @@
         </Setter>
     </Style>
     -->
-    <!-- PasswordBox -->
+    <!-- PasswordBox --> <!--
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{x:Null}">
         <Setter Property="Background" Value="{StaticResource ControlLightBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
@@ -454,7 +454,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
     
     <!-- RichTextBox -->
     <Style TargetType="{x:Type RichTextBox}" BasedOn="{x:Null}">

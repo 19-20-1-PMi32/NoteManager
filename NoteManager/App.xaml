@@ -6,9 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!--
                 <ResourceDictionary Source="Themes/Core.xaml"/>
                 <ResourceDictionary Source="Themes/Brushes.xaml"/>
                 <ResourceDictionary Source="Themes/Icons.xaml"/>
+                -->
                 <ResourceDictionary Source="pack://application:,,,/SourceWeave.Controls;component/Themes/SWStyles.xaml"/>
                 <ResourceDictionary Source="Themes/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>

@@ -25,11 +25,5 @@ namespace NoteManager
         {
             this.NavigationService.Navigate(new PageRegistration());
         }
-
-        // Вийти з програми
-        private void buttonClickExit(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
     }
 }

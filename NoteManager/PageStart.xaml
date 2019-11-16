@@ -13,7 +13,7 @@
         <!-- Background picture-->
         <Grid.Background>
             <ImageBrush 
-        			ImageSource="Resources/Pictures/BlackBackround.png" 
+        			ImageSource="Resources/Pictures/BlackBlueBackground.png" 
         			Stretch="UniformToFill" 					
         			AlignmentY="Center"        					
         			AlignmentX="Center"
@@ -21,6 +21,7 @@
         </Grid.Background>
 
         <Button 
+            Visibility="Hidden"
             Click="buttonSignInClick"
             Content="Sign in" 
             HorizontalAlignment="Center" 
@@ -33,22 +34,11 @@
             
             />
         <Button 
+            Visibility="Hidden"
             Click="buttonClickRegistration"
             Content="Registration" 
             HorizontalAlignment="Center" 
             Margin="0,0,0,0" 
-            VerticalAlignment="Center" 
-            Width="250"
-            FontSize="36" 
-            FontFamily="Franklin Gothic Heavy" 
-            Foreground="#FF3232FB"
-            
-            />
-        <Button 
-            Click="buttonClickExit"
-            Content="Exit" 
-            HorizontalAlignment="Center" 
-            Margin="0,100,0,0" 
             VerticalAlignment="Center" 
             Width="250"
             FontSize="36" 

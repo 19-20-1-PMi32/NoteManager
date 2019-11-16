@@ -28,7 +28,7 @@ namespace NoteManager
         // Go to PageStart
         private void Button_ClickStart(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PageStart());
+            this.NavigationService.Navigate(new PageSignIn());
         }
     }
 }

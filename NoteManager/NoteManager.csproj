@@ -239,5 +239,9 @@
   <ItemGroup>
     <Resource Include="Resources\Pictures\NMNew3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\GrayArrow.png" />
+    <Resource Include="Resources\Pictures\LightGrayArrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

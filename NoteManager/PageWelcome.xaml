@@ -63,7 +63,7 @@
             Height="40" 
             FontFamily="Verdana" 
             Background="#FF007ACC"
-            Foreground="White"
+            Foreground="White" BorderBrush="{x:Null}"
             />
 
         <Label 
