@@ -19,7 +19,7 @@ namespace NoteManager
 
         private void SignUpAndGoToNext(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PageStartMenu());
+            this.NavigationService.Navigate(new PageNotes());
         }
     }
 }

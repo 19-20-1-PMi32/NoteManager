@@ -8,26 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageNotes">
 
-    <!-- Задачі
-    Реалізувати вікна для кожної з наступних кнопок: Photo, Record, Music
-            По аналогії з вікном Videos
-    
-    Реалізувати кнопки збереження і видалення запису
-    Реалізувати ComboBox - вибір року
-    Реалізувати TreeView - в кожному місяці повинно бути пусто, ні одного дня, 
-            день добавляється тільки коли зробили запис у цей день
-            потрібно видалити всі TreeView елементи, тобто числа 1-31
-    
-    Також в день може бути декілька записів, але це не точно
-
-    -->
-
     <Grid>
         <!-- Background picture-->
         <Grid.Background>
             <ImageBrush 
         		
-        			ImageSource="Resources/Pictures/BackroundBlackWorld.jpg" 
+        			ImageSource="Resources/Pictures/BlackBlueBackground.png" 
         			Stretch="UniformToFill" 					
         			AlignmentY="Center"        					
         			AlignmentX="Center"
@@ -40,600 +26,132 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Rectangle left with days -->
-        <Rectangle 
-            Fill="#FF3B3B3C" 
-            Opacity="0.8"
-            HorizontalAlignment="Center" 
-            Margin="3,5,5,0" 
-            Stroke="Black" 
-            VerticalAlignment="Stretch" 
-            Width="193" 
-            RadiusX="10" 
-            RadiusY="10"
-            Grid.Column="0"
+        <!-- The screen is divided into three parts-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Under notes -->
+        <Label 
+            Name="LabelUnderNotes"
+            Content="_____________" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Left"
+            Margin="-8,-5,0,0"
+            VerticalAlignment="Top" 
+            Height="35"
             />
 
-        <!-- ComboBox Years-->
-        <ComboBox 
-            Name="ComdoBoxYears"
-            Text="2019" 
-            HorizontalAlignment="Center" 
-            Margin="0,20,0,0" 
+        <!-- Under Reminders -->
+        <Label 
+            Name="LabelUnderReminders"
+            Content="_____________________" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Left"
+            Margin="50,-5,0,0"
             VerticalAlignment="Top" 
-            Width="180" 
-            Grid.Column="0"
-            >
-            <TextBlock>2018</TextBlock>
-            <TextBlock>2019</TextBlock>
-            <TextBlock>2020</TextBlock>
+            Height="35" 
+            />
 
-        </ComboBox>
+        <!-- Under Plans -->
+        <Label 
+            Name="LabelUnderPlans"
+            Content="_____________" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Left"
+            Margin="141,-5,0,0"
+            VerticalAlignment="Top" 
+            Height="35" 
+            Width="65" 
 
-        <!-- TreeView Months-->
-        <TreeView  
-            HorizontalAlignment="Center"  
-            Margin="0,50,0,10" 
-            VerticalAlignment="Stretch" 
-            Width="180" 
-            Foreground="#FFC9060F" 
-            FontSize="12" 
-            Background="{x:Null}"
-            Grid.Column="0"
-            >
-            <TreeViewItem Header="January">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
+            />
 
-
-            </TreeViewItem>
-            <TreeViewItem Header="February">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="March">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="April">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="May">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="Juny">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="July">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="August">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="September">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="Oktober">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="November">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-
-
-
-            </TreeViewItem>
-            <TreeViewItem Header="December">
-                <TreeViewItem Header="1" />
-                <TreeViewItem Header="2" />
-                <TreeViewItem Header="3" />
-                <TreeViewItem Header="4" />
-                <TreeViewItem Header="5" />
-                <TreeViewItem Header="6" />
-                <TreeViewItem Header="7" />
-                <TreeViewItem Header="8" />
-                <TreeViewItem Header="9" />
-                <TreeViewItem Header="10" />
-                <TreeViewItem Header="11" />
-                <TreeViewItem Header="12" />
-                <TreeViewItem Header="13" />
-                <TreeViewItem Header="14" />
-                <TreeViewItem Header="15" />
-                <TreeViewItem Header="16" />
-                <TreeViewItem Header="17" />
-                <TreeViewItem Header="18" />
-                <TreeViewItem Header="19" />
-                <TreeViewItem Header="20" />
-                <TreeViewItem Header="21" />
-                <TreeViewItem Header="22" />
-                <TreeViewItem Header="23" />
-                <TreeViewItem Header="24" />
-                <TreeViewItem Header="25" />
-                <TreeViewItem Header="26" />
-                <TreeViewItem Header="27" />
-                <TreeViewItem Header="28" />
-                <TreeViewItem Header="29" />
-                <TreeViewItem Header="30" />
-                <TreeViewItem Header="31" />
-
-
-            </TreeViewItem>
-        </TreeView>
-
-        <!-- Main TextBox-->
-        <TextBox 
-            Text="TextBox" 
-            Opacity="0.8"
-            TextAlignment="Left" 
-            TextWrapping="Wrap" 
-            VerticalContentAlignment="Top"
-            VerticalAlignment="Stretch" 
-            Margin="5,50,5,75" 
-            Height="auto"
-            FontSize="16" 
-            CaretBrush="{x:Null}" 
-            BorderBrush="{x:Null}"
-            Grid.Column="1"
-            >
-            <TextBox.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FF363636" Offset="0"/>
-                    <GradientStop Color="#FF252525" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.Background>
-
-            <!-- Прозорість тексту -->
-            <TextBox.Foreground>
-                <SolidColorBrush Opacity="1" Color="#FF00FF23"/>
-            </TextBox.Foreground>
-        </TextBox>
-
-        <!--Button Delete note-->
-        <Button 
-            Content="Delete note" 
-            Grid.Column="1"
+        <!-- Notes -->
+        <Label 
+            Name="LabelNotes"
+            Content="Notes" 
+            FontSize="18"
+            Margin="0,-8,0,0" 
             HorizontalAlignment="Left" 
-            VerticalAlignment="Bottom" 
-            Margin="30,0,0,10"
-            Width="150"
-            Height="50"
-            FontSize="20" 
-            FontFamily="Franklin Gothic Heavy" 
-            Foreground="#FF323BFB"
-            
-            />
+            VerticalAlignment="Top"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="#FF007ACC" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
-        <!--Button Save note-->
-        <Button 
-            Content="Save note" 
-            Grid.Column="1"
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Bottom" 
-            Margin="0,0,30,10"
-            Width="150"
-            Height="50"
-            FontSize="20" 
-            FontFamily="Franklin Gothic Heavy" 
-            Foreground="#FF323BFB"
-            
-            />
-
-        <!--Button Video-->
-        <Button 
-            Name="buttonVideo"
-            Content="Video" 
-            Grid.Column="1" 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Top" 
-            Margin="0,10,10,0" 
-            Width="100"
-            Height="30"
-            FontSize="18" 
-            FontFamily="Rockwell Extra Bold" 
-            Foreground="#FF3232FB"
-            Click="buttonClickVideo"
-            />
-
-        <!--Button Photo-->
-        <Button 
-            Content="Photo" 
-            Grid.Column="1" 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Top" 
-            Margin="0,10,115,0" 
-            Width="100"
-            Height="30"
-            FontSize="18" 
-            FontFamily="Rockwell Extra Bold" 
-            Foreground="#FF3232FB"
-            
-            />
-
-        <!--Button Record-->
-        <Button 
-            Content="Record" 
-            Grid.Column="1" 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Top" 
-            Margin="0,10,220,0" 
-            Width="100"
-            Height="30"
-            FontSize="18" 
-            FontFamily="Rockwell Extra Bold" 
-            Foreground="#FF3232FB"
-            
-            />
-
-        <!--Button Music-->
-        <Button 
-            Content="Music" 
-            Grid.Column="1" 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Top" 
-            Margin="0,10,325,0" 
-            Width="100"
-            Height="30"
-            FontSize="18" 
-            FontFamily="Rockwell Extra Bold" 
-            Foreground="#FF3232FB"
-            
-            />
-
-        <!--Button Menu-->
-        <Button 
-            Click="buttonClickMenu"
-            Content="Menu" 
-            Grid.Column="1" 
+        <!-- Reminders -->
+        <Label 
+            Name="LabelReminders"
+            Content="Reminders" 
+            FontSize="18"
+            Margin="54,-8,0,0" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
-            Margin="10,10,0,0" 
-            Width="100"
-            Height="30"
-            FontSize="18" 
-            FontFamily="Rockwell Extra Bold" 
-            Foreground="#FF32BBFB"
-            
+            Height="40"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <!-- Plans -->
+        <Label 
+            Name="LabelPlans"
+            Content="Plans" 
+            FontSize="18"
+            Margin="145,-8,0,0" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Height="40"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label 
+            Name="LabelUserName"
+            Content="User Name" 
+            Margin="0,-3,10,0"
+            FontSize="14"
+            Foreground="White"
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Top" Grid.Column="1"
             />
 
+        <Frame 
+            Name="FrameMain"
+            Margin="0"
+            Source="PageNote.xaml"  
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            />
     </Grid>
 </Page>

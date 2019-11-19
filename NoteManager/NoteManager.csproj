@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PageNote.xaml.cs">
+      <DependentUpon>PageNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageNotes.xaml.cs">
       <DependentUpon>PageNotes.xaml</DependentUpon>
     </Compile>
@@ -74,9 +77,6 @@
     </Compile>
     <Compile Include="PageSignIn.xaml.cs">
       <DependentUpon>PageSignIn.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PageStartMenu.xaml.cs">
-      <DependentUpon>PageStartMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageWelcome.xaml.cs">
       <DependentUpon>PageWelcome.xaml</DependentUpon>
@@ -96,6 +96,10 @@
     <Compile Include="WindowVideos.xaml.cs">
       <DependentUpon>WindowVideos.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageNotes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,10 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageSignIn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PageStartMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,6 +235,16 @@
   <ItemGroup>
     <Resource Include="Resources\Pictures\GrayArrow.png" />
     <Resource Include="Resources\Pictures\LightGrayArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\GrayBlueBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\GrayMenu.png" />
+    <Resource Include="Resources\Pictures\LightGrayMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\Background3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

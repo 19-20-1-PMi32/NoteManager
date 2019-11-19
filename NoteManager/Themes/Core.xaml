@@ -373,8 +373,8 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-    -->
+    </Style>-->
+    
     <!-- PasswordBox --> <!--
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{x:Null}">
         <Setter Property="Background" Value="{StaticResource ControlLightBackground}" />
