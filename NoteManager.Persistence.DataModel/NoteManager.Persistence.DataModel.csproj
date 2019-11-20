@@ -57,8 +57,7 @@
     <Compile Include="NoteManagerDatabase.cs" />
     <Compile Include="PictureEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Remainder.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Reminder.cs" />
     <Compile Include="UserData.cs" />
     <Compile Include="UserIdentity.cs" />
     <Compile Include="VideoEntry.cs" />

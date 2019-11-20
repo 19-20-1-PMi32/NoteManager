@@ -1,15 +1,13 @@
+using System.Data.Entity.Migrations;
+
 namespace NoteManager.Persistence.DataModel.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<NoteManager.Persistence.DataModel.NoteManagerDatabase>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(NoteManager.Persistence.DataModel.NoteManagerDatabase context)

@@ -10,20 +10,19 @@ namespace NoteManager.Persistence.DataModel
         public UserData()
         {
             DailyRecords = new HashSet<DailyRecord>();
-            Remainders = new HashSet<Remainder>();
-            Users = new HashSet<User>();
+            Reminders = new HashSet<Reminder>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        [ForeignKey("UserIdentity")]
+        public int IdentityId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DailyRecord> DailyRecords { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Remainder> Remainders { get; set; }
+        public virtual ICollection<Reminder> Reminders { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual UserIdentity UserIdentity { get; set; }
     }
 }
