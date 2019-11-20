@@ -11,8 +11,8 @@ namespace NoteManager.Persistence.DataModel
 
         public int? DataId { get; set; }
 
-        public virtual UsersData UsersData { get; set; }
+        public virtual UserData UserData { get; set; }
 
-        public virtual UsersIdentity UsersIdentity { get; set; }
+        public virtual UserIdentity UserIdentity { get; set; }
     }
 }

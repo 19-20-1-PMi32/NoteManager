@@ -15,8 +15,8 @@ namespace NoteManager.Persistence.DataModel
         public virtual DbSet<PictureEntry> PictureEntries { get; set; }
         public virtual DbSet<Remainder> Remainders { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UsersData> UsersDatas { get; set; }
-        public virtual DbSet<UsersIdentity> UsersIdentities { get; set; }
+        public virtual DbSet<UserData> UserDatas { get; set; }
+        public virtual DbSet<UserIdentity> UserIdentities { get; set; }
         public virtual DbSet<VideoEntry> VideoEntries { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -65,34 +65,34 @@ namespace NoteManager.Persistence.DataModel
                 .Property(e => e.Text)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UsersData>()
+            modelBuilder.Entity<UserData>()
                 .HasMany(e => e.DailyRecords)
                 .WithRequired(e => e.UsersData)
                 .HasForeignKey(e => e.UserDataId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UsersData>()
+            modelBuilder.Entity<UserData>()
                 .HasMany(e => e.Remainders)
                 .WithRequired(e => e.UsersData)
                 .HasForeignKey(e => e.UserData)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UsersData>()
+            modelBuilder.Entity<UserData>()
                 .HasMany(e => e.Users)
-                .WithOptional(e => e.UsersData)
+                .WithOptional(e => e.UserData)
                 .HasForeignKey(e => e.DataId);
 
-            modelBuilder.Entity<UsersIdentity>()
+            modelBuilder.Entity<UserIdentity>()
                 .Property(e => e.Login)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UsersIdentity>()
+            modelBuilder.Entity<UserIdentity>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UsersIdentity>()
+            modelBuilder.Entity<UserIdentity>()
                 .HasMany(e => e.Users)
-                .WithRequired(e => e.UsersIdentity)
+                .WithRequired(e => e.UserIdentity)
                 .HasForeignKey(e => e.IdentityId)
                 .WillCascadeOnDelete(false);
 

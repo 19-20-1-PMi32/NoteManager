@@ -28,7 +28,7 @@ namespace NoteManager.Persistence.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AudioEntry> AudioEntries { get; set; }
 
-        public virtual UsersData UsersData { get; set; }
+        public virtual UserData UsersData { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Note> Notes { get; set; }

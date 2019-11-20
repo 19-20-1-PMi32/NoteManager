@@ -21,6 +21,6 @@ namespace NoteManager.Persistence.DataModel
 
         public DateTime TriggerDate { get; set; }
 
-        public virtual UsersData UsersData { get; set; }
+        public virtual UserData UsersData { get; set; }
     }
 }
