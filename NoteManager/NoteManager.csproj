@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddFiles.xaml.cs">
+      <DependentUpon>AddFiles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageNote.xaml.cs">
       <DependentUpon>PageNote.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
     <Compile Include="WindowVideos.xaml.cs">
       <DependentUpon>WindowVideos.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddFiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -245,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\Background3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\BackaddFoles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\BackBlackFone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

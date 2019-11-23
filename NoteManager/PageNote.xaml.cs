@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace NoteManager
 {
@@ -10,6 +12,12 @@ namespace NoteManager
         public PageNote()
         {
             InitializeComponent();
+        }
+
+        private void GoToAddFiles(object sender, RoutedEventArgs e)
+        {
+            //FrameAddFiles.Content = new Uri("AddFiles.xaml", UriKind.Relative);
+            FrameAddFiles.Source = new Uri("AddFiles.xaml", UriKind.Relative);
         }
     }
 }
