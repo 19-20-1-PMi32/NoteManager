@@ -81,8 +81,8 @@
     <Compile Include="PageWelcome.xaml.cs">
       <DependentUpon>PageWelcome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plans.xaml.cs">
-      <DependentUpon>Plans.xaml</DependentUpon>
+    <Compile Include="PagePlans.xaml.cs">
+      <DependentUpon>PagePlans.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReminderAdd.xaml.cs">
       <DependentUpon>ReminderAdd.xaml</DependentUpon>
@@ -120,7 +120,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plans.xaml">
+    <Page Include="PagePlans.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
