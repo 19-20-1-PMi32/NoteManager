@@ -39,7 +39,7 @@
 
         <TreeView 
             HorizontalAlignment="Left" 
-            Margin="5,170,0,5" 
+            Margin="5,193,0,5" 
             VerticalAlignment="Stretch" 
             Width="190"
             />
@@ -135,22 +135,48 @@
             <ListBoxItem Content="ListBoxItem1"/>
             <ListBoxItem Content="ListBoxItem1"/>
         </ListBox>
-        
+
         <Label 
             Content="Add" 
-            FontSize="24"
-            Foreground="Gray"
+            FontSize="16"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Top"
             HorizontalAlignment="Right"
-            Margin="0,0,65,-5"
+            Margin="0,0,0,0"
             VerticalAlignment="Bottom"
+            Height="30"
             MouseDown="GoToAddFiles"
-            />
+            Width="230" 
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Background" Value="#FF171B1F" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#353c43" />
+                            <Setter Property="Foreground" Value="white" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
+        <ComboBox 
+            HorizontalAlignment="Left" 
+            Margin="10,167,0,0" 
+            VerticalAlignment="Top" 
+            Width="177"
+            />
+        
         <Frame 
             Name="FrameAddFiles"
             Margin="0,0,0,0"
             Grid.Column="0"
             Grid.ColumnSpan="2" Grid.RowSpan="2"
             />
+        
+
+
     </Grid>
 </Page>

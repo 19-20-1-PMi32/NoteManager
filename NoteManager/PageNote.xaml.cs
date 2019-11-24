@@ -16,7 +16,6 @@ namespace NoteManager
 
         private void GoToAddFiles(object sender, RoutedEventArgs e)
         {
-            //FrameAddFiles.Content = new Uri("AddFiles.xaml", UriKind.Relative);
             FrameAddFiles.Source = new Uri("AddFiles.xaml", UriKind.Relative);
         }
     }

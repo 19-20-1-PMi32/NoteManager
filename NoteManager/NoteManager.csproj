@@ -78,6 +78,9 @@
     <Compile Include="PageReminders.xaml.cs">
       <DependentUpon>PageReminders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesForResourses\AdditionVideo.xaml.cs">
+      <DependentUpon>AdditionVideo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageSignIn.xaml.cs">
       <DependentUpon>PageSignIn.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageReminders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\AdditionVideo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,6 +265,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\BackBlackFone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\IconAddFile1.png" />
+    <Resource Include="Resources\Pictures\IconAddFile2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\buttonPlayDarkGray.png" />
+    <Resource Include="Resources\Pictures\buttonPlayLightGray.png" />
+    <Resource Include="Resources\Pictures\buttonResumeDark.png" />
+    <Resource Include="Resources\Pictures\buttonResumeLight.png" />
+    <Resource Include="Resources\Pictures\buttonStopDark.png" />
+    <Resource Include="Resources\Pictures\buttonStopLight.png" />
+    <Resource Include="Resources\Pictures\clipart699636.png" />
+    <Resource Include="Resources\Pictures\IconAddFile1Light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\buttonSaveDark.png" />
+    <Resource Include="Resources\Pictures\ButtonSaveLight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

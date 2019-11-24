@@ -20,9 +20,58 @@
             />
 
         <Image Source="Resources/Pictures/BackaddFoles.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
                Margin="0,0,0,20" 
                Stretch="Fill"
-               Width="350"
+               Width="300"
+               Height="350"
                />
+
+        <Label 
+            Content="Video" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Center" 
+            Margin="0,0,200,330" 
+            VerticalAlignment="Center"
+            />
+
+        <Label 
+            Content="Picture" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Center" 
+            Margin="0,0,70,330" 
+            VerticalAlignment="Center"
+            />
+
+        <Label 
+            Content="Music" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Center" 
+            Margin="60,0,0,330" 
+            VerticalAlignment="Center"
+            />
+
+        <Label 
+            Content="Record" 
+            Foreground="Gray"
+            FontSize="20"
+            HorizontalAlignment="Center" 
+            Margin="190,0,0,330" 
+            VerticalAlignment="Center"
+            />
+
+        <Frame 
+            Name="FrameAddFiles"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,75,0,60" 
+            Width="300"
+            Height="315"
+            Source="PagesForResourses/AdditionVideo.xaml"  
+            />
     </Grid>
 </Page>
