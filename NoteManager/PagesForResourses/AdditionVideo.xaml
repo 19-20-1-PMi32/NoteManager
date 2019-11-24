@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NoteManager.PagesForResourses"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="315" d:DesignWidth="300"
       Title="AdditionVideo">
 
     <Grid>
@@ -13,7 +13,7 @@
             Source="..\\Resources/Pictures/IconAddFile1.png"
             HorizontalAlignment="Left"
             Height="30"
-            Margin="10,265,0,0" 
+            Margin="10,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
             />
@@ -22,14 +22,14 @@
             Source="..\\Resources/Pictures/buttonSaveDark.png"
             HorizontalAlignment="Left"
             Height="30"
-            Margin="260,265,0,0" 
+            Margin="260,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
             />
 
         <ListBox 
             HorizontalAlignment="Left" 
-            Height="100" 
+            Height="115" 
             Margin="10,155,0,0" 
             VerticalAlignment="Top" 
             Width="280"

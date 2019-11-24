@@ -1,0 +1,60 @@
+﻿<Page x:Class="NoteManager.PagesForResourses.AdditionPicture"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NoteManager.PagesForResourses"
+      mc:Ignorable="d" 
+      d:DesignHeight="315" d:DesignWidth="300"
+      Title="AdditionPicture">
+
+    <Grid>
+        <Image 
+            Source="..\\Resources/Pictures/IconAddFile1.png"
+            HorizontalAlignment="Left"
+            Height="30"
+            Margin="10,275,0,0" 
+            VerticalAlignment="Top"
+            Width="30"
+            />
+
+        <Image 
+            Source="..\\Resources/Pictures/buttonSaveDark.png"
+            HorizontalAlignment="Left"
+            Height="30"
+            Margin="260,275,0,0" 
+            VerticalAlignment="Top"
+            Width="30"
+            />
+
+        <ListBox 
+            HorizontalAlignment="Left" 
+            Height="115" 
+            Margin="10,155,0,0" 
+            VerticalAlignment="Top" 
+            Width="280"
+            FontSize="12"
+            >
+            <ListBoxItem Content="Picture1.jpg"/>
+            <ListBoxItem Content="Picture2.jpg"/>
+        </ListBox>
+
+        <Image 
+            Source="..\\Resources/Pictures/IconPictureLight.png"
+            HorizontalAlignment="Left"
+            Height="73"
+            Margin="114,39,0,0" 
+            VerticalAlignment="Top"
+            Width="73"
+            
+            />
+        
+        <Image 
+            HorizontalAlignment="Left"
+            Height="140" 
+            Margin="10,10,0,0" 
+            VerticalAlignment="Top" 
+            Width="280"
+            />
+    </Grid>
+</Page>

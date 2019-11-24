@@ -30,39 +30,81 @@
 
         <Label 
             Content="Video" 
-            Foreground="Gray"
             FontSize="20"
             HorizontalAlignment="Center" 
             Margin="0,0,200,330" 
             VerticalAlignment="Center"
-            />
+            MouseDown="ClickOnVideo"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
             Content="Picture" 
-            Foreground="Gray"
             FontSize="20"
             HorizontalAlignment="Center" 
             Margin="0,0,70,330" 
             VerticalAlignment="Center"
-            />
+            MouseDown="ClickOnPicture"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
             Content="Music" 
-            Foreground="Gray"
             FontSize="20"
             HorizontalAlignment="Center" 
             Margin="60,0,0,330" 
             VerticalAlignment="Center"
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
             Content="Record" 
-            Foreground="Gray"
             FontSize="20"
             HorizontalAlignment="Center" 
             Margin="190,0,0,330" 
             VerticalAlignment="Center"
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Frame 
             Name="FrameAddFiles"

@@ -78,6 +78,9 @@
     <Compile Include="PageReminders.xaml.cs">
       <DependentUpon>PageReminders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesForResourses\AdditionPicture.xaml.cs">
+      <DependentUpon>AdditionPicture.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagesForResourses\AdditionVideo.xaml.cs">
       <DependentUpon>AdditionVideo.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageReminders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\AdditionPicture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -283,6 +290,9 @@
   <ItemGroup>
     <Resource Include="Resources\Pictures\buttonSaveDark.png" />
     <Resource Include="Resources\Pictures\ButtonSaveLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\IconPictureLight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

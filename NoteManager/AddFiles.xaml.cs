@@ -29,5 +29,15 @@ namespace NoteManager
         {
             this.NavigationService.Source = null;
         }
+
+        private void ClickOnVideo(object sender, RoutedEventArgs e)
+        {
+            FrameAddFiles.Source = new Uri("PagesForResourses/AdditionVideo.xaml", UriKind.Relative);
+        }
+
+        private void ClickOnPicture(object sender, RoutedEventArgs e)
+        {
+            FrameAddFiles.Source = new Uri("PagesForResourses/AdditionPicture.xaml", UriKind.Relative);
+        }
     }
 }
