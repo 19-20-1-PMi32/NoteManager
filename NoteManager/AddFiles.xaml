@@ -74,6 +74,7 @@
             HorizontalAlignment="Center" 
             Margin="60,0,0,330" 
             VerticalAlignment="Center"
+            MouseDown="ClickOnMusic"
             >
             <Label.Style>
                 <Style TargetType="Label">

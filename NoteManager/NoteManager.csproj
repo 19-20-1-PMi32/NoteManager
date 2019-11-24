@@ -78,6 +78,9 @@
     <Compile Include="PageReminders.xaml.cs">
       <DependentUpon>PageReminders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesForResourses\AdditionMusic.xaml.cs">
+      <DependentUpon>AdditionMusic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagesForResourses\AdditionPicture.xaml.cs">
       <DependentUpon>AdditionPicture.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageReminders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\AdditionMusic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -293,6 +300,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\IconPictureLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\IconMusic2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\IconMusic1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
