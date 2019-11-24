@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceWeave.Controls", "Sou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Persistence.DataModel", "NoteManager.Persistence.DataModel\NoteManager.Persistence.DataModel.csproj", "{92A725D5-E68D-4D85-A053-DFD39CB8612D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Pesistence.API", "NoteManager.Pesistence.API\NoteManager.Pesistence.API.csproj", "{169F155E-5556-4C78-9E15-87E42B5F091C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Infrastructure", "NoteManager.Infrastructure\NoteManager.Infrastructure.csproj", "{D873E248-8899-4063-9084-69DC82F58C18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NoteManager.Persistence.DataModel
 {
-    public partial class Remainder
+    public partial class Reminder
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace NoteManager.Persistence.DataModel
         [Column(TypeName = "text")]
         public string Text { get; set; }
 
-        public DateTime? DateAdded { get; set; }
+        public DateTime? DateEdited { get; set; }
 
         public DateTime TriggerDate { get; set; }
 

@@ -17,7 +17,7 @@ namespace NoteManager.Persistence.DataModel
         [Required]
         public string Title { get; set; }
 
-        public DateTime? AddedDate { get; set; }
+        public DateTime? DateEdited { get; set; }
 
         public virtual DailyRecord DailyRecord { get; set; }
     }

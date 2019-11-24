@@ -4,16 +4,17 @@ namespace NoteManager.Persistence.DataModel
 {
     public partial class NoteManagerDatabase : DbContext
     {
-        public NoteManagerDatabase()
-            : base("name=NoteManagerDatabase")
+        public NoteManagerDatabase(string connectionString)
+            : base(connectionString)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<NoteManagerDatabase, Migrations.Configuration>());
         }
 
         public virtual DbSet<AudioEntry> AudioEntries { get; set; }
         public virtual DbSet<DailyRecord> DailyRecords { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<PictureEntry> PictureEntries { get; set; }
-        public virtual DbSet<Remainder> Remainders { get; set; }
+        public virtual DbSet<Reminder> Reminders { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserData> UserDatas { get; set; }
         public virtual DbSet<UserIdentity> UserIdentities { get; set; }
@@ -57,11 +58,11 @@ namespace NoteManager.Persistence.DataModel
                 .Property(e => e.Title)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Remainder>()
+            modelBuilder.Entity<Reminder>()
                 .Property(e => e.Title)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Remainder>()
+            modelBuilder.Entity<Reminder>()
                 .Property(e => e.Text)
                 .IsUnicode(false);
 
@@ -72,7 +73,7 @@ namespace NoteManager.Persistence.DataModel
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserData>()
-                .HasMany(e => e.Remainders)
+                .HasMany(e => e.Reminders)
                 .WithRequired(e => e.UsersData)
                 .HasForeignKey(e => e.UserData)
                 .WillCascadeOnDelete(false);
