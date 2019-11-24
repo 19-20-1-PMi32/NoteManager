@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Windows.Data;
+using System.Drawing;
+using System.Globalization;
+using System.Text;
+using System.Diagnostics;
 
 namespace NoteManager
 {
@@ -12,32 +17,61 @@ namespace NoteManager
         public PagePlans()
         {
             InitializeComponent();
-            List<Plan> plans = getTestPlans();
+            //Initialization only for tests for tests
+            List<Plan> plans = GetTestPlans();
             ListPlans.ItemsSource = plans;
 
         }
-        public List<Plan> getTestPlans()
+        public List<Plan> GetTestPlans()
         {
             string longText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
             int count = 10;
             List<Plan> result = new List<Plan>(count);
             for(int i =0; i < count; i++)
             {
+                PlanState a;
+                if (i % 3 == 0)
+                {
+                    a = PlanState.Complete;
+                }
+                else if(i % 2 == 0)
+                {
+                    a = PlanState.InProgres;
+                }
+                else
+                {
+                    a = PlanState.Crashed;
+                }
+
                 result.Add(new Plan()
                 {
                     Text = $"План {i} і небагато тексту для тестування." + longText,
                     CreationTime = DateTime.Now.AddDays(i),
                     DeadLineTime = DateTime.Now.AddDays(10 + i),
-                    State = PlanState.InProgres
+                    State = a
                 }); ;
             }
             return result;
         }
+
+        private void ListPlans_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Plan sel = ((sender as ListBox)?.SelectedItem as Plan);
+            if (sel == null)
+                return;
+            LoadPlanView(sel);
+        }
+        private void LoadPlanView(Plan plan)
+        {
+            PlanEditor.Text = plan.Text;
+
+        }
     }
     public enum PlanState
     {
-        InProgres,
-        Complete
+        InProgres = 1,
+        Complete = 2,
+        Crashed = 3
     }
     public class Plan
     {
@@ -45,19 +79,18 @@ namespace NoteManager
         public DateTime CreationTime { get; set; }
         public DateTime DeadLineTime { get; set; }
         public PlanState State { get; set; }
-        public string SmallText
+        public string StateColor
         {
             get
             {
-                int length = 20;
-                if (Text.Length >= 20)
-                    return Text.Substring(0, length);
-                else if (Text.Length > 0)
-                    return Text;
+                if (PlanState.Complete == State)
+                    return "Green";
+                else if (PlanState.Crashed == State)
+                    return " #e60000";
                 else
-                    return "Пусто";
+                    return "Purple";
             }
         }
-    }
 
+    }
 }
