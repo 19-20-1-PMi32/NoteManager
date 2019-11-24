@@ -44,5 +44,10 @@ namespace NoteManager
         {
             FrameAddFiles.Source = new Uri("PagesForResourses/AdditionMusic.xaml", UriKind.Relative);
         }
+
+        private void ClickOnRecord(object sender, RoutedEventArgs e)
+        {
+            FrameAddFiles.Source = new Uri("PagesForResourses/AdditionRecord.xaml", UriKind.Relative);
+        }
     }
 }

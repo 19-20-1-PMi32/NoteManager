@@ -84,6 +84,9 @@
     <Compile Include="PagesForResourses\AdditionPicture.xaml.cs">
       <DependentUpon>AdditionPicture.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesForResourses\AdditionRecord.xaml.cs">
+      <DependentUpon>AdditionRecord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagesForResourses\AdditionVideo.xaml.cs">
       <DependentUpon>AdditionVideo.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagesForResourses\AdditionPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\AdditionRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -306,6 +313,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\IconMusic1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\IconRecord1.png" />
+    <Resource Include="Resources\Pictures\IconRecord2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\IconMakeRecordDark.png" />
+    <Resource Include="Resources\Pictures\IconMakeRecordLight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -94,6 +94,7 @@
             HorizontalAlignment="Center" 
             Margin="190,0,0,330" 
             VerticalAlignment="Center"
+            MouseDown="ClickOnRecord"
             >
             <Label.Style>
                 <Style TargetType="Label">
