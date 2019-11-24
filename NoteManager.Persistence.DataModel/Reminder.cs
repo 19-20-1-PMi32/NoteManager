@@ -9,7 +9,7 @@ namespace NoteManager.Persistence.DataModel
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        public int UserData { get; set; }
+        public int UserDataId { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -21,6 +21,6 @@ namespace NoteManager.Persistence.DataModel
 
         public DateTime TriggerDate { get; set; }
 
-        public virtual UserData UsersData { get; set; }
+        public virtual UserData UserData { get; set; }
     }
 }
