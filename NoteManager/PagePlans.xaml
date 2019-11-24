@@ -78,15 +78,20 @@
         </ListBox>
 
         <TextBox 
-        x:Name="PlanEditor"
-        Grid.Column="2"
-        Foreground="White"
-        FontSize="16"
-        HorizontalAlignment="Stretch"
-        TextWrapping="Wrap"
-        VerticalAlignment="Stretch" 
-        Background="#FF18191D" 
-        VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Grid.Row="1"
+            x:Name="PlanEditor"
+            Grid.Column="2"
+            Foreground="White"
+            FontSize="16"
+            HorizontalAlignment="Stretch"
+            TextWrapping="Wrap"
+            VerticalAlignment="Stretch" 
+            Background="#FF18191D" 
+            VerticalScrollBarVisibility="Visible" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="1"
+            AcceptsReturn="True"
+            AcceptsTab="True"
+            TabIndex="4"
         />
         <Button 
             Content="Save" 
