@@ -73,24 +73,38 @@ namespace NoteManager
         Complete = 2,
         Crashed = 3
     }
+
+    [ValueConversion(typeof(PlanState), typeof(string))]
+    public class StateColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            PlanState state = (PlanState) value;
+            if (PlanState.Complete == state)
+                return "Green";
+            else if (PlanState.Crashed == state)
+                return "Red";
+            else
+                return "Purple";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string color = value as string;
+            if (color == "Red")
+                return PlanState.Crashed;
+            else if (color == "Green")
+                return PlanState.Complete;
+            else
+                return PlanState.InProgres;
+            
+        }
+    }
     public class Plan
     {
         public string Text { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime DeadLineTime { get; set; }
         public PlanState State { get; set; }
-        public string StateColor
-        {
-            get
-            {
-                if (PlanState.Complete == State)
-                    return "Green";
-                else if (PlanState.Crashed == State)
-                    return " #e60000";
-                else
-                    return "Purple";
-            }
-        }
-
     }
 }
