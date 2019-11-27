@@ -35,8 +35,8 @@
             Width="280"
             FontSize="12"
             >
-            <ListBoxItem Content="Picture1.jpg"/>
-            <ListBoxItem Content="Picture2.jpg"/>
+            <ListBoxItem MouseDoubleClick="DoubleClickOnNmeOfPicture1"  Content="Picture1.jpg"/>
+            <ListBoxItem MouseDoubleClick="DoubleClickOnNmeOfPicture2" Content="Picture2.jpg"/>
         </ListBox>
 
         <Image 
@@ -50,11 +50,12 @@
             />
         
         <Image 
-            HorizontalAlignment="Left"
+            Name="MyImage"
+            HorizontalAlignment="Center"
             Height="140" 
-            Margin="10,10,0,0" 
+            Margin="0,10,0,0" 
             VerticalAlignment="Top" 
-            Width="280"
+            
             />
     </Grid>
 </Page>

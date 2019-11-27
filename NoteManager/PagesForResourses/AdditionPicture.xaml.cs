@@ -24,5 +24,15 @@ namespace NoteManager.PagesForResourses
         {
             InitializeComponent();
         }
+
+        private void DoubleClickOnNmeOfPicture1(object sender, RoutedEventArgs e)
+        {
+            MyImage.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/BackroundBlackWorld.jpg"));
+        }
+
+        private void DoubleClickOnNmeOfPicture2(object sender, RoutedEventArgs e)
+        {
+            MyImage.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/Start1.jpg"));
+        }
     }
 }

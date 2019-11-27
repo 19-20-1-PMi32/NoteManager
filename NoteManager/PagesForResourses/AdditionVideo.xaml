@@ -35,7 +35,7 @@
             Width="280"
             FontSize="12"
             >
-            <ListBoxItem Content="Video1.mp4"/>
+            <ListBoxItem MouseDoubleClick="DoubleClickOnVideo1" Content="Video1.mp4"/>
             <ListBoxItem Content="Video2.mp4"/>
         </ListBox>
 
@@ -59,6 +59,7 @@
             />
 
         <Image 
+            MouseDown="Play"
             Source="..\\Resources/Pictures/buttonPlayDarkGray.png"
             HorizontalAlignment="Left"
             Height="10"
@@ -68,6 +69,7 @@
             />
 
         <Image 
+            MouseDown="Pause"
             Source="..\\Resources/Pictures/buttonResumeDark.png"
             HorizontalAlignment="Left"
             Height="10"
@@ -77,6 +79,7 @@
             />
 
         <Image 
+            MouseDown="Stop"
             Source="..\\Resources/Pictures/buttonStopDark.png"
             HorizontalAlignment="Left"
             Height="10"
@@ -86,6 +89,7 @@
             />
 
         <Label 
+            Name="lableStatus"
             Content="00:00" 
             HorizontalAlignment="Left" 
             Margin="174,132,0,0" 
@@ -99,6 +103,7 @@
             Margin="204,132,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
+            Visibility="Hidden"
             />
 
         <Label 
@@ -107,6 +112,17 @@
             Margin="212,132,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
+            Visibility="Hidden"
+            />
+        
+        <MediaElement 
+            Name="VideosElem"
+            HorizontalAlignment="Center"
+            Height="123" 
+            Margin="0,12,0,0" 
+            VerticalAlignment="Top" 
+            LoadedBehavior="Manual"
+            UnloadedBehavior="Manual" 
             />
     </Grid>
 </Page>

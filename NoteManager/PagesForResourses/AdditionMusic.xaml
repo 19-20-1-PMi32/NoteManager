@@ -35,8 +35,8 @@
             Width="280"
             FontSize="12"
             >
-            <ListBoxItem Content="Music1.mp3"/>
-            <ListBoxItem Content="Music2.mp3"/>
+            <ListBoxItem MouseDoubleClick="ClickOnMusic1" Content="Music1.mp3"/>
+            <ListBoxItem MouseDoubleClick="ClickOnMusic2" Content="Music2.mp3"/>
         </ListBox>
 
         <Image 
@@ -57,6 +57,7 @@
             Width="80"
             />
         <Image 
+            MouseDown="Play"
             Source="/NoteManager;component/Resources/Pictures/buttonPlayDarkGray.png"
             HorizontalAlignment="Left"
             Height="10"
@@ -65,6 +66,7 @@
             Width="10"
             />
         <Image 
+            MouseDown="Pause"
             Source="/NoteManager;component/Resources/Pictures/buttonResumeDark.png"
             HorizontalAlignment="Left"
             Height="10"
@@ -73,6 +75,7 @@
             Width="10"
             />
         <Image 
+            MouseDown="Stop"
             Source="/NoteManager;component/Resources/Pictures/buttonStopDark.png"
             HorizontalAlignment="Left"
             Height="10"
@@ -81,6 +84,7 @@
             Width="10"
             />
         <Label 
+            Name="lableStatus"
             Content="00:00" 
             HorizontalAlignment="Left" 
             Margin="174,132,0,0" 
@@ -88,6 +92,7 @@
             Foreground="Gray"
             />
         <Label 
+            Visibility="Hidden"
             Content="/" 
             HorizontalAlignment="Left" 
             Margin="204,132,0,0" 
@@ -95,11 +100,22 @@
             Foreground="Gray"
             />
         <Label 
+            Visibility="Hidden"
             Content="00:00" 
             HorizontalAlignment="Left" 
             Margin="212,132,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
+            />
+        <MediaElement 
+            x:Name="MusicElem"
+            HorizontalAlignment="Left"
+            Height="123" 
+            Margin="51,12,0,0" 
+            VerticalAlignment="Top" 
+            Width="194"
+            LoadedBehavior="Manual"
+            UnloadedBehavior="Manual" 
             />
     </Grid>
 </Page>

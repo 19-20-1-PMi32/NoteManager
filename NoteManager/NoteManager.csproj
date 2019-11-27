@@ -322,5 +322,12 @@
     <Resource Include="Resources\Pictures\IconMakeRecordDark.png" />
     <Resource Include="Resources\Pictures\IconMakeRecordLight.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\GMV The Show.mp3" />
+    <Content Include="Resources\Me_vs_Bugs.mp4" />
+    <Content Include="Resources\Me_vs_Bugs.wmv" />
+    <Content Include="Resources\MR_Moment.mp3" />
+    <Content Include="Resources\Pictures\Me_vs_Bugs.wmv" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
