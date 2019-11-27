@@ -44,8 +44,12 @@
     <Compile Include="DataContracts\IDailyNote.cs" />
     <Compile Include="DataContracts\IDataRecord.cs" />
     <Compile Include="DataContracts\IMediaRecord.cs" />
+    <Compile Include="DataContracts\IReminder.cs" />
     <Compile Include="DataContracts\ITextRecord.cs" />
+    <Compile Include="DataContracts\IUser.cs" />
     <Compile Include="DataContracts\MediaType.cs" />
+    <Compile Include="DataStorage\IDailyNoteStorage.cs" />
+    <Compile Include="DataStorage\IUserStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
