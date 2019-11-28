@@ -69,8 +69,8 @@
     <Compile Include="PageNote.xaml.cs">
       <DependentUpon>PageNote.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageNotes.xaml.cs">
-      <DependentUpon>PageNotes.xaml</DependentUpon>
+    <Compile Include="PageMenu.xaml.cs">
+      <DependentUpon>PageMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageRegistration.xaml.cs">
       <DependentUpon>PageRegistration.xaml</DependentUpon>
@@ -96,20 +96,11 @@
     <Compile Include="PageWelcome.xaml.cs">
       <DependentUpon>PageWelcome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plans.xaml.cs">
-      <DependentUpon>Plans.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ReminderAdd.xaml.cs">
-      <DependentUpon>ReminderAdd.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Showcase\FancyBalloon.xaml.cs">
       <DependentUpon>FancyBalloon.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowStart.xaml.cs">
       <DependentUpon>WindowStart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowVideos.xaml.cs">
-      <DependentUpon>WindowVideos.xaml</DependentUpon>
     </Compile>
     <Page Include="AddFiles.xaml">
       <SubType>Designer</SubType>
@@ -119,7 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageNotes.xaml">
+    <Page Include="PageMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,14 +146,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Plans.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ReminderAdd.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -188,10 +171,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="WindowStart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowVideos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,7 +268,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\IconAddFile1.png" />
-    <Resource Include="Resources\Pictures\IconAddFile2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\buttonPlayDarkGray.png" />
@@ -312,11 +290,7 @@
     <Resource Include="Resources\Pictures\IconMusic2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Pictures\IconMusic1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Pictures\IconRecord1.png" />
-    <Resource Include="Resources\Pictures\IconRecord2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\IconMakeRecordDark.png" />
@@ -324,10 +298,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\GMV The Show.mp3" />
-    <Content Include="Resources\Me_vs_Bugs.mp4" />
     <Content Include="Resources\Me_vs_Bugs.wmv" />
     <Content Include="Resources\MR_Moment.mp3" />
-    <Content Include="Resources\Pictures\Me_vs_Bugs.wmv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
