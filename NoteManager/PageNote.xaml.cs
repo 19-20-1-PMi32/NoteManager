@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using NoteManager.DBClasses;
 using System.Linq;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace NoteManager
 {
@@ -12,10 +14,14 @@ namespace NoteManager
     /// </summary>
     public partial class PageNote : Page
     {
+        private ContextMenu NoteMenu = null;
+        private TreeViewItem ThatWillBeDeleted;
+
         public PageNote()
         {
             InitializeComponent();
             InitializeDatas();
+            NoteMenu = Resources["NoteMenu"] as ContextMenu;
         }
 
         private void InitializeDatas()
@@ -52,6 +58,7 @@ namespace NoteManager
                             var note = new TreeViewItem() { Header = $"{item4}" };
                             day.Items.Add(note);
                             note.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                            note.MouseRightButtonUp += MouseButtonRightClickHandler;
                         }
                         month.Items.Add(day);
                     }
@@ -72,8 +79,16 @@ namespace NoteManager
             {
                 DateTime TimeOfcreateNote = DateTime.Now;
                 User.Notes.Add(new Note(TextBoxMain.Text, TimeOfcreateNote));
-
                 AddingNewNoteInTreeView(TimeOfcreateNote);
+            }
+        }
+
+        private void DeleteNote(object sender, RoutedEventArgs e)
+        {
+            var parent = ThatWillBeDeleted.Parent as TreeViewItem;
+            if (parent != null)
+            {
+                parent.Items.Remove(ThatWillBeDeleted);
             }
         }
 
@@ -139,20 +154,12 @@ namespace NoteManager
                 Dates.Items.Add(newYear);
                 newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
             }
+        }
 
-            //foreach (var item in Dates.Items.SourceCollection)
-            //{
-
-            //    (item as TreeViewItem).Items.Add(new TreeViewItem() { Header = $"rtyuioiuytr" });
-            //}
-
-            //if ((string)((TreeViewItem)Dates.Items.CurrentItem).Header == time.Year.ToString())
-            //{
-            //    foreach (var item in Dates.Items.SourceCollection)
-            //    {
-            //        (item as TreeViewItem).Items.Add(new TreeViewItem() { Header = $"rtyuioiuytr" });
-            //    }
-            //}
+        private void MouseButtonRightClickHandler(object sender, MouseButtonEventArgs e)
+        {
+            NoteMenu.IsOpen = true;
+            ThatWillBeDeleted = sender as TreeViewItem;
         }
 
         private void MouseButtonDoubleClickHandler(object sender, MouseButtonEventArgs e)

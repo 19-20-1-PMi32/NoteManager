@@ -7,7 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageNote">
-
+    <Page.Resources>
+        <ContextMenu x:Key="NoteMenu">
+            <MenuItem Header="Delete" Click="DeleteNote" />
+            <MenuItem Header="Item2" />
+            <Separator />
+            <MenuItem Header="Item3"/>
+        </ContextMenu>
+    </Page.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush 
@@ -46,26 +53,47 @@
             Width="190"
             />
 
+        <!-- Lable Save -->
         <Label
             MouseDown="SaveNote"
             Content="Save" 
             FontSize="24"
-            Foreground="Gray"
             HorizontalAlignment="Right"
             Margin="0,0,230,-5"
             VerticalAlignment="Bottom"
-            
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
+        <!-- Lable Delete -->
         <Label 
+            MouseDown="DeleteNote"
             Content="Delete" 
             FontSize="24"
-            Foreground="Gray"
             HorizontalAlignment="Left"
             Margin="195,0,0,-5"
             VerticalAlignment="Bottom"
-            
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
             Content="Video" 
