@@ -46,7 +46,8 @@
             Width="190"
             />
 
-        <Label 
+        <Label
+            MouseDown="SaveNote"
             Content="Save" 
             FontSize="24"
             Foreground="Gray"

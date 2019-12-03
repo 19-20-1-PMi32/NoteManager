@@ -66,6 +66,95 @@ namespace NoteManager
             FrameAddFiles.Source = new Uri("AddFiles.xaml", UriKind.Relative);
         }
 
+        private void SaveNote(object sender, RoutedEventArgs e)
+        {
+            if(TextBoxMain.Text != "")
+            {
+                DateTime TimeOfcreateNote = DateTime.Now;
+                User.Notes.Add(new Note(TextBoxMain.Text, TimeOfcreateNote));
+
+                AddingNewNoteInTreeView(TimeOfcreateNote);
+            }
+        }
+
+        private void AddingNewNoteInTreeView(DateTime time)
+        {
+            bool isThisYear = false;
+            bool isThisMonth = false;
+            bool isThisDay = false;
+            foreach (var year in Dates.Items.SourceCollection)
+            {
+                if((string)(year as TreeViewItem).Header == time.Year.ToString())
+                {
+                    foreach (var month in (year as TreeViewItem).Items.SourceCollection)
+                    {
+                        if ((string)(month as TreeViewItem).Header == time.Month.ToString())
+                        {
+                            foreach (var day in (month as TreeViewItem).Items.SourceCollection)
+                            {
+                                if ((string)(day as TreeViewItem).Header == time.Day.ToString())
+                                {
+                                    var newNote = new TreeViewItem() { Header = $"{time}" };
+                                    (day as TreeViewItem).Items.Add(newNote);
+                                    newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                                    isThisDay = true;
+                                    break;
+                                }
+                            }
+                            if(!isThisDay)
+                            {
+                                var newNote = new TreeViewItem() { Header = $"{time}" };
+                                var newDay = new TreeViewItem() { Header = $"{time.Day}" };
+                                newDay.Items.Add(newNote);
+                                (month as TreeViewItem).Items.Add(newDay);
+                                newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                            }
+                            isThisMonth = true;
+                            break;
+                        }
+                    }
+                    if (!isThisMonth)
+                    {
+                        var newNote = new TreeViewItem() { Header = $"{time}" };
+                        var newDay = new TreeViewItem() { Header = $"{time.Day}" };
+                        var newMonth = new TreeViewItem() { Header = $"{time.Month}" };
+                        newDay.Items.Add(newNote);
+                        newMonth.Items.Add(newDay);
+                        (year as TreeViewItem).Items.Add(newMonth);
+                        newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                    }
+                    isThisYear = true;
+                    break;
+                }
+            }
+            if (!isThisYear)
+            {
+                var newNote = new TreeViewItem() { Header = $"{time}" };
+                var newDay = new TreeViewItem() { Header = $"{time.Day}" };
+                var newMonth = new TreeViewItem() { Header = $"{time.Month}" };
+                var newYear = new TreeViewItem() { Header = $"{time.Year}" };
+                newDay.Items.Add(newNote);
+                newMonth.Items.Add(newDay);
+                newYear.Items.Add(newMonth);
+                Dates.Items.Add(newYear);
+                newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+            }
+
+            //foreach (var item in Dates.Items.SourceCollection)
+            //{
+
+            //    (item as TreeViewItem).Items.Add(new TreeViewItem() { Header = $"rtyuioiuytr" });
+            //}
+
+            //if ((string)((TreeViewItem)Dates.Items.CurrentItem).Header == time.Year.ToString())
+            //{
+            //    foreach (var item in Dates.Items.SourceCollection)
+            //    {
+            //        (item as TreeViewItem).Items.Add(new TreeViewItem() { Header = $"rtyuioiuytr" });
+            //    }
+            //}
+        }
+
         private void MouseButtonDoubleClickHandler(object sender, MouseButtonEventArgs e)
         {
             var t = (TreeViewItem)sender;
