@@ -113,6 +113,7 @@ namespace NoteManager
                                     var newNote = new TreeViewItem() { Header = $"{time}" };
                                     (day as TreeViewItem).Items.Add(newNote);
                                     newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                                    newNote.MouseRightButtonUp += MouseButtonRightClickHandler;
                                     isThisDay = true;
                                     break;
                                 }
@@ -124,6 +125,7 @@ namespace NoteManager
                                 newDay.Items.Add(newNote);
                                 (month as TreeViewItem).Items.Add(newDay);
                                 newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                                newNote.MouseRightButtonUp += MouseButtonRightClickHandler;
                             }
                             isThisMonth = true;
                             break;
@@ -138,6 +140,7 @@ namespace NoteManager
                         newMonth.Items.Add(newDay);
                         (year as TreeViewItem).Items.Add(newMonth);
                         newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                        newNote.MouseRightButtonUp += MouseButtonRightClickHandler;
                     }
                     isThisYear = true;
                     break;

@@ -24,6 +24,8 @@
         			AlignmentX="Center"
         		/>
         </Grid.Background>
+        
+        <!-- TextBox Main-->
         <TextBox 
             Name="TextBoxMain"
             Foreground="White"
@@ -37,18 +39,11 @@
             VerticalScrollBarVisibility="Visible"
             />
 
-        <Calendar 
-            HorizontalAlignment="Left" 
-            Margin="0,-1,0,0" 
-            VerticalAlignment="Top" 
-            Height="168"
-            Width="200"
-            />
-
+        <!-- TreeView Dates -->
         <TreeView 
             Name="Dates"
             HorizontalAlignment="Left" 
-            Margin="5,193,0,5" 
+            Margin="5,5,0,5" 
             VerticalAlignment="Stretch" 
             Width="190"
             />
@@ -58,8 +53,8 @@
             MouseDown="SaveNote"
             Content="Save" 
             FontSize="24"
-            HorizontalAlignment="Right"
-            Margin="0,0,230,-5"
+            HorizontalAlignment="Center"
+            Margin="0,0,0,-5"
             VerticalAlignment="Bottom"
             >
             <Label.Style>
@@ -74,27 +69,7 @@
             </Label.Style>
         </Label>
 
-        <!-- Lable Delete -->
-        <Label 
-            MouseDown="DeleteNote"
-            Content="Delete" 
-            FontSize="24"
-            HorizontalAlignment="Left"
-            Margin="195,0,0,-5"
-            VerticalAlignment="Bottom"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-
+        <!-- Label Video -->
         <Label 
             MouseDown="ShowVideos"
             Content="Video" 
@@ -115,6 +90,7 @@
             </Label.Style>
         </Label>
 
+        <!-- Label Picture -->
         <Label 
             MouseDown="ShowPictures"
             Content="Picture" 
@@ -135,6 +111,7 @@
             </Label.Style>
         </Label>
 
+        <!-- Label Music -->
         <Label 
             MouseDown="ShowMusics"
             Content="Music" 
@@ -155,6 +132,7 @@
             </Label.Style>
         </Label>
 
+        <!-- Label Record -->
         <Label 
             MouseDown="ShowRecords"
             Content="Record" 
@@ -210,13 +188,6 @@
             </Label.Style>
         </Label>
 
-        <ComboBox 
-            HorizontalAlignment="Left" 
-            Margin="10,167,0,0" 
-            VerticalAlignment="Top" 
-            Width="177"
-            />
-        
         <Frame 
             Name="FrameAddFiles"
             Margin="0,0,0,0"

@@ -19,6 +19,10 @@ namespace NoteManager.DBClasses
         {
             Text = text;
             CreationTime = date;
+            Videos = new List<Video>();
+            Pictures = new List<Picture>();
+            Musics = new List<Music>();
+            Records = new List<Record>();
         }
     }
 }
