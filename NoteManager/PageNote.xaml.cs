@@ -16,6 +16,7 @@ namespace NoteManager
     {
         private ContextMenu NoteMenu = null;
         private TreeViewItem ThatWillBeDeleted;
+        private Note CurentNote = null;
 
         public PageNote()
         {
@@ -153,6 +154,7 @@ namespace NoteManager
                 newYear.Items.Add(newMonth);
                 Dates.Items.Add(newYear);
                 newNote.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                newNote.MouseRightButtonUp += MouseButtonRightClickHandler;
             }
         }
 
@@ -169,6 +171,55 @@ namespace NoteManager
                      where it.CreationTime.ToString() == (string)t.Header
                      select it).First();
             TextBoxMain.Text = p.Text;
+            CurentNote = p;
+        }
+
+        private void ShowVideos(object sender, RoutedEventArgs e)
+        {
+            if(CurentNote != null)
+            {
+                ListBoxResourses.Items.Clear();
+                foreach (var item in CurentNote.Videos)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+            }
+        }
+
+        private void ShowPictures(object sender, RoutedEventArgs e)
+        {
+            if (CurentNote != null)
+            {
+                ListBoxResourses.Items.Clear();
+                foreach (var item in CurentNote.Pictures)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+            }
+        }
+
+        private void ShowMusics(object sender, RoutedEventArgs e)
+        {
+            if (CurentNote != null)
+            {
+                ListBoxResourses.Items.Clear();
+                foreach (var item in CurentNote.Musics)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+            }
+        }
+
+        private void ShowRecords(object sender, RoutedEventArgs e)
+        {
+            if (CurentNote != null)
+            {
+                ListBoxResourses.Items.Clear();
+                foreach (var item in CurentNote.Records)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+            }
         }
     }
 }

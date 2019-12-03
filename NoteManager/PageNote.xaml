@@ -96,76 +96,93 @@
         </Label>
 
         <Label 
+            MouseDown="ShowVideos"
             Content="Video" 
-            Foreground="Gray"
             FontSize="16"
             HorizontalAlignment="Right" 
             Margin="0,0,175,0" 
             VerticalAlignment="Top"
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
+            MouseDown="ShowPictures"
             Content="Picture" 
-            Foreground="Gray"
             FontSize="16"
             HorizontalAlignment="Right" 
             Margin="0,0,115,0" 
             VerticalAlignment="Top"
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
+            MouseDown="ShowMusics"
             Content="Music" 
-            Foreground="Gray"
             FontSize="16"
             HorizontalAlignment="Right" 
             Margin="0,0,65,0" 
             VerticalAlignment="Top"
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Label 
+            MouseDown="ShowRecords"
             Content="Record" 
-            Foreground="Gray"
             FontSize="16"
             HorizontalAlignment="Right" 
             Margin="0,0,5,0" 
             VerticalAlignment="Top"
-            />
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <ListBox 
+            Name="ListBoxResourses"
             HorizontalAlignment="Right" 
             Margin="0,30,7,30" 
             VerticalAlignment="Stretch" 
             Width="216"
-            >
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-            <ListBoxItem Content="ListBoxItem1"/>
-        </ListBox>
+            />
+
 
         <Label 
             Content="Add" 
