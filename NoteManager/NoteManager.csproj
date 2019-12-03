@@ -66,6 +66,12 @@
     <Compile Include="AddFiles.xaml.cs">
       <DependentUpon>AddFiles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBClasses\Music.cs" />
+    <Compile Include="DBClasses\Note.cs" />
+    <Compile Include="DBClasses\Picture.cs" />
+    <Compile Include="DBClasses\Record.cs" />
+    <Compile Include="DBClasses\User.cs" />
+    <Compile Include="DBClasses\Video.cs" />
     <Compile Include="PageNote.xaml.cs">
       <DependentUpon>PageNote.xaml</DependentUpon>
     </Compile>
@@ -300,6 +306,9 @@
     <Content Include="Resources\GMV The Show.mp3" />
     <Content Include="Resources\Me_vs_Bugs.wmv" />
     <Content Include="Resources\MR_Moment.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBResources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

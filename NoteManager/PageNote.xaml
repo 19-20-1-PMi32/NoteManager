@@ -18,12 +18,13 @@
         		/>
         </Grid.Background>
         <TextBox 
+            Name="TextBoxMain"
             Foreground="White"
             FontSize="16"
             HorizontalAlignment="Stretch" 
             Margin="200,4,231,28" 
             TextWrapping="Wrap" 
-            Text="TextBox"
+            Text=""
             VerticalAlignment="Stretch" 
             Background="#FF18191D" 
             VerticalScrollBarVisibility="Visible"
@@ -38,6 +39,7 @@
             />
 
         <TreeView 
+            Name="Dates"
             HorizontalAlignment="Left" 
             Margin="5,193,0,5" 
             VerticalAlignment="Stretch" 
