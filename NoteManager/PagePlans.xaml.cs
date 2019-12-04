@@ -81,11 +81,11 @@ namespace NoteManager
         {
             PlanState state = (PlanState) value;
             if (PlanState.Complete == state)
-                return "Green";
+                return "#29a329";
             else if (PlanState.Crashed == state)
-                return "Red";
+                return "#cc0000";
             else
-                return "Purple";
+                return "#9900cc";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
