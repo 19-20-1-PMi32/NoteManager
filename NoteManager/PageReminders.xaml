@@ -9,8 +9,56 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageReminders">
-    
-    
+    <!-- Everything code down is for WaterMark in TextBox -->
+    <Page.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border 
+                                Background="#FF5C5B5B" 
+                                BorderBrush="{x:Null}" 
+                                BorderThickness="1"
+                                />
+
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                Margin="5,0,0,0" 
+                                VerticalAlignment="Center" 
+                                />
+
+                            <Label Margin="5,0,0,0" 
+                                   x:Name="WaterMarkLabel" 
+                                   Content="{TemplateBinding Tag}" 
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed" 
+                                   Foreground="LightGray" 
+                                   FontFamily="Arial"
+                                   />
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" 
+                                        TargetName="WaterMarkLabel" 
+                                        Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" 
+                                     Value="False">
+                                <Setter Property="Foreground" 
+                                        Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <!-- Background picture-->
         <Grid.Background>
@@ -59,7 +107,7 @@
                         >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn x:Name="ActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}" Header="Текст" />
+                                <GridViewColumn x:Name="ActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}" Header="Текст" Width="auto"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="230"/>
                             </GridView>
                         </ListView.View>
@@ -98,7 +146,7 @@
                         >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn x:Name="NoActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}"  Header="Текст" />
+                                <GridViewColumn x:Name="NoActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}"  Header="Текст" Width="auto" />
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="230"/>
                             </GridView>
                         </ListView.View>
@@ -116,6 +164,72 @@
                             </col:ArrayList>
                         </ListView.Resources>
                     </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem 
+                Header="Add" 
+                HorizontalAlignment="Center" 
+                Width="200" 
+                FontSize="20"
+                >
+                <Grid >
+                    <Grid.Background>
+                        <ImageBrush 
+        			        ImageSource="Resources/Pictures/BlackBlueBackground.png" 
+        			        Stretch="UniformToFill" 					
+        			        AlignmentY="Center"        					
+        			        AlignmentX="Center"
+                
+        		        />
+                    </Grid.Background>
+                    <TextBox 
+                        Name="TextBoxAddReminder"
+                        Foreground="White"
+                        FontSize="16"
+                        HorizontalAlignment="Stretch" 
+                        Margin="250,0,0,0" 
+                        TextWrapping="Wrap" 
+                        Text=""
+                        VerticalAlignment="Stretch" 
+                        Background="#FF18191D" 
+                        VerticalScrollBarVisibility="Visible"
+                        />
+
+                    <DatePicker 
+                        HorizontalAlignment="Left" 
+                        Margin="25,0,0,110" 
+                        VerticalAlignment="Center" 
+                        Width="200" Height="40"
+                        />
+
+                    <TextBox 
+                        Foreground="LightGray"
+                        Height="44" 
+                        Margin="25,0,0,0" 
+                        HorizontalAlignment="left" 
+                        VerticalAlignment="Center" 
+                        Width="200" 
+                        Background="#FF5C5B5B"
+                        MaxLines="50" 
+                        FontSize="16" 
+                        BorderBrush="{x:Null}"
+                        Style="{StaticResource MyWaterMarkStyle}"
+		                Tag="Hours/minutes"
+		                Text="{Binding CategorySearch,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+		                TextSearch.Text="Login" 
+                        />
+
+                    <Button 
+                        Content="Add" 
+                        Style="{StaticResource Flat_ButtonAddReminder}"
+                        FontSize="24"
+                        Background="#FF171B1F"
+                        Foreground="White"
+                        HorizontalAlignment="Left" 
+                        Margin="25,110,0,0" 
+                        VerticalAlignment="Center" 
+                        Width="200" Height="40"
+                        />
                 </Grid>
             </TabItem>
         </TabControl>
