@@ -18,9 +18,11 @@ namespace NoteManager.PagesForResourses
         string fileExtensions = "mp4,avi,mkv,mpg,wmv";
         List<File> files;
         List<File> deleted;
+        FileType type;
         public AdditionVideo()
         {
             InitializeComponent();
+            type = FileType.Video;
             files = new List<File>();
             deleted = new List<File>();
             //Here we must get all user video for the related note
@@ -90,7 +92,7 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
+                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
                 AddFileToList(file);
                 Debug.WriteLine(files.Count);
                 Debug.WriteLine(deleted.Count);

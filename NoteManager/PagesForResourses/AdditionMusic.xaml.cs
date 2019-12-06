@@ -110,7 +110,7 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
+                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
                 AddFileToList(file);
             }
             else
