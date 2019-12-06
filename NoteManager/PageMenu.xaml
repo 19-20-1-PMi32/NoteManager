@@ -72,6 +72,7 @@
 
         <!-- Notes -->
         <Label 
+            MouseDown="ClickOnNotes"
             Name="LabelNotes"
             Content="Notes" 
             FontSize="18"
@@ -93,6 +94,7 @@
 
         <!-- Reminders -->
         <Label 
+            MouseDown="ClickOnReminders"
             Name="LabelReminders"
             Content="Reminders" 
             FontSize="18"

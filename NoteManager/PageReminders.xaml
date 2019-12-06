@@ -9,23 +9,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageReminders">
-
-    <!-- Задачі
     
-    Розібратись з маштабуванням - зміна розмірів елементів при зміні розміру вікна
-    Реалізувати кнопку Menu - повернутись в головне меню
-    Заміники картинку заднього фону
-    Написати залежність вікна ReminderAdd від поточного 
-        - поки не закриєм відно ReminderAdd не можемо керувати поточним вікном
     
-    -->
-
     <Grid>
         <!-- Background picture-->
         <Grid.Background>
             <ImageBrush 
-        		
-        			ImageSource="Resources/Pictures/BlackWallPaper.jpg" 
+        			ImageSource="Resources/Pictures/Background3.png" 
         			Stretch="UniformToFill" 					
         			AlignmentY="Center"        					
         			AlignmentX="Center"
@@ -33,45 +23,101 @@
         		/>
         </Grid.Background>
 
-        <!-- ListView з нагадуваннями -->
-        <ListView 
-            Name="textReminderList" 
-            ItemsSource="{DynamicResource ResourceKey=reminders}"
-            Margin="0, 0, 0, 50"
-            >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Text}"  Header="Текст" Width="635"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="auto"/>
-                </GridView>
-            </ListView.View>
-            <ListView.Resources>
-                <col:ArrayList x:Key="reminders">
-                    <local:Reminder Text="Купити качку" Time="2019,10,15" />
-                    <local:Reminder Text="Пограбувати банк" Time="2019,10,15" />
-                    <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
-
-                </col:ArrayList>
-            </ListView.Resources>
-        </ListView>
-
-        <!--Button Notify-->
-        <Button 
-            Content="Samle Notify" 
-            Click="buttonClickSampleNotify"
-            HorizontalAlignment="Center" 
-            Margin="0,0,0,10" 
-            VerticalAlignment="Bottom" 
-            FontSize="20"
-            Width="174" 
-            Height="30"
-            />
-
         <!-- the ToolTipText property is bound to the TextBox below -->
         <tb:TaskbarIcon
             x:Name="MyNotifyIcon"
             IconSource="Resources/Pictures/icon1.ico"
             ToolTipText="Balloon Sample Icon"
             />
+        <TabControl 
+            Name="TabControlReminder"
+            HorizontalAlignment="Stretch"  
+            Margin="0,0,0,0" 
+            VerticalAlignment="Stretch" 
+            >
+            <TabItem 
+                Header="Actual"
+                HorizontalAlignment="Center" 
+                Width="200" 
+                FontSize="20"
+                >
+                <Grid >
+                    <Grid.Background>
+                        <ImageBrush 
+        			        ImageSource="Resources/Pictures/BlackBlueBackground.png" 
+        			        Stretch="UniformToFill" 					
+        			        AlignmentY="Center"        					
+        			        AlignmentX="Center"
+                
+        		        />
+                    </Grid.Background>
+                    <!-- ListView з нагадуваннями -->
+                    <ListView 
+                        Name="ActualReminder" 
+                        ItemsSource="{DynamicResource ResourceKey=reminders}"
+                        
+                        >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn x:Name="ActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}" Header="Текст" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="230"/>
+                            </GridView>
+                        </ListView.View>
+                        <ListView.Resources>
+                            <col:ArrayList x:Key="reminders">
+                                <local:Reminder Text="Купити качкуrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" Time="2019,10,15" />
+                                <local:Reminder Text="Пограбувати банк" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+
+                            </col:ArrayList>
+                        </ListView.Resources>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem 
+                Header="NoActual" 
+                HorizontalAlignment="Center" 
+                Width="200" 
+                FontSize="20"
+                >
+                <Grid >
+                    <Grid.Background>
+                        <ImageBrush 
+        			        ImageSource="Resources/Pictures/BlackBlueBackground.png" 
+        			        Stretch="UniformToFill" 					
+        			        AlignmentY="Center"        					
+        			        AlignmentX="Center"
+                
+        		        />
+                    </Grid.Background>
+                    <!-- ListView з нагадуваннями -->
+                    <ListView 
+                        Name="NoActualReminder" 
+                        ItemsSource="{DynamicResource ResourceKey=reminders}"
+                        
+                        >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn x:Name="NoActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}"  Header="Текст" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="230"/>
+                            </GridView>
+                        </ListView.View>
+                        <ListView.Resources>
+                            <col:ArrayList x:Key="reminders">
+                                <local:Reminder Text="Купити качку" Time="2019,10,15" />
+                                <local:Reminder Text="Пограбувати банк" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+
+                            </col:ArrayList>
+                        </ListView.Resources>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

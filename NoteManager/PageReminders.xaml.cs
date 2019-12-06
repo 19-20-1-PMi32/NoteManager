@@ -11,16 +11,13 @@ namespace NoteManager
     /// </summary>
     public partial class PageReminders : Page
     {
+
         public PageReminders()
         {
             InitializeComponent();
             MyNotifyIcon.Visibility = Visibility.Hidden;
-        }
-
-        // повернутись в меню
-        private void buttonClickMenu(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.GoBack();
+            TabControlReminder.SizeChanged += OnTabControlSizeChanged;
+            
         }
 
         private void buttonClickSampleNotify(object sender, RoutedEventArgs e)
@@ -28,6 +25,12 @@ namespace NoteManager
             FancyBalloon balloon = new FancyBalloon();
             balloon.BalloonText = "Custom Balloon";
             MyNotifyIcon.ShowCustomBalloon(balloon, PopupAnimation.Slide, 4000);
+        }
+
+        protected void OnTabControlSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ActualCoulumnText.Width = e.NewSize.Width - 252.5;
+            NoActualCoulumnText.Width = e.NewSize.Width - 252.5;
         }
     }
 
