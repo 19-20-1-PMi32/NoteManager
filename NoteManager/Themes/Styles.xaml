@@ -71,6 +71,73 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="Flat_ButtonAddReminder" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="12px"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Opacity="1" Color="White"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Opacity="1" Color="#28C2FF" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <Border x:Name="border"
+                         SnapsToDevicePixels="True"
+                         BorderThickness="1"
+                         Padding="4,2"
+                         BorderBrush="Gray"
+                         CornerRadius="3"
+                         Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter 
+                        Margin="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RecognizesAccessKey="True" />
+
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="Gray"
+                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                        FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                            FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- ScrollBar -->
     <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -1771,6 +1838,157 @@
                         <Trigger Property="Role" Value="Floating">
                             <Setter TargetName="PART_HeaderGripper" Property="Visibility" Value="Collapsed" />
                             <Setter Property="Foreground" Value="{StaticResource ControlForegroundWhite}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DatePicker -->
+    <Style TargetType="{x:Type DatePicker}">
+        <Setter Property="IsTodayHighlighted" Value="True"/>
+        <Setter Property="SelectedDateFormat" Value="Short"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="CalendarStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Calendar}" BasedOn="{StaticResource {x:Type Calendar}}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Grid x:Name="PART_Root" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Grid.Resources>
+                            <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
+                                <Grid>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualStateGroup.Transitions>
+                                                <VisualTransition GeneratedDuration="0"/>
+                                                <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                <VisualTransition GeneratedDuration="0:0:0.1" To="Pressed"/>
+                                                <VisualTransition From="Normal" GeneratedDuration="00:00:00.3000000" To="MouseOver"/>
+                                                <VisualTransition From="MouseOver" GeneratedDuration="00:00:00.5000000" To="Normal"/>
+                                                <VisualTransition From="Pressed" GeneratedDuration="00:00:00.5000000" To="MouseOver"/>
+                                                <VisualTransition From="MouseOver" GeneratedDuration="00:00:00.3000000" To="Pressed"/>
+                                            </VisualStateGroup.Transitions>
+                                            <VisualState x:Name="Normal"/>
+                                            <VisualState x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="HoverBorder" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="Background" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.7"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="DisabledVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.65"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid Background="#11FFFFFF" FlowDirection="LeftToRight" HorizontalAlignment="Center" Height="18" Margin="0" VerticalAlignment="Center" Width="19">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="23*"/>
+                                            <RowDefinition Height="19*"/>
+                                            <RowDefinition Height="19*"/>
+                                            <RowDefinition Height="19*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border x:Name="Background" Margin="0" Opacity="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="3" 
+                                                Background="{StaticResource ControlBackgroundNormal}" CornerRadius=".5"/>
+                                        <Border x:Name="HoverBorder" BorderBrush="{x:Null}" BorderThickness="1" CornerRadius="0,0,1,1" Grid.ColumnSpan="4" 
+                                                Grid.RowSpan="4" Background="{StaticResource HoverBackgroundCalendar}" Opacity="0"/>
+                                        <Rectangle Grid.ColumnSpan="4" Grid.RowSpan="1" StrokeThickness="1" Fill="{StaticResource ControlLightBackground}" />
+                                        <Path HorizontalAlignment="Center" Margin="4,3" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" 
+                                              Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="3" Fill="{StaticResource ControlForeground}" Stretch="Fill" 
+                                              Data="M11.426758,8.4305077 L11.749023,8.4305077 L11.749023,16.331387 L10.674805,16.331387 L10.674805,10.299648 L9.0742188,11.298672 L9.0742188,10.294277 C9.4788408,10.090176 9.9094238,9.8090878 10.365967,9.4510155 C10.82251,9.0929432 11.176106,8.7527733 11.426758,8.4305077 z M14.65086,8.4305077 L18.566387,8.4305077 L18.566387,9.3435936 L15.671368,9.3435936 L15.671368,11.255703 C15.936341,11.058764 16.27293,10.960293 16.681133,10.960293 C17.411602,10.960293 17.969301,11.178717 18.354229,11.615566 C18.739157,12.052416 18.931622,12.673672 18.931622,13.479336 C18.931622,15.452317 18.052553,16.438808 16.294415,16.438808 C15.560365,16.438808 14.951641,16.234707 14.468243,15.826504 L14.881817,14.929531 C15.368796,15.326992 15.837872,15.525723 16.289043,15.525723 C17.298809,15.525723 17.803692,14.895514 17.803692,13.635098 C17.803692,12.460618 17.305971,11.873379 16.310528,11.873379 C15.83071,11.873379 15.399232,12.079271 15.016094,12.491055 L14.65086,12.238613 z"/>
+                                        <Ellipse Height="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="3" Grid.ColumnSpan="4" Fill="{StaticResource ControlForegroundWhite}" StrokeThickness="0"/>
+                                        <Border x:Name="DisabledVisual" Opacity="0" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="4" BorderBrush="{StaticResource DisabledBorderBrush}"
+                                                BorderThickness="1" CornerRadius="0,0,.5,.5" Background="{StaticResource DisabledBrush}"/>
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Center" Width="20"/>
+                        <DatePickerTextBox x:Name="PART_TextBox" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" Height="{TemplateBinding Height}"/>
+                        <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Fill="#a6FFFFFF" RadiusY="1" Grid.Row="0" RadiusX="1"/>
+                            <Rectangle Grid.Column="1" Fill="#a6FFFFFF" Height="18" Margin="3,0,3,0" RadiusY="1" Grid.Row="0" RadiusX="1" Width="19"/>
+                            <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DatePickerTextBox}">
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="Background" Value="{StaticResource ControlLightBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundWhite}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CaretBrush" Value="{StaticResource ControlForeground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                    <Grid>
+                        <Border x:Name="Border" Opacity="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                            <Grid>
+                                <Border BorderThickness="1" CornerRadius="1">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="Transparent" x:Name="MouseOverColor"/>
+                                    </Border.BorderBrush>
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="{TemplateBinding Background}"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource ControlActiveBorderBrush}" TargetName="Border"/>
+                            <Setter Property="BorderThickness" Value="1.8" TargetName="Border"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource ControlActiveBorderBrush}" TargetName="Border"/>
+                            <Setter Property="BorderThickness" Value="1.8" TargetName="Border"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource DisabledBrush}" />
+                            <Setter Property="Foreground">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource DisabledForeground}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Text" Value="--/--/--"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
