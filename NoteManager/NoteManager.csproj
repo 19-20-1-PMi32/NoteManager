@@ -105,6 +105,7 @@
     <Compile Include="Showcase\FancyBalloon.xaml.cs">
       <DependentUpon>FancyBalloon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TabSizeConverter .cs" />
     <Compile Include="WindowStart.xaml.cs">
       <DependentUpon>WindowStart.xaml</DependentUpon>
     </Compile>

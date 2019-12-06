@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using NoteManager.DBClasses;
@@ -34,6 +35,16 @@ namespace NoteManager
             User.Notes.Add(new Note("Yesterday", new System.DateTime(2019, 10, 28)));
             User.Notes.Add(new Note("I want to belive.", new System.DateTime(2019, 11, 27)));
             User.Notes.Add(new Note("I'll be back.", new System.DateTime(2019, 11, 28)));
+        }
+
+        private void ClickOnNotes(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Source = new Uri("PageNote.xaml", UriKind.Relative);
+        }
+
+        private void ClickOnReminders(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Source = new Uri("PageReminders.xaml", UriKind.Relative);
         }
     }
 }
