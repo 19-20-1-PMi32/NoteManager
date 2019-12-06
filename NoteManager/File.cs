@@ -21,7 +21,7 @@ namespace NoteManager
     enum FileType
     {
         Video,
-        Audio,
+        Music,
         Picture
     }
     /// <summary>
@@ -36,7 +36,7 @@ namespace NoteManager
         /// <summary>
         /// Represents current file state
         /// </summary>
-        public FileState State { get; }
+        public FileState State { get; set; }
         /// <summary>
         /// Represents current file state
         /// </summary>

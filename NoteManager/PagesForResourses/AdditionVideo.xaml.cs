@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Diagnostics;
@@ -19,10 +17,12 @@ namespace NoteManager.PagesForResourses
     {
         string fileExtensions = "mp4,avi,mkv,mpg,wmv";
         List<File> files;
+        List<File> deleted;
         public AdditionVideo()
         {
             InitializeComponent();
             files = new List<File>();
+            deleted = new List<File>();
             //Here we must get all user video for the related note
             FileList.ItemsSource = files;
         }
@@ -86,21 +86,34 @@ namespace NoteManager.PagesForResourses
             {
                 File file = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
                 AddFileToList(file);
+                Debug.WriteLine(files.Count);
+                Debug.WriteLine(deleted.Count);
             }
             else
             {
                 //Push notification that file was not added(for some reasons)
             }
         }
+        private void DeleteFronList(File file)
+        {
+            file.State = FileState.MustBeDeleted;
+            FileList.BeginInit();
+            files.Remove(file);
+            FileList.EndInit();
+
+
+        }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
             var file = (File)FileList.SelectedItem;
             if (file != null)
             {
-                FileList.BeginInit();
-                files.Remove(file);
-                FileList.EndInit();
+                DeleteFronList(file);
+                deleted.Add(file);
+
             }
+            Debug.WriteLine(files.Count);
+            Debug.WriteLine(deleted.Count);
         }
         private void SaveFiles(object sender, MouseEventArgs e)
         {

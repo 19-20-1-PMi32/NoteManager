@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace NoteManager.PagesForResourses
 {
@@ -22,13 +23,14 @@ namespace NoteManager.PagesForResourses
     public partial class AdditionMusic : Page
     {
         string fileExtensions = "mp3,aac,flac,wav";
-        FileType type = FileType.Picture;
+        FileType type = FileType.Music;
         List<File> files;
+        List<File> deleted;
         public AdditionMusic()
         {
             InitializeComponent();
             files = new List<File>();
-
+            deleted = new List<File>();
             FileList.ItemsSource = files;
         }
 
@@ -80,18 +82,18 @@ namespace NoteManager.PagesForResourses
         {
             MusicElem.Stop();
         }
-        private void AddFileToList(File video)
+        private void AddFileToList(File file)
         {
-            if (!files.Contains(video, new FileComparer()))
+            if (!files.Contains(file, new FileComparer()))
             {
                 FileList.BeginInit();
-                files.Add(video);
+                files.Add(file);
                 FileList.EndInit();
-                // Push notification that file was added
+                // Push notification that item was added
             }
             else
             {
-                // Push notification that file was not added(for some reasons)
+                // Push notification that item was not added(for some reasons)
             }
         }
         private void AddFile(object sender, MouseEventArgs e)
@@ -101,7 +103,7 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
+                File file = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
                 AddFileToList(file);
             }
             else
@@ -109,19 +111,28 @@ namespace NoteManager.PagesForResourses
                 //Push notification that file was not added(for some reasons)
             }
         }
+        private void DeleteFronList(File file)
+        {
+            file.State = FileState.MustBeDeleted;
+            FileList.BeginInit();
+            files.Remove(file);
+            FileList.EndInit();
+        }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
             var file = (File)FileList.SelectedItem;
             if (file != null)
             {
-                FileList.BeginInit();
-                files.Remove(file);
-                FileList.EndInit();
+                DeleteFronList(file);
+                deleted.Add(file);
+
             }
+            Debug.WriteLine(files.Count);
+            Debug.WriteLine(deleted.Count);
         }
         private void SaveFiles(object sender, MouseEventArgs e)
         {
-            // logic for save fiels to database
+            //logic for save file to database
         }
     }
 }

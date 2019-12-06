@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+
 
 namespace NoteManager.PagesForResourses
 {
@@ -23,11 +25,12 @@ namespace NoteManager.PagesForResourses
         string fileExtensions = "jpg,png,bmp";
         FileType type = FileType.Picture;
         List<File> files;
+        List<File> deleted;
         public AdditionPicture()
         {
             InitializeComponent();
             files = new List<File>();
-
+            deleted = new List<File>();
             FileList.ItemsSource = files;
         }
 
@@ -47,11 +50,11 @@ namespace NoteManager.PagesForResourses
                 FileList.BeginInit();
                 files.Add(video);
                 FileList.EndInit();
-                // Push notification that file was added
+                // Push notification that item was added
             }
             else
             {
-                // Push notification that file was not added(for some reasons)
+                // Push notification that item was not added(for some reasons)
             }
         }
         private void AddFile(object sender, MouseEventArgs e)
@@ -61,27 +64,40 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
+                File file = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
                 AddFileToList(file);
+                Debug.WriteLine(files.Count);
+                Debug.WriteLine(deleted.Count);
             }
             else
             {
                 //Push notification that file was not added(for some reasons)
             }
         }
+        private void DeleteFronList(File file)
+        {
+            file.State = FileState.MustBeDeleted;
+            FileList.BeginInit();
+            files.Remove(file);
+            FileList.EndInit();
+
+
+        }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
             var file = (File)FileList.SelectedItem;
             if (file != null)
             {
-                FileList.BeginInit();
-                files.Remove(file);
-                FileList.EndInit();
+                DeleteFronList(file);
+                deleted.Add(file);
+
             }
+            Debug.WriteLine(files.Count);
+            Debug.WriteLine(deleted.Count);
         }
         private void SaveFiles(object sender, MouseEventArgs e)
         {
-            // logic for save fiels to database
+            //logic for save file to database
         }
     }
 }
