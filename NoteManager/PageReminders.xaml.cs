@@ -3,6 +3,9 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using NoteManager.DBClasses;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace NoteManager
 {
@@ -17,7 +20,7 @@ namespace NoteManager
             InitializeComponent();
             MyNotifyIcon.Visibility = Visibility.Hidden;
             TabControlReminder.SizeChanged += OnTabControlSizeChanged;
-            
+            CreateRemindersForUser();
         }
 
         private void buttonClickSampleNotify(object sender, RoutedEventArgs e)
@@ -32,11 +35,29 @@ namespace NoteManager
             ActualCoulumnText.Width = e.NewSize.Width - 252.5;
             NoActualCoulumnText.Width = e.NewSize.Width - 252.5;
         }
-    }
 
-    public class Reminder
-    {
-        public string Text { get; set; }
-        public DateTime Time { get; set; }
+        private void ClickOnAddReminder(object sender, RoutedEventArgs e)
+        {
+            DateTime time = DatePickerDate.DisplayDate;
+            string[] timeInDay = TextBoxHours.Text.Split(':');
+            DateTime Hours = new DateTime(time.Year, time.Month, time.Day, int.Parse(timeInDay[0]), int.Parse(timeInDay[1]), int.Parse(timeInDay[2]));
+            string text = TextBoxAddReminder.Text;
+            User.Reminders.Add(new Reminder(text, Hours));
+            ShowReminders();
+        }
+
+        private void ShowReminders()
+        {
+            ActualReminder.ItemsSource = User.Reminders;
+        }
+
+        private void CreateRemindersForUser()
+        {
+            User.Reminders = new ObservableCollection<Reminder>();
+            User.Reminders.Add(new Reminder("Kill", DateTime.Now));
+            User.Reminders.Add(new Reminder("Love", DateTime.Now));
+            User.Reminders.Add(new Reminder("Run", DateTime.Now));
+            ActualReminder.ItemsSource = User.Reminders;
+        }
     }
 }

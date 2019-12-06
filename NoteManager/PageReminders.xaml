@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:tb="http://www.hardcodet.net/taskbar"
-      xmlns:local="clr-namespace:NoteManager"
+      xmlns:local="clr-namespace:NoteManager.DBClasses"
       xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -108,14 +108,14 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn x:Name="ActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}" Header="Текст" Width="auto"/>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="230"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ReminderTime}" Header="Дата виконання" Width="230"/>
                             </GridView>
                         </ListView.View>
                         <ListView.Resources>
                             <col:ArrayList x:Key="reminders">
-                                <local:Reminder Text="Купити качкуrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" Time="2019,10,15" />
-                                <local:Reminder Text="Пограбувати банк" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="Купити качкуrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="Пограбувати банк" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
 
                             </col:ArrayList>
                         </ListView.Resources>
@@ -147,19 +147,19 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn x:Name="NoActualCoulumnText" DisplayMemberBinding="{Binding Path=Text}"  Header="Текст" Width="auto" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Дата виконання" Width="230"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ReminderTime}" Header="Дата виконання" Width="230"/>
                             </GridView>
                         </ListView.View>
                         <ListView.Resources>
                             <col:ArrayList x:Key="reminders">
-                                <local:Reminder Text="Купити качку" Time="2019,10,15" />
-                                <local:Reminder Text="Пограбувати банк" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
-                                <local:Reminder Text="З'їсти жабу" Time="2019,10,15" />
+                                <local:Reminder Text="Купити качку" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="Пограбувати банк" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
+                                <local:Reminder Text="З'їсти жабу" ReminderTime="2019,10,15" />
 
                             </col:ArrayList>
                         </ListView.Resources>
@@ -196,13 +196,17 @@
                         />
 
                     <DatePicker 
+                        Name="DatePickerDate"
+                        Text="DD/MM/YYYY"
                         HorizontalAlignment="Left" 
                         Margin="25,0,0,110" 
                         VerticalAlignment="Center" 
-                        Width="200" Height="40"
+                        Width="200" 
+                        Height="40"
                         />
 
                     <TextBox 
+                        Name="TextBoxHours"
                         Foreground="LightGray"
                         Height="44" 
                         Margin="25,0,0,0" 
@@ -214,12 +218,13 @@
                         FontSize="16" 
                         BorderBrush="{x:Null}"
                         Style="{StaticResource MyWaterMarkStyle}"
-		                Tag="Hours/minutes"
+		                Tag="Hours:minutes:seconds"
 		                Text="{Binding CategorySearch,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 		                TextSearch.Text="Login" 
                         />
 
                     <Button 
+                        Click="ClickOnAddReminder"
                         Content="Add" 
                         Style="{StaticResource Flat_ButtonAddReminder}"
                         FontSize="24"
