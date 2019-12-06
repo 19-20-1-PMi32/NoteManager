@@ -16,6 +16,7 @@
             Margin="10,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
+            MouseDown="AddFile"
             />
 
         <Image 
@@ -25,18 +26,30 @@
             Margin="260,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
+            MouseDown="SaveFiles"
             />
 
         <ListBox 
             HorizontalAlignment="Left" 
+            Name="FileList"
             Height="115" 
             Margin="10,155,0,0" 
             VerticalAlignment="Top" 
             Width="280"
             FontSize="12"
             >
-            <ListBoxItem MouseDoubleClick="ClickOnMusic1" Content="Music1.mp3"/>
-            <ListBoxItem MouseDoubleClick="ClickOnMusic2" Content="Music2.mp3"/>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock
+                            TextTrimming="CharacterEllipsis"
+                            FontSize="14"
+                            Text="{Binding FileName}"
+                            HorizontalAlignment="Left"
+                            Margin="1,1"
+                        />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Image 

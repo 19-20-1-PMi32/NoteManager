@@ -21,13 +21,17 @@ namespace NoteManager.PagesForResourses
     /// </summary>
     public partial class AdditionMusic : Page
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        string fileExtensions = "mp3,aac,flac,wav";
+        FileType type = FileType.Picture;
+        List<File> files;
         public AdditionMusic()
         {
             InitializeComponent();
+            files = new List<File>();
+
+            FileList.ItemsSource = files;
         }
+
 
         private void ClickOnMusic1(object sender, RoutedEventArgs e)
         {
@@ -75,6 +79,49 @@ namespace NoteManager.PagesForResourses
         private void Stop(object sender, RoutedEventArgs e)
         {
             MusicElem.Stop();
+        }
+        private void AddFileToList(File video)
+        {
+            if (!files.Contains(video, new FileComparer()))
+            {
+                FileList.BeginInit();
+                files.Add(video);
+                FileList.EndInit();
+                // Push notification that file was added
+            }
+            else
+            {
+                // Push notification that file was not added(for some reasons)
+            }
+        }
+        private void AddFile(object sender, MouseEventArgs e)
+        {
+            // File extension must be loaded from any config file ar anywhere else
+            FileUploader uploader = new FileUploader(fileExtensions);
+            string filePath = uploader.Upload();
+            if (String.Empty != filePath)
+            {
+                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
+                AddFileToList(file);
+            }
+            else
+            {
+                //Push notification that file was not added(for some reasons)
+            }
+        }
+        private void DeleteFile(object sender, MouseEventArgs e)
+        {
+            var file = (File)FileList.SelectedItem;
+            if (file != null)
+            {
+                FileList.BeginInit();
+                files.Remove(file);
+                FileList.EndInit();
+            }
+        }
+        private void SaveFiles(object sender, MouseEventArgs e)
+        {
+            // logic for save fiels to database
         }
     }
 }
