@@ -33,16 +33,7 @@ namespace NoteManager.PagesForResourses
             deleted = new List<File>();
             FileList.ItemsSource = files;
         }
-
-        private void DoubleClickOnNmeOfPicture1(object sender, RoutedEventArgs e)
-        {
-            MyImage.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/BackroundBlackWorld.jpg"));
-        }
-
-        private void DoubleClickOnNmeOfPicture2(object sender, RoutedEventArgs e)
-        {
-            MyImage.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/Start1.jpg"));
-        }
+        
         private void AddFileToList(File video)
         {
             if (!files.Contains(video, new FileComparer()))
@@ -74,6 +65,10 @@ namespace NoteManager.PagesForResourses
                 //Push notification that file was not added(for some reasons)
             }
         }
+        private File SelectedFile()
+        {
+            return (File)FileList.SelectedItem;
+        }
         private void DeleteFronList(File file)
         {
             file.State = FileState.MustBeDeleted;
@@ -85,7 +80,7 @@ namespace NoteManager.PagesForResourses
         }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = (File)FileList.SelectedItem;
+            var file = SelectedFile();
             if (file != null)
             {
                 DeleteFronList(file);

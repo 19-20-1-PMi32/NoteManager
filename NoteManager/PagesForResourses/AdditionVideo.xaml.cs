@@ -29,9 +29,9 @@ namespace NoteManager.PagesForResourses
 
         private void DoubleClickOnVideo1(object sender, RoutedEventArgs e)
         {
-            VideosElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\Me_vs_Bugs.wmv");
-            VideosElem.Visibility = Visibility.Visible;
-            VideosElem.Play();
+            VideoElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\Me_vs_Bugs.wmv");
+            VideoElem.Visibility = Visibility.Visible;
+            VideoElem.Play();
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
@@ -40,10 +40,10 @@ namespace NoteManager.PagesForResourses
 
         void timer_Tick(object sender, EventArgs e)
         {
-            if (VideosElem.Source != null)
+            if (VideoElem.Source != null)
             {
-                if (VideosElem.NaturalDuration.HasTimeSpan)
-                    lableStatus.Content = String.Format("{0} / {1}", VideosElem.Position.ToString(@"mm\:ss"), VideosElem.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+                if (VideoElem.NaturalDuration.HasTimeSpan)
+                    lableStatus.Content = String.Format("{0} / {1}", VideoElem.Position.ToString(@"mm\:ss"), VideoElem.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
             }
             else
                 lableStatus.Content = "No file selected...";
@@ -51,17 +51,23 @@ namespace NoteManager.PagesForResourses
 
         private void Play(object sender, RoutedEventArgs e)
         {
-            VideosElem.Play();
+            var sel = SelectedFile();
+            if (sel != null)
+                VideoElem.Source = new Uri(sel.FilePath);
+            VideoElem.IsMuted = false;
+            VideoElem.Play();
         }
 
         private void Pause(object sender, RoutedEventArgs e)
         {
-            VideosElem.Pause();
+            if(VideoElem.Source != null)
+                VideoElem.Pause();
         }
 
         private void Stop(object sender, RoutedEventArgs e)
         {
-            VideosElem.Stop();
+            if (VideoElem.Source != null)
+                VideoElem.Stop();
         }
         private void AddFileToList(File video)
         {
@@ -100,12 +106,14 @@ namespace NoteManager.PagesForResourses
             FileList.BeginInit();
             files.Remove(file);
             FileList.EndInit();
-
-
+        }
+        private File SelectedFile()
+        {
+            return (File)FileList.SelectedItem;
         }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = (File)FileList.SelectedItem;
+            var file = SelectedFile();
             if (file != null)
             {
                 DeleteFronList(file);

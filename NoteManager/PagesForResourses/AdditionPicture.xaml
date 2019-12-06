@@ -51,15 +51,14 @@
         </ListBox>
 
         <Image 
-            Source="..\\Resources/Pictures/IconPictureLight.png"
             HorizontalAlignment="Left"
-            Height="73"
-            Margin="114,39,0,0" 
+            Height="131"
+            Margin="10,10,0,0" 
             VerticalAlignment="Top"
-            Width="73"
+            Width="280"
             
             />
-        
+
         <Image 
             Name="MyImage"
             HorizontalAlignment="Center"

@@ -57,7 +57,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
+        <!--
         <Image 
             Source="..\\Resources/Pictures/BackBlackFone.png"
             HorizontalAlignment="center" 
@@ -67,22 +67,14 @@
             VerticalAlignment="Top" 
             Width="198"
             />
-
-        <Image 
-            Source="..\\Resources/Pictures/clipart699636.png"
-            HorizontalAlignment="Left"
-            Height="50"
-            Margin="125,43,0,0" 
-            VerticalAlignment="Top"
-            Width="50"
-            />
+        -->
 
         <Image 
             MouseDown="Play"
             Source="..\\Resources/Pictures/buttonPlayDarkGray.png"
             HorizontalAlignment="Left"
             Height="10"
-            Margin="54,140,0,0" 
+            Margin="12,140,0,0" 
             VerticalAlignment="Top"
             Width="10"
             />
@@ -92,7 +84,7 @@
             Source="..\\Resources/Pictures/buttonResumeDark.png"
             HorizontalAlignment="Left"
             Height="10"
-            Margin="69,140,0,0" 
+            Margin="27,140,0,0" 
             VerticalAlignment="Top"
             Width="10"
             />
@@ -102,7 +94,7 @@
             Source="..\\Resources/Pictures/buttonStopDark.png"
             HorizontalAlignment="Left"
             Height="10"
-            Margin="84,140,0,0" 
+            Margin="42,140,0,0" 
             VerticalAlignment="Top"
             Width="10"
             />
@@ -135,13 +127,14 @@
             />
 
         <MediaElement 
-            Name="VideosElem"
+            Name="VideoElem"
             HorizontalAlignment="Center"
-            Height="123" 
-            Margin="0,12,0,0" 
+            Height="126" 
+            Margin="10,9,10,0" 
             VerticalAlignment="Top" 
             LoadedBehavior="Manual"
-            UnloadedBehavior="Manual" 
+            UnloadedBehavior="Manual" Width="280" 
             />
+
     </Grid>
 </Page>

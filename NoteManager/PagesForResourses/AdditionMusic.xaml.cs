@@ -56,7 +56,10 @@ namespace NoteManager.PagesForResourses
             timer.Tick += timer_Tick;
             timer.Start();
         }
-
+        private File SelectedFile()
+        {
+            return (File)FileList.SelectedItem;
+        }
         void timer_Tick(object sender, EventArgs e)
         {
             if (MusicElem.Source != null)
@@ -67,20 +70,24 @@ namespace NoteManager.PagesForResourses
             else
                 lableStatus.Content = "No file selected...";
         }
-
         private void Play(object sender, RoutedEventArgs e)
         {
+            var sel = SelectedFile();
+            if (sel != null)
+                MusicElem.Source = new Uri(sel.FilePath);
+            MusicElem.IsMuted = false;
             MusicElem.Play();
         }
-
         private void Pause(object sender, RoutedEventArgs e)
         {
-            MusicElem.Pause();
+            if (MusicElem.Source != null)
+                MusicElem.Pause();
         }
 
         private void Stop(object sender, RoutedEventArgs e)
         {
-            MusicElem.Stop();
+            if (MusicElem.Source != null)
+                MusicElem.Stop();
         }
         private void AddFileToList(File file)
         {
@@ -120,7 +127,7 @@ namespace NoteManager.PagesForResourses
         }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = (File)FileList.SelectedItem;
+            var file = SelectedFile();
             if (file != null)
             {
                 DeleteFronList(file);
