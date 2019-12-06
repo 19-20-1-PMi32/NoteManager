@@ -45,7 +45,7 @@ namespace NoteManager
             return result;
         }
         /// <summary>
-        /// Method checks checks is file suppported.
+        /// Method checks is file suppported.
         /// </summary>
         /// <param name="filePath">Path to given file</param>
         /// <returns>True if file is correct else false</returns>

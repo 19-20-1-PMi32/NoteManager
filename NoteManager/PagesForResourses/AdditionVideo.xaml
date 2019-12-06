@@ -28,6 +28,13 @@
             Width="30"
             MouseDown="SaveFiles"
             />
+        <Image Source="C:\Users\PC\source\repos\NoteManager\NoteManager\Resources\Pictures\delete.png"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            MouseDown="DeleteVideo" 
+            Margin="134,277,135,7"
+            />
+
 
         <ListBox 
             HorizontalAlignment="Left" 
@@ -126,7 +133,7 @@
             Foreground="Gray"
             Visibility="Hidden"
             />
-        
+
         <MediaElement 
             Name="VideosElem"
             HorizontalAlignment="Center"

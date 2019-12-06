@@ -41,6 +41,9 @@ namespace NoteManager
         /// Represents current file state
         /// </summary>
         public FileType Type { get; set; }
+        /// <summary>
+        /// Represents name of file
+        /// </summary>
         public string FileName
         {
             get

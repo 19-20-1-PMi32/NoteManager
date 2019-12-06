@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Diagnostics;
 
@@ -70,23 +65,26 @@ namespace NoteManager.PagesForResourses
 
         private void addVideoToList(File video)
         {
-            VideoList.BeginInit();
-            videos.Add(video);
-            VideoList.EndInit();
-            // Push notification that video was added
-            Debug.WriteLine("Video was added succesfully");
+            if (!videos.Contains(video, new FileComparer())) {
+                VideoList.BeginInit();
+                videos.Add(video);
+                VideoList.EndInit();
+                // Push notification that video was added
+            }
+            else
+            {
+                // Push notification that video was not added(for some reasons)
+            }
         }
 
         private void AddVideo(object sender, MouseEventArgs e)
         {
+            // File extension must be loaded from any config file ar anywhere else
             FileUploader uploader = new FileUploader("avi,wmv,mp4,mpg,mkv");
-            string fileName = uploader.Upload();
-            // TODO: add checking is video already in list
-            if (String.Empty != fileName) {
-                File video = new File(fileName, (int)FileType.Video, (int)FileState.OnlyUploaded);
+            string filePath = uploader.Upload();
+            if (String.Empty != filePath) {
+                File video = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
                 addVideoToList(video);
-                Debug.WriteLine(video.FileName);
-                Debug.WriteLine(fileName);
             }
             else
             {
@@ -100,6 +98,17 @@ namespace NoteManager.PagesForResourses
             foreach (var i in videos.Where(x => x.State == FileState.OnlyUploaded))
             {
                 //some actions for save video to database
+            }
+        }
+
+        private void DeleteVideo(object sender, MouseEventArgs e)
+        {
+            var file = (File)VideoList.SelectedItem;
+            if (file != null)
+            {
+                VideoList.BeginInit();
+                videos.Remove(file);
+                VideoList.EndInit();
             }
         }
     }
