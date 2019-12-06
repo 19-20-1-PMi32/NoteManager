@@ -70,11 +70,10 @@ namespace NoteManager.PagesForResourses
 
         private void addVideoToList(File video)
         {
-            videos.Add(video);
             VideoList.BeginInit();
-            VideoList.ItemsSource = videos;
+            videos.Add(video);
             VideoList.EndInit();
-            // Push notification that video added
+            // Push notification that video was added
             Debug.WriteLine("Video was added succesfully");
         }
 
