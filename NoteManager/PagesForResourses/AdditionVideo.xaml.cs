@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace NoteManager.PagesForResourses
 {
@@ -21,9 +22,13 @@ namespace NoteManager.PagesForResourses
     /// </summary>
     public partial class AdditionVideo : Page
     {
+        List<File> videos;
         public AdditionVideo()
         {
             InitializeComponent();
+            videos = new List<File>();
+            //Here we must get all user video for the related note
+            VideoList.ItemsSource = videos;
         }
 
         private void DoubleClickOnVideo1(object sender, RoutedEventArgs e)
@@ -61,6 +66,39 @@ namespace NoteManager.PagesForResourses
         private void Stop(object sender, RoutedEventArgs e)
         {
             VideosElem.Stop();
+        }
+
+        private void addVideoToList(File video)
+        {
+            videos.Add(video);
+            // Push notification that video added
+            Debug.WriteLine("Video was added succesfully");
+        }
+
+        private void AddVideo(object sender, MouseEventArgs e)
+        {
+            FileUploader uploader = new FileUploader("avi,wmv,mp4,mpg,mkv");
+            string fileName = uploader.Upload();
+            // TODO: add checking is video already in list
+            if (String.Empty != fileName) {
+                File video = new File(fileName, (int)FileType.Video, (int)FileState.OnlyUploaded);
+                addVideoToList(video);
+                Debug.WriteLine(video.FileName);
+                Debug.WriteLine(fileName);
+            }
+            else
+            {
+                //Push notification that video was not added(for some reasons)
+            }
+        }
+
+        private void SaveFiles(object sender, MouseButtonEventArgs e)
+        {
+            //Some actions to save file to db
+            foreach (var i in videos.Where(x => x.State == FileState.OnlyUploaded))
+            {
+                //some actions for save video to database
+            }
         }
     }
 }

@@ -16,6 +16,7 @@
             Margin="10,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
+            MouseDown="AddVideo"
             />
 
         <Image 
@@ -25,6 +26,7 @@
             Margin="260,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
+            MouseDown="SaveFiles"
             />
 
         <ListBox 
@@ -34,9 +36,11 @@
             VerticalAlignment="Top" 
             Width="280"
             FontSize="12"
+            Name="VideoList"
             >
             <ListBoxItem MouseDoubleClick="DoubleClickOnVideo1" Content="Video1.mp4"/>
             <ListBoxItem Content="Video2.mp4"/>
+            
         </ListBox>
 
         <Image 

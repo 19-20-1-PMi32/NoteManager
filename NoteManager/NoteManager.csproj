@@ -73,6 +73,7 @@
     <Compile Include="DBClasses\User.cs" />
     <Compile Include="DBClasses\Video.cs" />
     <Compile Include="FileUploader.cs" />
+    <Compile Include="File.cs" />
     <Compile Include="PageNote.xaml.cs">
       <DependentUpon>PageNote.xaml</DependentUpon>
     </Compile>

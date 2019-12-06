@@ -12,7 +12,7 @@ namespace NoteManager
         /// fileExtension string that contains available extensions separated by commas
         /// <code>fileExtension = "mp3,flac,aac"</code>
         /// </summary>
-        public string fileExtensions;
+        string fileExtensions;
         /// <summary>
         /// Constructor for initialization file extensions field
         /// </summary>
@@ -24,7 +24,7 @@ namespace NoteManager
         /// <summary>
         /// Main method for uploading file
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Filepath or empty string</returns>
         public string Upload()
         {
             string result;
@@ -38,24 +38,24 @@ namespace NoteManager
                 if (supp)
                     result = fileName;
                 else
-                    result = "";
+                    result = string.Empty;
             }
             else
-                result = "";
+                result = string.Empty;
             return result;
         }
         /// <summary>
         /// Method checks checks is file suppported.
         /// </summary>
-        /// <param name="path">Path to given file</param>
-        /// <returns></returns>
-        public bool checkIsSupported(string path)
+        /// <param name="filePath">Path to given file</param>
+        /// <returns>True if file is correct else false</returns>
+        public bool checkIsSupported(string filePath)
         {
-            int dotInd = path.LastIndexOf('.');
+            int dotInd = filePath.LastIndexOf('.');
             string ext;
             try
             {
-                ext = path.Substring(dotInd + 1, path.Length - dotInd - 1);
+                ext = filePath.Substring(dotInd + 1, filePath.Length - dotInd - 1);
             }
             catch (ArgumentOutOfRangeException e)
             {
