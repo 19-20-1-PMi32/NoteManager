@@ -16,6 +16,7 @@
             Margin="10,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
+            MouseDown="AddFile"
             />
 
         <Image 
@@ -28,6 +29,7 @@
             />
 
         <ListBox 
+            Name="FileList"
             HorizontalAlignment="Left" 
             Height="115" 
             Margin="10,155,0,0" 
@@ -35,8 +37,17 @@
             Width="280"
             FontSize="12"
             >
-            <ListBoxItem MouseDoubleClick="DoubleClickOnNmeOfPicture1"  Content="Picture1.jpg"/>
-            <ListBoxItem MouseDoubleClick="DoubleClickOnNmeOfPicture2" Content="Picture2.jpg"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock
+                            TextTrimming="CharacterEllipsis"
+                            FontSize="14"
+                            Text="{Binding FileName}"
+                            HorizontalAlignment="Left"
+                            Margin="1,1"
+                        />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Image 
@@ -56,6 +67,12 @@
             Margin="0,10,0,0" 
             VerticalAlignment="Top" 
             
+            />
+        <Image Source="C:\Users\PC\source\repos\NoteManager\NoteManager\Resources\Pictures\delete.png"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            MouseDown="DeleteFile" 
+            Margin="134,277,135,7"
             />
     </Grid>
 </Page>

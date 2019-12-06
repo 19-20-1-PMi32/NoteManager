@@ -16,7 +16,7 @@
             Margin="10,275,0,0" 
             VerticalAlignment="Top"
             Width="30"
-            MouseDown="AddVideo"
+            MouseDown="AddFile"
             />
 
         <Image 
@@ -31,7 +31,7 @@
         <Image Source="C:\Users\PC\source\repos\NoteManager\NoteManager\Resources\Pictures\delete.png"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            MouseDown="DeleteVideo" 
+            MouseDown="DeleteFile"
             Margin="134,277,135,7"
             />
 
@@ -43,7 +43,7 @@
             VerticalAlignment="Top" 
             Width="280"
             FontSize="12"
-            Name="VideoList"
+            Name="FileList"
             >
             <ListBox.ItemTemplate>
                 <DataTemplate>

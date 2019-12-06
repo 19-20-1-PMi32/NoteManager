@@ -17,13 +17,14 @@ namespace NoteManager.PagesForResourses
     /// </summary>
     public partial class AdditionVideo : Page
     {
-        List<File> videos;
+        string fileExtensions = "mp4,avi,mkv,mpg,wmv";
+        List<File> files;
         public AdditionVideo()
         {
             InitializeComponent();
-            videos = new List<File>();
+            files = new List<File>();
             //Here we must get all user video for the related note
-            VideoList.ItemsSource = videos;
+            FileList.ItemsSource = files;
         }
 
         private void DoubleClickOnVideo1(object sender, RoutedEventArgs e)
@@ -62,54 +63,48 @@ namespace NoteManager.PagesForResourses
         {
             VideosElem.Stop();
         }
-
-        private void addVideoToList(File video)
+        private void AddFileToList(File video)
         {
-            if (!videos.Contains(video, new FileComparer())) {
-                VideoList.BeginInit();
-                videos.Add(video);
-                VideoList.EndInit();
-                // Push notification that video was added
+            if (!files.Contains(video, new FileComparer()))
+            {
+                FileList.BeginInit();
+                files.Add(video);
+                FileList.EndInit();
+                // Push notification that item was added
             }
             else
             {
-                // Push notification that video was not added(for some reasons)
+                // Push notification that item was not added(for some reasons)
             }
         }
-
-        private void AddVideo(object sender, MouseEventArgs e)
+        private void AddFile(object sender, MouseEventArgs e)
         {
             // File extension must be loaded from any config file ar anywhere else
-            FileUploader uploader = new FileUploader("avi,wmv,mp4,mpg,mkv");
+            FileUploader uploader = new FileUploader(fileExtensions);
             string filePath = uploader.Upload();
-            if (String.Empty != filePath) {
-                File video = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
-                addVideoToList(video);
+            if (String.Empty != filePath)
+            {
+                File file = new File(filePath, (int)FileType.Video, (int)FileState.OnlyUploaded);
+                AddFileToList(file);
             }
             else
             {
-                //Push notification that video was not added(for some reasons)
+                //Push notification that file was not added(for some reasons)
             }
         }
-
-        private void SaveFiles(object sender, MouseButtonEventArgs e)
+        private void DeleteFile(object sender, MouseEventArgs e)
         {
-            //Some actions to save file to db
-            foreach (var i in videos.Where(x => x.State == FileState.OnlyUploaded))
-            {
-                //some actions for save video to database
-            }
-        }
-
-        private void DeleteVideo(object sender, MouseEventArgs e)
-        {
-            var file = (File)VideoList.SelectedItem;
+            var file = (File)FileList.SelectedItem;
             if (file != null)
             {
-                VideoList.BeginInit();
-                videos.Remove(file);
-                VideoList.EndInit();
+                FileList.BeginInit();
+                files.Remove(file);
+                FileList.EndInit();
             }
+        }
+        private void SaveFiles(object sender, MouseEventArgs e)
+        {
+            //logic for save file to database
         }
     }
 }
