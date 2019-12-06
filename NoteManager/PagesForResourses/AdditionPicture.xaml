@@ -36,6 +36,7 @@
             VerticalAlignment="Top" 
             Width="280"
             FontSize="12"
+            SelectionChanged="FileList_SelectionChanged"
             >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -51,6 +52,7 @@
         </ListBox>
 
         <Image 
+            Name="PictureFrame"
             HorizontalAlignment="Left"
             Height="131"
             Margin="10,10,0,0" 

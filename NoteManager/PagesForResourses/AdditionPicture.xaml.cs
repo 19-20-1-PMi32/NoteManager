@@ -94,5 +94,12 @@ namespace NoteManager.PagesForResourses
         {
             //logic for save file to database
         }
+
+        private void FileList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var sel = SelectedFile();
+            if (sel != null)
+                PictureFrame.Source = new BitmapImage(new Uri(sel.FilePath));
+        }
     }
 }
