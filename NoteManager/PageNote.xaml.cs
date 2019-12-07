@@ -15,8 +15,8 @@ namespace NoteManager
     public partial class PageNote : Page
     {
         private ContextMenu NoteMenu = null;
-        private TreeViewItem ThatTreeItemWillBeDeleted = null;
-        private ListBoxItem ThatListItemWillBeDeleted = null;
+        private TreeViewItem ThatTreeItemIsSelected = null;
+        private ListBoxItem ThatListItemIsSelected = null;
         private Note CurentNote = null;
 
         public PageNote()
@@ -100,34 +100,54 @@ namespace NoteManager
             }
         }
 
+        private void ViewNote(object sender, RoutedEventArgs e)
+        {
+            if (TabItemList.IsSelected)
+            {
+                var t = ThatListItemIsSelected;
+                var p = (from it in User.Notes
+                         where it.CreationTime.ToString() == (string)t.Content
+                         select it).First();
+                TextBoxMain.Text = p.Text;
+                CurentNote = p;
+            }
+            else if(TabItemTree.IsSelected)
+            {
+                var t = ThatTreeItemIsSelected;
+                var p = (from it in User.Notes
+                         where it.CreationTime.ToString() == (string)t.Header
+                         select it).First();
+                TextBoxMain.Text = p.Text;
+                CurentNote = p;
+            }
+        }
+
         private void DeleteNote(object sender, RoutedEventArgs e)
         {
             if(TabItemList.IsSelected)
             {
-                MessageBox.Show("IsLoad");
-                if(ThatListItemWillBeDeleted != null)
+                if(ThatListItemIsSelected != null)
                 {
                     User.Notes.Remove((from t in User.Notes
-                                       where t.CreationTime.ToString() == (string)ThatListItemWillBeDeleted.Content
+                                       where t.CreationTime.ToString() == (string)ThatListItemIsSelected.Content
                                        select t).First());
-                    ListBoxDates.Items.Remove(ThatListItemWillBeDeleted);
+                    ListBoxDates.Items.Remove(ThatListItemIsSelected);
                     InitializeTreeDates();
-                    ThatListItemWillBeDeleted = null;
+                    ThatListItemIsSelected = null;
                 }
             }
             else if(TabItemTree.IsSelected)
             {
-                MessageBox.Show("IsLoaded");
-                if(ThatTreeItemWillBeDeleted != null)
+                if(ThatTreeItemIsSelected != null)
                 {
                     User.Notes.Remove((from t in User.Notes
-                                       where t.CreationTime.ToString() == (string)ThatTreeItemWillBeDeleted.Header
+                                       where t.CreationTime.ToString() == (string)ThatTreeItemIsSelected.Header
                                        select t).First());
 
-                    var day = ThatTreeItemWillBeDeleted.Parent as TreeViewItem;
+                    var day = ThatTreeItemIsSelected.Parent as TreeViewItem;
                     if (day != null)
                     {
-                        day.Items.Remove(ThatTreeItemWillBeDeleted);
+                        day.Items.Remove(ThatTreeItemIsSelected);
                         if (day.Items.Count == 0)
                         {
                             var month = day.Parent as TreeViewItem;
@@ -146,13 +166,9 @@ namespace NoteManager
                     }
                     InitializeListDates();
                 }
-                ThatTreeItemWillBeDeleted = null;
+                ThatTreeItemIsSelected = null;
             }
-
-            
-            
-            
-
+            TextBoxMain.Text = "";
         }
 
         private void AddingNewNoteInTreeView(DateTime time)
@@ -236,11 +252,11 @@ namespace NoteManager
             NoteMenu.IsOpen = true;
             if(sender is ListBoxItem)
             {
-                ThatListItemWillBeDeleted = sender as ListBoxItem;
+                ThatListItemIsSelected = sender as ListBoxItem;
             }
             else if (sender is TreeViewItem)
             {
-                ThatTreeItemWillBeDeleted = sender as TreeViewItem;
+                ThatTreeItemIsSelected = sender as TreeViewItem;
             }
         }
 

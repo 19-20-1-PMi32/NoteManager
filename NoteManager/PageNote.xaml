@@ -9,6 +9,7 @@
       Title="PageNote">
     <Page.Resources>
         <ContextMenu x:Key="NoteMenu">
+            <MenuItem Header="View" Click="ViewNote"/>
             <MenuItem Header="Delete" Click="DeleteNote" />
             <MenuItem Header="Item2" />
             <Separator />
