@@ -194,7 +194,11 @@
             VerticalAlignment="Stretch" 
             Width="200"
             >
-            <TabItem Header="List" Width="91">
+            <TabItem
+                Name="TabItemList"
+                Header="List" 
+                Width="91"
+                >
                 <Grid>
                     <Grid.Background>
                         <ImageBrush 
@@ -214,7 +218,11 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Tree" Width="90">
+            <TabItem 
+                Name="TabItemTree"
+                Header="Tree" 
+                Width="90"
+                >
                 <Grid>
                     <Grid.Background>
                         <ImageBrush 

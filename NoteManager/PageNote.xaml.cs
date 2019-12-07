@@ -15,19 +15,21 @@ namespace NoteManager
     public partial class PageNote : Page
     {
         private ContextMenu NoteMenu = null;
-        private TreeViewItem ThatWillBeDeleted;
+        private TreeViewItem ThatTreeItemWillBeDeleted = null;
+        private ListBoxItem ThatListItemWillBeDeleted = null;
         private Note CurentNote = null;
 
         public PageNote()
         {
             InitializeComponent();
-            InitializeDatas();
-            InitializeListDatas();
+            InitializeTreeDates();
+            InitializeListDates();
             NoteMenu = Resources["NoteMenu"] as ContextMenu;
         }
 
-        private void InitializeDatas()
+        private void InitializeTreeDates()
         {
+            Dates.Items.Clear();
             var NoteYears = from year in User.Notes
                             select year.CreationTime.Year;
             NoteYears = NoteYears.Distinct();
@@ -70,12 +72,14 @@ namespace NoteManager
             }
         }
 
-        private void InitializeListDatas()
+        private void InitializeListDates()
         {
             ListBoxDates.Items.Clear();
             foreach (var item in User.Notes)
             {
                 var date = new ListBoxItem() { Content = $"{item.CreationTime}" };
+                date.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                date.MouseRightButtonUp += MouseButtonRightClickHandler;
                 ListBoxDates.Items.Add(date);
             }
         }
@@ -89,19 +93,66 @@ namespace NoteManager
         {
             if(TextBoxMain.Text != "")
             {
-                DateTime TimeOfcreateNote = DateTime.Now;
-                User.Notes.Add(new Note(TextBoxMain.Text, TimeOfcreateNote));
-                AddingNewNoteInTreeView(TimeOfcreateNote);
+                DateTime TimeOfCreateNote = DateTime.Now;
+                User.Notes.Add(new Note(TextBoxMain.Text, TimeOfCreateNote));
+                AddingNewNoteInTreeView(TimeOfCreateNote);
+                AddingNewNoteInListBox(TimeOfCreateNote);
             }
         }
 
         private void DeleteNote(object sender, RoutedEventArgs e)
         {
-            var parent = ThatWillBeDeleted.Parent as TreeViewItem;
-            if (parent != null)
+            if(TabItemList.IsSelected)
             {
-                parent.Items.Remove(ThatWillBeDeleted);
+                MessageBox.Show("IsLoad");
+                if(ThatListItemWillBeDeleted != null)
+                {
+                    User.Notes.Remove((from t in User.Notes
+                                       where t.CreationTime.ToString() == (string)ThatListItemWillBeDeleted.Content
+                                       select t).First());
+                    ListBoxDates.Items.Remove(ThatListItemWillBeDeleted);
+                    InitializeTreeDates();
+                    ThatListItemWillBeDeleted = null;
+                }
             }
+            else if(TabItemTree.IsSelected)
+            {
+                MessageBox.Show("IsLoaded");
+                if(ThatTreeItemWillBeDeleted != null)
+                {
+                    User.Notes.Remove((from t in User.Notes
+                                       where t.CreationTime.ToString() == (string)ThatTreeItemWillBeDeleted.Header
+                                       select t).First());
+
+                    var day = ThatTreeItemWillBeDeleted.Parent as TreeViewItem;
+                    if (day != null)
+                    {
+                        day.Items.Remove(ThatTreeItemWillBeDeleted);
+                        if (day.Items.Count == 0)
+                        {
+                            var month = day.Parent as TreeViewItem;
+                            month.Items.Remove(day);
+                            if (month.Items.Count == 0)
+                            {
+                                var year = month.Parent as TreeViewItem;
+                                year.Items.Remove(month);
+                                if(year.Items.Count == 0)
+                                {
+                                    var years = year.Parent as TreeViewItem;
+                                    years.Items.Remove(year);
+                                }
+                            }
+                        }
+                    }
+                    InitializeListDates();
+                }
+                ThatTreeItemWillBeDeleted = null;
+            }
+
+            
+            
+            
+
         }
 
         private void AddingNewNoteInTreeView(DateTime time)
@@ -172,20 +223,47 @@ namespace NoteManager
             }
         }
 
+        private void AddingNewNoteInListBox(DateTime time)
+        {
+            var date = new ListBoxItem() { Content = $"{time}" };
+            date.MouseDoubleClick += MouseButtonDoubleClickHandler;
+            date.MouseRightButtonUp += MouseButtonRightClickHandler;
+            ListBoxDates.Items.Add(date);
+        }
+
         private void MouseButtonRightClickHandler(object sender, MouseButtonEventArgs e)
         {
             NoteMenu.IsOpen = true;
-            ThatWillBeDeleted = sender as TreeViewItem;
+            if(sender is ListBoxItem)
+            {
+                ThatListItemWillBeDeleted = sender as ListBoxItem;
+            }
+            else if (sender is TreeViewItem)
+            {
+                ThatTreeItemWillBeDeleted = sender as TreeViewItem;
+            }
         }
 
         private void MouseButtonDoubleClickHandler(object sender, MouseButtonEventArgs e)
         {
-            var t = (TreeViewItem)sender;
-            var p = (from it in User.Notes
-                     where it.CreationTime.ToString() == (string)t.Header
-                     select it).First();
-            TextBoxMain.Text = p.Text;
-            CurentNote = p;
+            if(sender is TreeViewItem)
+            {
+                var t = (TreeViewItem)sender;
+                var p = (from it in User.Notes
+                         where it.CreationTime.ToString() == (string)t.Header
+                         select it).First();
+                TextBoxMain.Text = p.Text;
+                CurentNote = p;
+            }
+            else if(sender is ListBoxItem)
+            {
+                var t = (ListBoxItem)sender;
+                var p = (from it in User.Notes
+                         where it.CreationTime.ToString() == (string)t.Content
+                         select it).First();
+                TextBoxMain.Text = p.Text;
+                CurentNote = p;
+            }
         }
 
         private void ShowVideos(object sender, RoutedEventArgs e)
