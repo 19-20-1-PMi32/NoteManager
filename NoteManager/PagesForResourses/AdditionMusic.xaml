@@ -129,6 +129,7 @@
             Width="194"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
+            MouseDown="FilePlay"
             />
     </Grid>
 </Page>

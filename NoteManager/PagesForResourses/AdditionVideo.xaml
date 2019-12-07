@@ -133,7 +133,9 @@
             Margin="10,9,10,0" 
             VerticalAlignment="Top" 
             LoadedBehavior="Manual"
-            UnloadedBehavior="Manual" Width="280" 
+            UnloadedBehavior="Manual" 
+            Width="280" 
+            MouseDown="FilePlay"
             />
 
     </Grid>

@@ -101,5 +101,9 @@ namespace NoteManager.PagesForResourses
             if (sel != null)
                 PictureFrame.Source = new BitmapImage(new Uri(sel.FilePath));
         }
+        private void FilePlay(object sender, MouseEventArgs e)
+        {
+            Process.Start(SelectedFile().FilePath);
+        }
     }
 }

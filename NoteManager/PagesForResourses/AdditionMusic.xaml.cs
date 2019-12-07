@@ -141,5 +141,9 @@ namespace NoteManager.PagesForResourses
         {
             //logic for save file to database
         }
+        private void FilePlay(object sender, MouseEventArgs e)
+        {
+            Process.Start(SelectedFile().FilePath);
+        }
     }
 }
