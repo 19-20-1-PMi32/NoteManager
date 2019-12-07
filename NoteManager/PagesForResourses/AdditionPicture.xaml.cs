@@ -57,8 +57,6 @@ namespace NoteManager.PagesForResourses
             {
                 File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
                 AddFileToList(file);
-                Debug.WriteLine(files.Count);
-                Debug.WriteLine(deleted.Count);
             }
             else
             {
@@ -101,7 +99,10 @@ namespace NoteManager.PagesForResourses
         }
         private void FilePlay(object sender, MouseEventArgs e)
         {
-            Process.Start(SelectedFile().FilePath);
+            if (SelectedFile() != null)
+            {
+                Process.Start(SelectedFile().FilePath);
+            }
         }
     }
 }

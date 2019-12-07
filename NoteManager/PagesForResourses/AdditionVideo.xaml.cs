@@ -19,19 +19,18 @@ namespace NoteManager.PagesForResourses
         List<File> files;
         List<File> deleted;
         FileType type;
+        TimeSpan? pausePosition;
         public AdditionVideo()
         {
             InitializeComponent();
             type = FileType.Video;
             files = new List<File>();
             deleted = new List<File>();
-            //Here we must get all user video for the related note
             FileList.ItemsSource = files;
         }
 
-        private void DoubleClickOnVideo1(object sender, RoutedEventArgs e)
+        private void InitTimer()
         {
-            VideoElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\Me_vs_Bugs.wmv");
             VideoElem.Visibility = Visibility.Visible;
             VideoElem.Play();
             DispatcherTimer timer = new DispatcherTimer();
@@ -45,12 +44,11 @@ namespace NoteManager.PagesForResourses
             if (VideoElem.Source != null)
             {
                 if (VideoElem.NaturalDuration.HasTimeSpan)
-                    lableStatus.Content = String.Format("{0} / {1}", VideoElem.Position.ToString(@"mm\:ss"), VideoElem.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+                    lableStatus.Content = String.Format("{0} / {1}", VideoElem.Position.ToString(@"hh\:mm\:ss"), VideoElem.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
             }
             else
                 lableStatus.Content = "No file selected...";
         }
-
         private void Play(object sender, RoutedEventArgs e)
         {
             var sel = SelectedFile();
@@ -58,18 +56,31 @@ namespace NoteManager.PagesForResourses
                 VideoElem.Source = new Uri(sel.FilePath);
             VideoElem.IsMuted = false;
             VideoElem.Play();
+            pausePosition = null;
+            InitTimer();
         }
-
         private void Pause(object sender, RoutedEventArgs e)
         {
-            if(VideoElem.Source != null)
-                VideoElem.Pause();
+            if (VideoElem.Source != null)
+            {
+                if (VideoElem.Position != TimeSpan.Zero && pausePosition != null) {
+                    VideoElem.Position = (TimeSpan)pausePosition;
+                    VideoElem.Play();
+                    pausePosition = null;
+                }
+                else
+                {
+                    pausePosition = VideoElem.Position;
+                    VideoElem.Pause();
+                }
+            }
         }
 
         private void Stop(object sender, RoutedEventArgs e)
         {
             if (VideoElem.Source != null)
                 VideoElem.Stop();
+            pausePosition = null;
         }
         private void AddFileToList(File video)
         {
@@ -122,8 +133,6 @@ namespace NoteManager.PagesForResourses
                 deleted.Add(file);
 
             }
-            Debug.WriteLine(files.Count);
-            Debug.WriteLine(deleted.Count);
         }
         private void SaveFiles(object sender, MouseEventArgs e)
         {
@@ -131,8 +140,11 @@ namespace NoteManager.PagesForResourses
         }
         private void FilePlay(object sender, MouseEventArgs e)
         {
-            Stop(null, null);
-            Process.Start(SelectedFile().FilePath);
+            if (SelectedFile() != null)
+            {
+                Stop(null, null);
+                Process.Start(SelectedFile().FilePath);
+            }
         }
     }
 }

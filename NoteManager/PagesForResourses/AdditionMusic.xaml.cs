@@ -26,6 +26,7 @@ namespace NoteManager.PagesForResourses
         FileType type = FileType.Music;
         List<File> files;
         List<File> deleted;
+        TimeSpan? pausePosition;
         public AdditionMusic()
         {
             InitializeComponent();
@@ -34,21 +35,8 @@ namespace NoteManager.PagesForResourses
             FileList.ItemsSource = files;
         }
 
-
-        private void ClickOnMusic1(object sender, RoutedEventArgs e)
+        private void InitTimer()
         {
-            MusicElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\MR_Moment.mp3");
-            MusicElem.Visibility = Visibility.Visible;
-            MusicElem.Play();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-        }
-
-        private void ClickOnMusic2(object sender, RoutedEventArgs e)
-        {
-            MusicElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\GMV The Show.mp3");
             MusicElem.Visibility = Visibility.Visible;
             MusicElem.Play();
             DispatcherTimer timer = new DispatcherTimer();
@@ -77,17 +65,32 @@ namespace NoteManager.PagesForResourses
                 MusicElem.Source = new Uri(sel.FilePath);
             MusicElem.IsMuted = false;
             MusicElem.Play();
+            pausePosition = null;
+            InitTimer();
         }
         private void Pause(object sender, RoutedEventArgs e)
         {
             if (MusicElem.Source != null)
-                MusicElem.Pause();
+            {
+                if (MusicElem.Position != TimeSpan.Zero && pausePosition != null)
+                {
+                    MusicElem.Position = (TimeSpan)pausePosition;
+                    MusicElem.Play();
+                    pausePosition = null;
+                }
+                else
+                {
+                    pausePosition = MusicElem.Position;
+                    MusicElem.Pause();
+                }
+            }
         }
 
         private void Stop(object sender, RoutedEventArgs e)
         {
             if (MusicElem.Source != null)
                 MusicElem.Stop();
+            pausePosition = null;
         }
         private void AddFileToList(File file)
         {
@@ -118,7 +121,7 @@ namespace NoteManager.PagesForResourses
                 //Push notification that file was not added(for some reasons)
             }
         }
-        private void DeleteFronList(File file)
+        private void DeleteFromList(File file)
         {
             file.State = FileState.MustBeDeleted;
             FileList.BeginInit();
@@ -130,7 +133,7 @@ namespace NoteManager.PagesForResourses
             var file = SelectedFile();
             if (file != null)
             {
-                DeleteFronList(file);
+                DeleteFromList(file);
                 deleted.Add(file);
             }
         }
@@ -140,8 +143,11 @@ namespace NoteManager.PagesForResourses
         }
         private void FilePlay(object sender, MouseEventArgs e)
         {
-            Stop(null, null);
-            Process.Start(SelectedFile().FilePath);
+            if (SelectedFile() != null)
+            {
+                Stop(null, null);
+                Process.Start(SelectedFile().FilePath);
+            }
         }
     }
 }
