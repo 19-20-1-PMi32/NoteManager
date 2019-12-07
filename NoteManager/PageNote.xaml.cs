@@ -22,6 +22,7 @@ namespace NoteManager
         {
             InitializeComponent();
             InitializeDatas();
+            InitializeListDatas();
             NoteMenu = Resources["NoteMenu"] as ContextMenu;
         }
 
@@ -66,6 +67,16 @@ namespace NoteManager
                     year.Items.Add(month);
                 }
                 Dates.Items.Add(year);
+            }
+        }
+
+        private void InitializeListDatas()
+        {
+            ListBoxDates.Items.Clear();
+            foreach (var item in User.Notes)
+            {
+                var date = new ListBoxItem() { Content = $"{item.CreationTime}" };
+                ListBoxDates.Items.Add(date);
             }
         }
 
