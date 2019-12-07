@@ -132,10 +132,7 @@ namespace NoteManager.PagesForResourses
             {
                 DeleteFronList(file);
                 deleted.Add(file);
-
             }
-            Debug.WriteLine(files.Count);
-            Debug.WriteLine(deleted.Count);
         }
         private void SaveFiles(object sender, MouseEventArgs e)
         {
