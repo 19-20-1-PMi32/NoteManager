@@ -140,6 +140,7 @@ namespace NoteManager.PagesForResourses
         }
         private void FilePlay(object sender, MouseEventArgs e)
         {
+            Stop(null, null);
             Process.Start(SelectedFile().FilePath);
         }
     }
