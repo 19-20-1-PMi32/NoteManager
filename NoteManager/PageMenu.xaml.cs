@@ -46,5 +46,9 @@ namespace NoteManager
         {
             FrameMain.Source = new Uri("PageReminders.xaml", UriKind.Relative);
         }
+        private void ClickOnPlans(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Source = new Uri("PagePlans.xaml", UriKind.Relative);
+        }
     }
 }
