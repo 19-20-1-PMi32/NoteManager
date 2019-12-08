@@ -97,6 +97,9 @@
     <Compile Include="PagesForResourses\AdditionVideo.xaml.cs">
       <DependentUpon>AdditionVideo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesForResourses\VideoPlayer.xaml.cs">
+      <DependentUpon>VideoPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageSignIn.xaml.cs">
       <DependentUpon>PageSignIn.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagesForResourses\AdditionVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\VideoPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

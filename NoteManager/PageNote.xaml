@@ -148,6 +148,7 @@
         </Label>
 
         <ListBox 
+            MouseDoubleClick="ClickDoubleOnListBoxResourses"
             Name="ListBoxResourses"
             HorizontalAlignment="Right" 
             Margin="0,30,7,30" 
@@ -182,13 +183,6 @@
             </Label.Style>
         </Label>
 
-        <Frame 
-            Name="FrameAddFiles"
-            Margin="0,0,0,0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2" Grid.RowSpan="2"
-            />
-        
         <TabControl 
             HorizontalAlignment="Left" 
             Margin="0,0,0,0" 
@@ -234,8 +228,8 @@
                 
         		        />
                     </Grid.Background>
-                        <!-- TreeView Dates -->
-                        <TreeView 
+                    <!-- TreeView Dates -->
+                    <TreeView 
                             Name="Dates"
                             HorizontalAlignment="Left" 
                             Margin="0,0,0,0" 
@@ -246,7 +240,12 @@
             </TabItem>
         </TabControl>
         
-
+        <Frame 
+            Name="FrameAddFiles"
+            Margin="0,0,0,0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2" Grid.RowSpan="2"
+            />
 
     </Grid>
 </Page>

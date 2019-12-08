@@ -23,7 +23,7 @@ namespace NoteManager
 
         private void GoToNext(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PageNotes());
+            this.NavigationService.Navigate(new PageMenu());
         }
     }
 }

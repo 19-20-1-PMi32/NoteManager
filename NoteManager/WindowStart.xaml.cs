@@ -14,7 +14,7 @@ namespace NoteManager
         public WindowStart()
         {
             InitializeComponent();
-            f1.Navigate(new PageWelcome());
+            f1.Navigate(new PageMenu());
         }
 
         protected override void OnSourceInitialized(EventArgs e)

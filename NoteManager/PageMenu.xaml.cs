@@ -9,10 +9,10 @@ namespace NoteManager
     /// <summary>
     /// Interaction logic for PageNotes.xaml
     /// </summary>
-    public partial class PageNotes : Page
+    public partial class PageMenu : Page
     {
         private static Color colorBlue = Color.FromRgb(0, 122, 204);
-        public PageNotes()
+        public PageMenu()
         {
             InitializeComponent();
             LabelUnderNotes.Foreground = new SolidColorBrush(colorBlue);
