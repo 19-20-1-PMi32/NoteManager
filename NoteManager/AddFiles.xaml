@@ -22,19 +22,40 @@
         <Image Source="Resources/Pictures/BackaddFoles.png"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Margin="0,0,0,20" 
+               Margin="0,0,0,0" 
                Stretch="Fill"
-               Width="300"
-               Height="350"
+               Width="400"
+               Height="450"
                />
 
         <Label 
-            Content="Video" 
-            FontSize="20"
+            Content="Note" 
+            FontSize="25"
             HorizontalAlignment="Center" 
-            Margin="0,0,200,330" 
+            Margin="209,-3,503,415" 
             VerticalAlignment="Center"
-            MouseDown="ClickOnVideo"
+            MouseDown="ClickOnNote" 
+            Width="88"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label 
+            Content="Video" 
+            FontSize="25"
+            HorizontalAlignment="Center" 
+            Margin="276,-3,435,417" 
+            VerticalAlignment="Center"
+            MouseDown="ClickOnVideo" Width="88"
             >
             <Label.Style>
                 <Style TargetType="Label">
@@ -50,11 +71,11 @@
 
         <Label 
             Content="Picture" 
-            FontSize="20"
+            FontSize="25"
             HorizontalAlignment="Center" 
-            Margin="0,0,70,330" 
+            Margin="350,-3,346,415" 
             VerticalAlignment="Center"
-            MouseDown="ClickOnPicture"
+            MouseDown="ClickOnPicture" Width="104"
             >
             <Label.Style>
                 <Style TargetType="Label">
@@ -70,11 +91,11 @@
 
         <Label 
             Content="Music" 
-            FontSize="20"
+            FontSize="25"
             HorizontalAlignment="Center" 
-            Margin="60,0,0,330" 
+            Margin="437,-3,276,415" 
             VerticalAlignment="Center"
-            MouseDown="ClickOnMusic"
+            MouseDown="ClickOnMusic" Width="87"
             >
             <Label.Style>
                 <Style TargetType="Label">
@@ -90,11 +111,11 @@
 
         <Label 
             Content="Record" 
-            FontSize="20"
+            FontSize="25"
             HorizontalAlignment="Center" 
-            Margin="190,0,0,330" 
+            Margin="508,-3,191,415" 
             VerticalAlignment="Center"
-            MouseDown="ClickOnRecord"
+            MouseDown="ClickOnRecord" Width="101"
             >
             <Label.Style>
                 <Style TargetType="Label">
@@ -107,14 +128,30 @@
                 </Style>
             </Label.Style>
         </Label>
+        <!-- Next -->
+        <Button 
+            Click="ClickSave"
+            Content="Save" 
+            Style="{StaticResource Flat_Button}"
+            HorizontalAlignment="Center" 
+            Margin="0,415,0,0" 
+            VerticalAlignment="Center" 
+            FontSize="14"
+            Width="80" 
+            Height="30" 
+            FontFamily="Verdana" 
+            Background="#FF007ACC"
+            Foreground="White" 
+            BorderBrush="{x:Null}"
+            />
 
         <Frame 
             Name="FrameAddFiles"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="0,75,0,60" 
-            Width="300"
-            Height="315"
+            Margin="0,40,0,30" 
+            Width="400"
+            Height="380"
             Source="PagesForResourses/AdditionVideo.xaml"  
             />
     </Grid>

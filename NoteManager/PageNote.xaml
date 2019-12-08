@@ -28,6 +28,7 @@
 
         <!-- TextBox Main-->
         <TextBox 
+            IsReadOnly="True"
             Name="TextBoxMain"
             Foreground="White"
             FontSize="16"
@@ -40,12 +41,10 @@
             VerticalScrollBarVisibility="Visible"
             />
 
-
-
         <!-- Lable Save -->
         <Label
             MouseDown="SaveNote"
-            Content="Save" 
+            Content="Add new note" 
             FontSize="24"
             HorizontalAlignment="Center"
             Margin="0,0,0,-5"
@@ -62,112 +61,8 @@
                 </Style>
             </Label.Style>
         </Label>
-        <!--
-        All files
-        <Label 
-            MouseDown="ShowVideos"
-            Content="All files" 
-            FontSize="24"
-            HorizontalAlignment="Right" 
-            Margin="0,0,145,0" 
-            VerticalAlignment="Top"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-
-        Video
-        <Label 
-            MouseDown="ShowVideos"
-            Content="Video" 
-            FontSize="24"
-            HorizontalAlignment="Right" 
-            Margin="0,0,80,0" 
-            VerticalAlignment="Top"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-
-        Label Picture
-        <Label 
-            MouseDown="ShowPictures"
-            Content="Picture" 
-            FontSize="24"
-            HorizontalAlignment="Right" 
-            Margin="0,0,0,0" 
-            VerticalAlignment="Top"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-
-        Label Music
-        <Label 
-            MouseDown="ShowMusics"
-            Content="Music" 
-            FontSize="16"
-            HorizontalAlignment="Right" 
-            Margin="0,30,125,0" 
-            VerticalAlignment="Top"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-
-        Label Record
-        <Label 
-            MouseDown="ShowRecords"
-            Content="Record" 
-            FontSize="16"
-            HorizontalAlignment="Right" 
-            Margin="0,30,55,0" 
-            VerticalAlignment="Top"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
--->
+        
+        <!-- ListBox Files -->
         <ListBox 
             MouseDoubleClick="ClickDoubleOnListBoxResourses"
             Name="ListBoxResourses"
@@ -277,14 +172,9 @@
             <ComboBoxItem Content="Records" Selected="ShowRecords"/>
         </ComboBox>
 
-
         <Frame 
             Name="FrameAddFiles"
             Margin="0,0,0,0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2" Grid.RowSpan="2"
             />
-        
-
     </Grid>
 </Page>

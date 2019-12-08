@@ -30,6 +30,16 @@ namespace NoteManager
             this.NavigationService.Source = null;
         }
 
+        private void ClickSave(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ClickOnNote(object sender, RoutedEventArgs e)
+        {
+            FrameAddFiles.Source = new Uri("PagesForResourses/AdditionNote.xaml", UriKind.Relative);
+        }
+
         private void ClickOnVideo(object sender, RoutedEventArgs e)
         {
             FrameAddFiles.Source = new Uri("PagesForResourses/AdditionVideo.xaml", UriKind.Relative);

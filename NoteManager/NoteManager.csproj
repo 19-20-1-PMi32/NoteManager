@@ -71,6 +71,7 @@
     <Compile Include="DBClasses\Picture.cs" />
     <Compile Include="DBClasses\Record.cs" />
     <Compile Include="DBClasses\Reminder.cs" />
+    <Compile Include="DBClasses\TemporaryNote.cs" />
     <Compile Include="DBClasses\User.cs" />
     <Compile Include="DBClasses\Video.cs" />
     <Compile Include="FileComparer.cs" />
@@ -90,6 +91,9 @@
     </Compile>
     <Compile Include="PagesForResourses\AdditionMusic.xaml.cs">
       <DependentUpon>AdditionMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagesForResourses\AdditionNote.xaml.cs">
+      <DependentUpon>AdditionNote.xaml</DependentUpon>
     </Compile>
     <Compile Include="PagesForResourses\AdditionPicture.xaml.cs">
       <DependentUpon>AdditionPicture.xaml</DependentUpon>
@@ -137,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagesForResourses\AdditionMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\AdditionNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -319,6 +327,10 @@
     <Content Include="Resources\GMV The Show.mp3" />
     <Content Include="Resources\Me_vs_Bugs.wmv" />
     <Content Include="Resources\MR_Moment.mp3" />
+    <Resource Include="Resources\Pictures\PlayVideoGray.png" />
+    <Resource Include="Resources\Pictures\PlayVideoGray2.png" />
+    <Resource Include="Resources\Pictures\PlayVideoLightGray.png" />
+    <Resource Include="Resources\Pictures\PlayVideoLightGray2.png" />
     <Resource Include="Resources\Pictures\CancelGray.png" />
     <Resource Include="Resources\Pictures\CancelLightGray.png" />
   </ItemGroup>

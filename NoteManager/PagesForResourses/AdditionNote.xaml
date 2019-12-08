@@ -1,0 +1,41 @@
+﻿<Page x:Class="NoteManager.PagesForResourses.AdditionNote"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NoteManager.PagesForResourses"
+      mc:Ignorable="d" 
+      d:DesignHeight="380" d:DesignWidth="400"
+      Title="AdditionNote">
+
+    <Grid>
+
+        <TextBox 
+            Name="TextBoxMain"
+            Foreground="White"
+            FontSize="16"
+            HorizontalAlignment="Stretch" 
+            Margin="10,0,10,50" 
+            TextWrapping="Wrap" 
+            Text=""
+            VerticalAlignment="Stretch" 
+            Background="#FF18191D" 
+            VerticalScrollBarVisibility="Visible"
+            />
+
+        <Button 
+            Click="ClickOnConfirm"
+            Content="Confirm"
+            Style="{StaticResource Flat_ButtonAddReminder}"
+            FontSize="18"
+            Background="#FF171B1F"
+            Foreground="White"
+            HorizontalAlignment="Left" 
+            Margin="10,0,0,10" 
+            VerticalAlignment="Bottom" 
+            Width="100" 
+            Height="30"
+            />
+
+    </Grid>
+</Page>
