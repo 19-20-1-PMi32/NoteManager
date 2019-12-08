@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace NoteManager.PagesForResourses
@@ -21,24 +12,24 @@ namespace NoteManager.PagesForResourses
     /// </summary>
     public partial class VideoPlayer : Page
     {
-        private bool IsPlay = false;
-        private TimeSpan TotalTime;
+        private bool IsPlay = true;
+        private TimeSpan TotalTimeOfVideo;
+        private DispatcherTimer timerForToddlerOfSlider;
+        private ushort sliderUpdateSpeed = 100;
 
         public VideoPlayer()
         {
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-            //SliderLine.Minimum = 0;
-            SliderLine.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(timeSlider_MouseLeftButtonUp), true);
-            MediaElementVideo.MediaOpened += MyMediaElement_MediaOpened;
+            InitializeTimer();
+            MediaElementVideo.Play();
+            Play.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeLight.png"));
+            timerForToddlerOfSlider.Start();
         }
 
-        private void EventMouseDownOnBlackArea(object sender, RoutedEventArgs e)
+        private void LeavePage(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Source = null;
+            MediaElementVideo.Stop();
         }
 
         private void ClickOnPlay(object sender, RoutedEventArgs e)
@@ -48,62 +39,61 @@ namespace NoteManager.PagesForResourses
                 MediaElementVideo.Pause();
                 Play.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayLightGray.png"));
                 IsPlay = false;
+                timerForToddlerOfSlider.Stop();
             }
             else
             {
                 MediaElementVideo.Play();
                 Play.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeLight.png"));
                 IsPlay = true;
+                timerForToddlerOfSlider.Start();
             }
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        private void Timer_TickForLabelTimer(object sender, EventArgs e)
+        {
+            if (MediaElementVideo.Source != null && MediaElementVideo.NaturalDuration.HasTimeSpan)
+            {
+                lableCurentTimeOfPlay.Content = string.Format("{0}", MediaElementVideo.Position.ToString(@"mm\:ss"));
+                lableAllTimeOfPlay.Content = string.Format("{0}", MediaElementVideo.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+            }
+        }
+
+        private void Timer_TickForSlider(object sender, EventArgs e)
         {
             if (MediaElementVideo.Source != null)
             {
                 if (MediaElementVideo.NaturalDuration.HasTimeSpan)
                 {
-                    lableCurentTimeOfPlay.Content = String.Format("{0}", MediaElementVideo.Position.ToString(@"mm\:ss"));
-                    lableAllTimeOfPlay.Content = String.Format("{0}", MediaElementVideo.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
-                    //SliderLine.Maximum = MediaElementVideo.NaturalDuration.TimeSpan.TotalMilliseconds;
+                    TotalTimeOfVideo = MediaElementVideo.NaturalDuration.TimeSpan;
+                    SliderLine.Maximum = MediaElementVideo.NaturalDuration.TimeSpan.TotalMilliseconds;
+                    SliderLine.Value += sliderUpdateSpeed;
                 }
             }
         }
 
-        
-
-        private void MyMediaElement_MediaOpened(object sender, RoutedEventArgs e)
+        private void TimeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            TotalTime = MediaElementVideo.NaturalDuration.TimeSpan;
-
-            // Create a timer that will update the counters and the time slider
-            DispatcherTimer timerVideoTime = new DispatcherTimer();
-            timerVideoTime = new DispatcherTimer();
-            timerVideoTime.Interval = TimeSpan.FromMilliseconds(1);
-            timerVideoTime.Tick += new EventHandler(timer_TickForSlider);
-            timerVideoTime.Start();
-        }
-
-        void timer_TickForSlider(object sender, EventArgs e)
-        {
-            // Check if the movie finished calculate it's total time
-            if (MediaElementVideo.NaturalDuration.TimeSpan.TotalMilliseconds > 0)
+            if (TotalTimeOfVideo.TotalMilliseconds > 0)
             {
-                if (TotalTime.TotalMilliseconds > 0)
-                {
-                    // Updating time slider
-                    SliderLine.Value = MediaElementVideo.Position.TotalMilliseconds /
-                                       TotalTime.TotalMilliseconds;
-                }
+                MediaElementVideo.Position = TimeSpan.FromMilliseconds(SliderLine.Value);
             }
         }
 
-        private void timeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void InitializeTimer()
         {
-            if (TotalTime.TotalMilliseconds > 0)
-            {
-                MediaElementVideo.Position = TimeSpan.FromMilliseconds(SliderLine.Value * TotalTime.TotalMilliseconds);
-            }
+            SliderLine.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(TimeSlider_MouseLeftButtonUp), true);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_TickForLabelTimer;
+            timer.Start();
+
+            timerForToddlerOfSlider = new DispatcherTimer();
+            timerForToddlerOfSlider.Interval = TimeSpan.FromMilliseconds(sliderUpdateSpeed);
+            timerForToddlerOfSlider.Tick += Timer_TickForSlider;
+            timerForToddlerOfSlider.Start();
+            SliderLine.Minimum = 0;
         }
     }
 }

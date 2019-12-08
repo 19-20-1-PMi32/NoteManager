@@ -316,6 +316,8 @@
     <Content Include="Resources\GMV The Show.mp3" />
     <Content Include="Resources\Me_vs_Bugs.wmv" />
     <Content Include="Resources\MR_Moment.mp3" />
+    <Resource Include="Resources\Pictures\CancelGray.png" />
+    <Resource Include="Resources\Pictures\CancelLightGray.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DBResources\" />

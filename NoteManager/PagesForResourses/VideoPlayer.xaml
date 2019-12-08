@@ -3,33 +3,33 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:NoteManager.PagesForResourses"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="VideoPlayer">
-
     <Grid>
+        <!-- Image Black Background -->
         <Image      
             Source="../Resources/Pictures/BackBlackFone.png" 
         	Stretch="UniformToFill" 					
-            Opacity="0.4" 
+            Opacity="0.7" 
             HorizontalAlignment="Stretch" 
             Margin="0,0,0,0" 
             VerticalAlignment="Stretch" 
-            MouseDown="EventMouseDownOnBlackArea"
+            MouseDown="LeavePage"
             />
 
         <MediaElement 
             Name="MediaElementVideo"
             Source="E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\Me_vs_Bugs.wmv"
             HorizontalAlignment="Center" 
-            Margin="0,50,0,100" 
+            Margin="0,20,0,80" 
             VerticalAlignment="Stretch" 
             Width="auto"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
             />
 
+        <!-- Image Black rectangle with Slider -->
         <Image      
             Source="../Resources/Pictures/BackBlackFone.png" 
         	Stretch="UniformToFill" 
@@ -37,16 +37,17 @@
             Height="30"
             Opacity="0.7" 
             HorizontalAlignment="Center" 
-            Margin="0,350,0,0" 
-            VerticalAlignment="Center" 
+            Margin="0,0,0,20" 
+            VerticalAlignment="Bottom" 
             />
 
+        <!-- Image play -->
         <Image 
             Name="Play"
             HorizontalAlignment="Center"
             Height="25"
-            Margin="0,350,450,0" 
-            VerticalAlignment="Center"
+            Margin="0,0,450,22.5" 
+            VerticalAlignment="Bottom"
             Width="25"
             MouseDown="ClickOnPlay"
             >
@@ -62,30 +63,55 @@
             </Image.Style>
         </Image>
 
-        <Slider 
-            Name="SliderLine"
-            HorizontalAlignment="Center" 
-            Margin="30,360,0,0" 
-            VerticalAlignment="Center" 
-            Width="430" 
-            />
-
+        <!-- Updating timer -->
         <Label 
             Name="lableCurentTimeOfPlay"
             Content="00:00" 
             HorizontalAlignment="Center" 
-            Margin="0,335,370,0" 
-            VerticalAlignment="Center"
+            Margin="0,0,370,30" 
+            VerticalAlignment="Bottom"
             Foreground="Gray"
             />
 
+        <!-- Total timer -->
         <Label 
             Name="lableAllTimeOfPlay"
             Content="00:00" 
             HorizontalAlignment="Center" 
-            Margin="430,335,0,0" 
-            VerticalAlignment="Center"
+            Margin="430,0,0,30" 
+            VerticalAlignment="Bottom"
             Foreground="Gray"
             />
+
+        <!-- Slider with time -->
+        <Slider 
+            Name="SliderLine"
+            HorizontalAlignment="Center" 
+            Margin="30,0,0,27.5" 
+            VerticalAlignment="Bottom" 
+            Width="430" 
+            />
+        
+        <!-- Image Cansel -->
+        <Image
+            Name="Cancel"
+            HorizontalAlignment="Right"
+            Margin="0,0,10,0" 
+            VerticalAlignment="Top"
+            Height="30"
+            Width="30"
+            MouseDown="LeavePage"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="../Resources/Pictures/CancelGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="../Resources/Pictures/CancelLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
     </Grid>
 </Page>
