@@ -148,7 +148,7 @@
         <Frame 
             Name="FrameMain"
             Margin="0"
-            Source="PageNote.xaml"  
+            Source="PagePlans.xaml"  
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"

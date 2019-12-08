@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Windows.Data;
-using System.Drawing;
 using System.Linq;
-using System.Globalization;
-using System.Text;
-using System.Diagnostics;
 using System.Windows;
+
 namespace NoteManager
 {
     /// <summary>
@@ -42,7 +38,8 @@ namespace NoteManager
                     Name = "Some Name" + i.ToString(),
                     Text = $"План {i} і небагато тексту для тестування." + longText,
                     CreationTime = DateTime.Now.AddDays(i),
-                    DeadLineTime = DateTime.Now.AddDays(10 + i)
+                    DeadLineTime = DateTime.Now.AddDays(10 + i),
+                    IsCompleted = (i % 2 == 0) 
                 }); ;
             }
             return result;
@@ -113,6 +110,7 @@ namespace NoteManager
         private void Save(object sender, RoutedEventArgs e)
         {
             var selected = SelectedItem();
+            //Here we must also check is correct new plan or changed(is name not empty and something else)
             if (isNew == true)
             {
                 AddToList(currentEdit);
@@ -137,7 +135,12 @@ namespace NoteManager
         private void New(object sender, RoutedEventArgs e)
         {
             isNew = true;
-            currentEdit = new Plan() { Text="", Name="" };
+            currentEdit = new Plan() {
+                Text="", 
+                Name="", 
+                CreationTime=DateTime.Now, 
+                DeadLineTime=DateTime.Now.AddDays(1)
+            };
             ChangeCurrent(currentEdit);
             ListPlans.SelectedItem = null;
         }
@@ -160,5 +163,6 @@ namespace NoteManager
         public string Text { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime DeadLineTime { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

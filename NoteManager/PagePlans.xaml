@@ -8,6 +8,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PagePlans">
+    <Page.Resources>
+        <local:PlanStateColorConverter x:Key="PlanStateColorConverter"/>
+        <local:PlanStateNameConverter x:Key="PlanStateNameConverter"/>
+    </Page.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush 
@@ -32,17 +36,33 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBox
-            Name="SearchBox"
-            Grid.Row="0"
+        <Border BorderBrush="Black"
+            BorderThickness="1"
+            VerticalAlignment="Center"
+            CornerRadius="2"
             Grid.Column="0"
-            Margin="0,5,0,5"
-            TextChanged="SearchChanged"
+            Grid.Row="0"
             Background="Gray"
-            Foreground="LightGray"
-            FontSize="20"
-            FontStretch="Normal"
-            />
+            >
+            <StackPanel Margin="3"
+                Orientation="Horizontal"
+                >
+                <Image 
+                    Source="Resources/pictures/search.png" 
+                    Height="18" 
+                    Width="17"
+                    Margin="3"
+                    />
+                <TextBox 
+                    Name="SearchBox"
+                    TextChanged="SearchChanged"
+                    Background="Gray"
+                    Foreground="LightGray"
+                    FontSize="20"
+                    HorizontalAlignment="Stretch" Width="220"
+                    />
+            </StackPanel>
+        </Border>
         <TextBox
             Name="Name"
             Grid.Row="0"
@@ -61,6 +81,14 @@
             Padding="0"
             Foreground="LightGray"
             Content="Creation time:"
+            />
+        <Label
+            Grid.Row="1"
+            Grid.Column="3"
+            FontSize="14"
+            Padding="0"
+            Foreground="LightGray"
+            Content="Completed:"
             />
         <Label
             Grid.Row="1"
@@ -89,6 +117,12 @@
             Padding="0"
             Margin="4"
             />
+        <CheckBox
+            Grid.Row="2"
+            Grid.Column="3"
+            IsChecked="{Binding IsCompleted}"
+            Margin="4"
+            />
         <ListBox 
             Name="ListPlans" 
             HorizontalAlignment="Left" 
@@ -102,6 +136,10 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
                         <TextBlock
                             TextTrimming="CharacterEllipsis"
                             Grid.Row="0"
@@ -110,6 +148,15 @@
                             Text="{Binding Name}"  
                             HorizontalAlignment="Left"
                             Margin="1,1"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Content="{Binding BindsDirectlyToSource=True, Converter={StaticResource PlanStateNameConverter}}"
+                            Background="{Binding BindsDirectlyToSource=True, Converter={StaticResource PlanStateColorConverter}}"
+                            Foreground="White"
+                            Padding="1"
+                            HorizontalAlignment="Left"
+                            Margin="4"
                             />
                     </Grid>
                 </DataTemplate>

@@ -84,6 +84,8 @@
     <Compile Include="PagePlans.xaml.cs">
       <DependentUpon>PagePlans.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlanStateColorConverter.cs" />
+    <Compile Include="PlanStateNameConverter.cs" />
     <Compile Include="ReminderAdd.xaml.cs">
       <DependentUpon>ReminderAdd.xaml</DependentUpon>
     </Compile>
@@ -245,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pictures\Background3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
