@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace NoteManager.PagesForResourses
 {
@@ -21,17 +22,21 @@ namespace NoteManager.PagesForResourses
     /// </summary>
     public partial class AdditionMusic : Page
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        string fileExtensions = "mp3,aac,flac,wav";
+        FileType type = FileType.Music;
+        List<File> files;
+        List<File> deleted;
+        TimeSpan? pausePosition;
         public AdditionMusic()
         {
             InitializeComponent();
+            files = new List<File>();
+            deleted = new List<File>();
+            FileList.ItemsSource = files;
         }
 
-        private void ClickOnMusic1(object sender, RoutedEventArgs e)
+        private void InitTimer()
         {
-            MusicElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\MR_Moment.mp3");
             MusicElem.Visibility = Visibility.Visible;
             MusicElem.Play();
             DispatcherTimer timer = new DispatcherTimer();
@@ -39,18 +44,10 @@ namespace NoteManager.PagesForResourses
             timer.Tick += timer_Tick;
             timer.Start();
         }
-
-        private void ClickOnMusic2(object sender, RoutedEventArgs e)
+        private File SelectedFile()
         {
-            MusicElem.Source = new Uri(@"E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\GMV The Show.mp3");
-            MusicElem.Visibility = Visibility.Visible;
-            MusicElem.Play();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            return (File)FileList.SelectedItem;
         }
-
         void timer_Tick(object sender, EventArgs e)
         {
             if (MusicElem.Source != null)
@@ -61,20 +58,96 @@ namespace NoteManager.PagesForResourses
             else
                 lableStatus.Content = "No file selected...";
         }
-
         private void Play(object sender, RoutedEventArgs e)
         {
+            var sel = SelectedFile();
+            if (sel != null)
+                MusicElem.Source = new Uri(sel.FilePath);
+            MusicElem.IsMuted = false;
             MusicElem.Play();
+            pausePosition = null;
+            InitTimer();
         }
-
         private void Pause(object sender, RoutedEventArgs e)
         {
-            MusicElem.Pause();
+            if (MusicElem.Source != null)
+            {
+                if (MusicElem.Position != TimeSpan.Zero && pausePosition != null)
+                {
+                    MusicElem.Position = (TimeSpan)pausePosition;
+                    MusicElem.Play();
+                    pausePosition = null;
+                }
+                else
+                {
+                    pausePosition = MusicElem.Position;
+                    MusicElem.Pause();
+                }
+            }
         }
 
         private void Stop(object sender, RoutedEventArgs e)
         {
-            MusicElem.Stop();
+            if (MusicElem.Source != null)
+                MusicElem.Stop();
+            pausePosition = null;
+        }
+        private void AddFileToList(File file)
+        {
+            if (!files.Contains(file, new FileComparer()))
+            {
+                FileList.BeginInit();
+                files.Add(file);
+                FileList.EndInit();
+                // Push notification that item was added
+            }
+            else
+            {
+                // Push notification that item was not added(for some reasons)
+            }
+        }
+        private void AddFile(object sender, MouseEventArgs e)
+        {
+            // File extension must be loaded from any config file ar anywhere else
+            FileUploader uploader = new FileUploader(fileExtensions);
+            string filePath = uploader.Upload();
+            if (String.Empty != filePath)
+            {
+                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
+                AddFileToList(file);
+            }
+            else
+            {
+                //Push notification that file was not added(for some reasons)
+            }
+        }
+        private void DeleteFromList(File file)
+        {
+            file.State = FileState.MustBeDeleted;
+            FileList.BeginInit();
+            files.Remove(file);
+            FileList.EndInit();
+        }
+        private void DeleteFile(object sender, MouseEventArgs e)
+        {
+            var file = SelectedFile();
+            if (file != null)
+            {
+                DeleteFromList(file);
+                deleted.Add(file);
+            }
+        }
+        private void SaveFiles(object sender, MouseEventArgs e)
+        {
+            //logic for save file to database
+        }
+        private void FilePlay(object sender, MouseEventArgs e)
+        {
+            if (SelectedFile() != null)
+            {
+                Stop(null, null);
+                Process.Start(SelectedFile().FilePath);
+            }
         }
     }
 }

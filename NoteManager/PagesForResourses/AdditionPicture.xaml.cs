@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+
 
 namespace NoteManager.PagesForResourses
 {
@@ -20,19 +22,87 @@ namespace NoteManager.PagesForResourses
     /// </summary>
     public partial class AdditionPicture : Page
     {
+        string fileExtensions = "jpg,png,bmp";
+        FileType type = FileType.Picture;
+        List<File> files;
+        List<File> deleted;
         public AdditionPicture()
         {
             InitializeComponent();
+            files = new List<File>();
+            deleted = new List<File>();
+            FileList.ItemsSource = files;
+        }
+        
+        private void AddFileToList(File video)
+        {
+            if (!files.Contains(video, new FileComparer()))
+            {
+                FileList.BeginInit();
+                files.Add(video);
+                FileList.EndInit();
+                // Push notification that item was added
+            }
+            else
+            {
+                // Push notification that item was not added(for some reasons)
+            }
+        }
+        private void AddFile(object sender, MouseEventArgs e)
+        {
+            // File extension must be loaded from any config file ar anywhere else
+            FileUploader uploader = new FileUploader(fileExtensions);
+            string filePath = uploader.Upload();
+            if (String.Empty != filePath)
+            {
+                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
+                AddFileToList(file);
+            }
+            else
+            {
+                //Push notification that file was not added(for some reasons)
+            }
+        }
+        private File SelectedFile()
+        {
+            return (File)FileList.SelectedItem;
+        }
+        private void DeleteFronList(File file)
+        {
+            file.State = FileState.MustBeDeleted;
+            FileList.BeginInit();
+            files.Remove(file);
+            FileList.EndInit();
+
+
+        }
+        private void DeleteFile(object sender, MouseEventArgs e)
+        {
+            var file = SelectedFile();
+            if (file != null)
+            {
+                DeleteFronList(file);
+                deleted.Add(file);
+
+            }
+        }
+        private void SaveFiles(object sender, MouseEventArgs e)
+        {
+            //logic for save file to database
         }
 
-        private void DoubleClickOnNmeOfPicture1(object sender, RoutedEventArgs e)
+        private void FileList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyImage.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/BackroundBlackWorld.jpg"));
+            var sel = SelectedFile();
+            if (sel != null)
+                PictureFrame.Source = new BitmapImage(new Uri(sel.FilePath));
         }
-
-        private void DoubleClickOnNmeOfPicture2(object sender, RoutedEventArgs e)
+        private void FilePlay(object sender, MouseEventArgs e)
         {
-            MyImage.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/Start1.jpg"));
+            if (SelectedFile() != null)
+            {
+                Process.Start(SelectedFile().FilePath);
+            }
         }
     }
 }
