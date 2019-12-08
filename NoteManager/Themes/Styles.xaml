@@ -2162,5 +2162,243 @@
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
+    <!-- ComboBox -->
+    <Style TargetType="{x:Type ToggleButton}" x:Key="ComboBoxToggleButton">
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="HoverOn">
+                            <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="Border"
+                                Duration="0:0:0.4" To="{StaticResource BorderBrushGradientColor1}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Border"
+                                Duration="0:0:0.4" To="{StaticResource BorderBrushGradientColor2}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ArrowDown"
+                                Duration="0:0:0.4" To="{StaticResource BorderBrushGradientColor2}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ArrowDown"
+                                Duration="0:0:0.4" To="{StaticResource BorderBrushGradientColor2}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ArrowUp"
+                                Duration="0:0:0.4" To="{StaticResource BorderBrushGradientColor2}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ArrowUp"
+                                Duration="0:0:0.4" To="{StaticResource BorderBrushGradientColor2}"/>
+                        </Storyboard>
+                        <Storyboard x:Key="HoverOff">
+                            <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="Border"
+                                            Duration="0:0:0.4" To="{StaticResource BorderBrushSolidColor}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Border"
+                                            Duration="0:0:0.4" To="{StaticResource BorderBrushSolidColor}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ArrowDown"
+                                Duration="0:0:0.4" To="{StaticResource ArrowBrushComboBox}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ArrowDown"
+                                Duration="0:0:0.4" To="{StaticResource ArrowBrushComboBox}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="ArrowUp"
+                                Duration="0:0:0.4" To="{StaticResource ArrowBrushComboBox}"/>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="ArrowUp"
+                                Duration="0:0:0.4" To="{StaticResource ArrowBrushComboBox}"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border Grid.ColumnSpan="2" CornerRadius="6"
+                            BorderThickness="{Binding BorderThickness, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}}}" 
+                            BorderBrush="{Binding BorderBrush, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="24" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="5" Background="{StaticResource ControlBackgroundNormal}" 
+                                    BorderBrush="{StaticResource ControlBorderBrush}" BorderThickness="1" />
+                            <Border x:Name="BorderToggle" Grid.Column="0" CornerRadius="3,0,0,3" 
+                                    Background="{Binding Background, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}}}"
+                                    BorderBrush="{StaticResource ControlBorderBrush}" Margin="1" BorderThickness="0,0,1,0" />
+                            <Grid Grid.Column="1">
+                                <Path x:Name="ArrowDown" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Data="M -2 0 L 2 4 L 6 0 Z" Margin="0,8,0,0">
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                            <GradientStop Color="{StaticResource ArrowBrushComboBox}" Offset="0.204" />
+                                            <GradientStop Color="{StaticResource ArrowBrushComboBox}" Offset="0.864" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                                <Path x:Name="ArrowUp" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Data="M -2 4 L 2 0 L 6 4 Z" Margin="0,0,0,8">
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                            <GradientStop Color="{StaticResource ArrowBrushComboBox}" Offset="0.204" />
+                                            <GradientStop Color="{StaticResource ArrowBrushComboBox}" Offset="0.864" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ToggleButton.IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOn}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOff}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBrush}" />
+                            <Setter TargetName="BorderToggle" Property="Background" Value="{StaticResource DisabledBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                            <Setter Property="Foreground">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource DisabledForeground}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="ArrowDown" Property="Fill">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource DisabledForeground}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="ArrowUp" Property="Fill">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource DisabledForeground}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+        <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+    <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{StaticResource ControlLightBackground}"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="FontFamily" Value="Calibri,Arial"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundWhite}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="IsSynchronizedWithCurrentItem" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsVirtualizing="True"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <ToggleButton Name="ToggleButton" Style="{StaticResource ComboBoxToggleButton}" Grid.Column="2" Focusable="False"
+                                      IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="6,3,32,3" VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"  />
+                        <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" 
+                                 VerticalAlignment="Center" Margin="6,3,32,3" Focusable="True" Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False"
+                               PopupAnimation="Slide" Margin="3,-8,-3,8">
+                            <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border x:Name="DropDownBorder" Background="{StaticResource ControlLightBackground}" BorderThickness="1" CornerRadius="3" Margin="0,3,0,3"
+                                        BorderBrush="{StaticResource ControlBorderBrush}"/>
+                                <ScrollViewer Margin="0,3" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{StaticResource DisabledForeground}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Background" Value="{StaticResource DisabledBrush}"/>
+                            <Setter Property="Opacity" Value="0.72"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="True"/>
+                        <Trigger Property="IsEditable" Value="True">
+                            <Setter Property="IsTabStop" Value="False"/>
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility"	Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource ControlActiveBorderBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="{x:Type ComboBoxItem}" TargetType="ComboBoxItem">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundWhite}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="HoverOn">
+                            <ColorAnimation Storyboard.TargetName="content" Storyboard.TargetProperty="(ComboBoxItem.Foreground).(SolidColorBrush.Color)"
+                                            Duration="0:0:0.3" To="{StaticResource BorderBrushGradientColor2}"/>
+                            <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                            Duration="0:0:0" To="{StaticResource HighlightComboBoxItem1}"/>
+                            <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                            Duration="0:0:0" To="{StaticResource HighlightComboBoxItem2}"/>
+                        </Storyboard>
+                        <Storyboard x:Key="HoverOff">
+                            <ColorAnimation Storyboard.TargetName="content" Storyboard.TargetProperty="(ComboBoxItem.Foreground).(SolidColorBrush.Color)"
+                                            Duration="0:0:0.3" To="#FFEEEFFF"/>
+                            <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                            Duration="0:0:0" To="Transparent"/>
+                            <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                            Duration="0:0:0" To="Transparent"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border Name="Border" Padding="2" BorderThickness="1" SnapsToDevicePixels="True">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="Transparent" Offset="0" />
+                                <GradientStop Color="Transparent" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter x:Name="content"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOn}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOff}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForeground2}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

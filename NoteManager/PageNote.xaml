@@ -25,14 +25,14 @@
         			AlignmentX="Center"
         		/>
         </Grid.Background>
-        
+
         <!-- TextBox Main-->
         <TextBox 
             Name="TextBoxMain"
             Foreground="White"
             FontSize="16"
             HorizontalAlignment="Stretch" 
-            Margin="200,4,231,28" 
+            Margin="200,0,230,28" 
             TextWrapping="Wrap" 
             Text=""
             VerticalAlignment="Stretch" 
@@ -62,14 +62,35 @@
                 </Style>
             </Label.Style>
         </Label>
+        <!--
+        All files
+        <Label 
+            MouseDown="ShowVideos"
+            Content="All files" 
+            FontSize="24"
+            HorizontalAlignment="Right" 
+            Margin="0,0,145,0" 
+            VerticalAlignment="Top"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
-        <!-- Label Video -->
+        Video
         <Label 
             MouseDown="ShowVideos"
             Content="Video" 
-            FontSize="16"
+            FontSize="24"
             HorizontalAlignment="Right" 
-            Margin="0,0,175,0" 
+            Margin="0,0,80,0" 
             VerticalAlignment="Top"
             >
             <Label.Style>
@@ -84,13 +105,13 @@
             </Label.Style>
         </Label>
 
-        <!-- Label Picture -->
+        Label Picture
         <Label 
             MouseDown="ShowPictures"
             Content="Picture" 
-            FontSize="16"
+            FontSize="24"
             HorizontalAlignment="Right" 
-            Margin="0,0,115,0" 
+            Margin="0,0,0,0" 
             VerticalAlignment="Top"
             >
             <Label.Style>
@@ -105,13 +126,13 @@
             </Label.Style>
         </Label>
 
-        <!-- Label Music -->
+        Label Music
         <Label 
             MouseDown="ShowMusics"
             Content="Music" 
             FontSize="16"
             HorizontalAlignment="Right" 
-            Margin="0,0,65,0" 
+            Margin="0,30,125,0" 
             VerticalAlignment="Top"
             >
             <Label.Style>
@@ -126,13 +147,13 @@
             </Label.Style>
         </Label>
 
-        <!-- Label Record -->
+        Label Record
         <Label 
             MouseDown="ShowRecords"
             Content="Record" 
             FontSize="16"
             HorizontalAlignment="Right" 
-            Margin="0,0,5,0" 
+            Margin="0,30,55,0" 
             VerticalAlignment="Top"
             >
             <Label.Style>
@@ -146,17 +167,18 @@
                 </Style>
             </Label.Style>
         </Label>
-
+-->
         <ListBox 
             MouseDoubleClick="ClickDoubleOnListBoxResourses"
             Name="ListBoxResourses"
             HorizontalAlignment="Right" 
-            Margin="0,30,7,30" 
+            Margin="0,30,0,30" 
             VerticalAlignment="Stretch" 
-            Width="216"
+            Width="230"
+            FontSize="20"
             />
 
-
+        <!-- Add -->
         <Label 
             Content="Add" 
             FontSize="16"
@@ -239,13 +261,30 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
+        <ComboBox 
+            HorizontalAlignment="Right" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Top" 
+            Width="230" 
+            Height="30"
+            FontSize="20"
+            >
+            <ComboBoxItem Content="All files" IsSelected="True" Selected="ShowAllFiles" MouseDown="ShowAllFiles"/>
+            <ComboBoxItem Content="Videos" Selected="ShowVideos" />
+            <ComboBoxItem Content="Pictures" Selected="ShowPictures" />
+            <ComboBoxItem Content="Musics" Selected="ShowMusics"/>
+            <ComboBoxItem Content="Records" Selected="ShowRecords"/>
+        </ComboBox>
+
+
         <Frame 
             Name="FrameAddFiles"
             Margin="0,0,0,0"
             Grid.Column="0"
             Grid.ColumnSpan="2" Grid.RowSpan="2"
             />
+        
 
     </Grid>
 </Page>

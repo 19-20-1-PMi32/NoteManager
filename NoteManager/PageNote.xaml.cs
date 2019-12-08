@@ -270,6 +270,7 @@ namespace NoteManager
                          select it).First();
                 TextBoxMain.Text = p.Text;
                 CurentNote = p;
+                ShowAllFiles(new object(), new RoutedEventArgs());
             }
             else if(sender is ListBoxItem)
             {
@@ -279,6 +280,34 @@ namespace NoteManager
                          select it).First();
                 TextBoxMain.Text = p.Text;
                 CurentNote = p;
+                ShowAllFiles(new object(), new RoutedEventArgs());
+            }
+        }
+
+        private void ShowAllFiles(object sender, RoutedEventArgs e)
+        {
+            if (CurentNote != null)
+            {
+                ListBoxResourses.Items.Clear();
+                foreach (var item in CurentNote.Videos)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+
+                foreach (var item in CurentNote.Pictures)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+
+                foreach (var item in CurentNote.Musics)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
+
+                foreach (var item in CurentNote.Records)
+                {
+                    ListBoxResourses.Items.Add(item.Name);
+                }
             }
         }
 
