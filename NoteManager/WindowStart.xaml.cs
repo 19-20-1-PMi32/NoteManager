@@ -32,7 +32,7 @@ namespace NoteManager
             if (TrayIcon == null)
             { 
                 TrayIcon = new System.Windows.Forms.NotifyIcon();
-                TrayIcon.Icon = Properties.Resources.icon1; 
+                TrayIcon.Icon = Properties.Resources.icon2; 
                 TrayIcon.Text = "Here is tray icon text."; 
                 TrayMenu = Resources["TrayMenu"] as ContextMenu; 
                 TrayIcon.Click += delegate (object sender, EventArgs e) {
