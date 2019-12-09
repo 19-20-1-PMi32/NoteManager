@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace NoteManager
 {
@@ -18,6 +20,10 @@ namespace NoteManager
         private TreeViewItem ThatTreeItemIsSelected = null;
         private ListBoxItem ThatListItemIsSelected = null;
         private Note CurentNote = null;
+        private TimeSpan TotalTimeOfVideo;
+        private DispatcherTimer timerForToddlerOfSlider;
+        private ushort sliderUpdateSpeed = 100;
+        TimeSpan? pausePosition;
 
         public PageNote()
         {
@@ -362,7 +368,100 @@ namespace NoteManager
 
         private void ClickDoubleOnListBoxResourses(object sender, RoutedEventArgs e)
         {
-            FrameAddFiles.Source = new Uri("PagesForResourses/PhotoViewer.xaml", UriKind.Relative);
+            TextBoxMain.Margin = new Thickness(200, 30, 230, 28);
+            //FrameAddFiles.Source = new Uri("PagesForResourses/PhotoViewer.xaml", UriKind.Relative);
+
+        }
+
+        private void InitTimer()
+        {
+            MusicAndRecordElem.Visibility = Visibility.Visible;
+            MusicAndRecordElem.Play();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+            SliderLine.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(TimeSlider_MouseLeftButtonUp), true);
+            SliderLine.Minimum = 0;
+            timerForToddlerOfSlider = new DispatcherTimer();
+            timerForToddlerOfSlider.Interval = TimeSpan.FromMilliseconds(sliderUpdateSpeed);
+            timerForToddlerOfSlider.Tick += Timer_TickForSlider;
+            timerForToddlerOfSlider.Start();
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if (MusicAndRecordElem.Source != null)
+            {
+                if (MusicAndRecordElem.NaturalDuration.HasTimeSpan)
+                    lableStatus.Content = String.Format("{0} / {1}", MusicAndRecordElem.Position.ToString(@"hh\:mm\:ss"), MusicAndRecordElem.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+            }
+        }
+        private void Play(object sender, RoutedEventArgs e)
+        {
+            ImagePlay.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayLightGray.png"));
+            ImagePause.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeDark.png"));
+            ImageStop.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonStopDark.png"));
+            //var sel = SelectedFile();
+            //if (sel != null)
+            //    MusicAndRecordElem.Source = new Uri(sel.FilePath);
+            MusicAndRecordElem.IsMuted = false;
+            MusicAndRecordElem.Play();
+            pausePosition = null;
+            InitTimer();
+        }
+
+        private void Pause(object sender, RoutedEventArgs e)
+        {
+            ImagePlay.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayDarkGray.png"));
+            ImagePause.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeLight.png"));
+            ImageStop.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonStopDark.png"));
+            if (MusicAndRecordElem.Source != null)
+            {
+                if (MusicAndRecordElem.Position != TimeSpan.Zero && pausePosition != null)
+                {
+                    MusicAndRecordElem.Position = (TimeSpan)pausePosition;
+                    MusicAndRecordElem.Play();
+                    pausePosition = null;
+                }
+                else
+                {
+                    pausePosition = MusicAndRecordElem.Position;
+                    MusicAndRecordElem.Pause();
+                }
+            }
+        }
+
+        private void Stop(object sender, RoutedEventArgs e)
+        {
+            ImagePlay.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayDarkGray.png"));
+            ImagePause.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeDark.png"));
+            ImageStop.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonStopLight.png"));
+            if (MusicAndRecordElem.Source != null)
+                MusicAndRecordElem.Stop();
+            pausePosition = null;
+        }
+
+        private void Timer_TickForSlider(object sender, EventArgs e)
+        {
+            if (MusicAndRecordElem.Source != null)
+            {
+                if (MusicAndRecordElem.NaturalDuration.HasTimeSpan)
+                {
+                    TotalTimeOfVideo = MusicAndRecordElem.NaturalDuration.TimeSpan;
+                    SliderLine.Maximum = MusicAndRecordElem.NaturalDuration.TimeSpan.TotalMilliseconds;
+                    SliderLine.Value += sliderUpdateSpeed;
+                }
+            }
+        }
+
+        private void TimeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (TotalTimeOfVideo.TotalMilliseconds > 0)
+            {
+                MusicAndRecordElem.Position = TimeSpan.FromMilliseconds(SliderLine.Value);
+            }
         }
     }
 }

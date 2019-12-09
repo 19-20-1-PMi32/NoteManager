@@ -26,22 +26,6 @@
         		/>
         </Grid.Background>
 
-        <!-- TextBox Main-->
-  
-        <TextBox 
-            IsReadOnly="True"
-            Name="TextBoxMain"
-            Foreground="White"
-            FontSize="16"
-            HorizontalAlignment="Stretch" 
-            Margin="200,0,230,28" 
-            TextWrapping="Wrap" 
-            Text=""
-            VerticalAlignment="Stretch" 
-            Background="#FF18191D" 
-            VerticalScrollBarVisibility="Visible"
-            />
-        
         <!-- Lable Save -->
         <Label
             MouseDown="SaveNote"
@@ -175,6 +159,119 @@
             <ComboBoxItem Content="Records" Selected="ShowRecords"/>
         </ComboBox>
 
+        <Image 
+            Name="ImagePlay"
+            MouseDown="Play"
+            HorizontalAlignment="Left"
+            Height="15"
+            Margin="210,0,0,0" 
+            VerticalAlignment="Top"
+            Width="15"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/buttonPlayDarkGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/buttonPlayLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Image 
+            Name="ImagePause"
+            MouseDown="Pause"
+            HorizontalAlignment="Left"
+            Height="15"
+            Margin="230,0,0,0" 
+            VerticalAlignment="Top"
+            Width="15"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/buttonResumeDark.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/buttonResumeLight.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Image 
+            Name="ImageStop"
+            MouseDown="Stop"
+            HorizontalAlignment="Left"
+            Height="15"
+            Margin="250,0,0,0" 
+            VerticalAlignment="Top"
+            Width="15"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/buttonStopDark.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/buttonStopLight.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Label 
+            Name="lableStatus"
+            Content="00:00:00/00:00:00" 
+            HorizontalAlignment="Right" 
+            Margin="0,-6,235,0" 
+            VerticalAlignment="Top"
+            Foreground="Gray"
+            />
+
+        <Label 
+            Name="lableNameMusic"
+            Content="Name of music" 
+            HorizontalAlignment="Left" 
+            Margin="270,-6,0,0" 
+            VerticalAlignment="Top"
+            Foreground="Gray"
+            />
+
+        <!-- Slider with time -->
+        <Slider 
+            Name="SliderLine"
+            HorizontalAlignment="Stretch" 
+            Margin="210,20,240,0" 
+            VerticalAlignment="Top" 
+            />
+
+        <MediaElement 
+            Source="Resources/MR_Moment.mp3"
+            Name="MusicAndRecordElem"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top" 
+            LoadedBehavior="Manual"
+            UnloadedBehavior="Manual" 
+            />
+
+        <!-- TextBox Main -->
+        <TextBox 
+            IsReadOnly="True"
+            Name="TextBoxMain"
+            Foreground="White"
+            FontSize="16"
+            HorizontalAlignment="Stretch" 
+            Margin="200,0,230,28" 
+            TextWrapping="Wrap" 
+            Text=""
+            VerticalAlignment="Stretch" 
+            Background="#FF18191D" 
+            VerticalScrollBarVisibility="Visible"
+            />
+        
         <Frame 
             Name="FrameAddFiles"
             Margin="0,0,0,0"
