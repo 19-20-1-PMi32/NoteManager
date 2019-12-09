@@ -47,12 +47,6 @@
             <StackPanel Margin="3"
                 Orientation="Horizontal"
                 >
-                <Image 
-                    Source="Resources/pictures/search.png" 
-                    Height="18" 
-                    Width="17"
-                    Margin="3"
-                    />
                 <TextBox 
                     Name="SearchBox"
                     TextChanged="SearchChanged"
@@ -61,6 +55,13 @@
                     FontSize="20"
                     HorizontalAlignment="Stretch" Width="220"
                     />
+                <Image 
+                    Source="Resources/pictures/search.png" 
+                    Height="18" 
+                    Width="17"
+                    Margin="3"
+                    />
+
             </StackPanel>
         </Border>
         <TextBox
