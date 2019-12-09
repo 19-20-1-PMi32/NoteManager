@@ -27,6 +27,7 @@
         </Grid.Background>
 
         <!-- TextBox Main-->
+  
         <TextBox 
             IsReadOnly="True"
             Name="TextBoxMain"
@@ -40,7 +41,7 @@
             Background="#FF18191D" 
             VerticalScrollBarVisibility="Visible"
             />
-
+        
         <!-- Lable Save -->
         <Label
             MouseDown="SaveNote"
@@ -61,7 +62,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        
+
         <!-- ListBox Files -->
         <ListBox 
             MouseDoubleClick="ClickDoubleOnListBoxResourses"
@@ -158,12 +159,14 @@
         </TabControl>
 
         <ComboBox 
+            Name="ComboBoxFiles"
             HorizontalAlignment="Right" 
             Margin="0,0,0,0" 
             VerticalAlignment="Top" 
             Width="230" 
             Height="30"
             FontSize="20"
+            SelectedValuePath="Content"
             >
             <ComboBoxItem Content="All files" IsSelected="True" Selected="ShowAllFiles" MouseDown="ShowAllFiles"/>
             <ComboBoxItem Content="Videos" Selected="ShowVideos" />

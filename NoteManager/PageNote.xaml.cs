@@ -288,6 +288,7 @@ namespace NoteManager
         {
             if (CurentNote != null)
             {
+                ComboBoxFiles.SelectedValue = "All files";
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Videos)
                 {
