@@ -83,6 +83,9 @@
     <Compile Include="PageMenu.xaml.cs">
       <DependentUpon>PageMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagePlans.xaml.cs">
+      <DependentUpon>PagePlans.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageRegistration.xaml.cs">
       <DependentUpon>PageRegistration.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,8 @@
     <Compile Include="PageWelcome.xaml.cs">
       <DependentUpon>PageWelcome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlanStateColorConverter.cs" />
+    <Compile Include="PlanStateNameConverter.cs" />
     <Compile Include="Showcase\FancyBalloon.xaml.cs">
       <DependentUpon>FancyBalloon.xaml</DependentUpon>
     </Compile>
@@ -134,6 +139,10 @@
     <Page Include="PageMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagePlans.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PageRegistration.xaml">
       <SubType>Designer</SubType>
@@ -332,6 +341,7 @@
     <Content Include="Resources\Me_vs_Bugs.wmv" />
     <Content Include="Resources\MR_Moment.mp3" />
     <Content Include="Resources\music visualisation.mp4" />
+    <Resource Include="Resources\Pictures\search.png" />
     <Resource Include="Resources\Pictures\icon2.ico" />
     <Resource Include="Resources\Pictures\PlayVideoGray.png" />
     <Resource Include="Resources\Pictures\PlayVideoGray2.png" />

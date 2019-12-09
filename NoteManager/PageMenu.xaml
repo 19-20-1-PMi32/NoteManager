@@ -118,6 +118,7 @@
         <!-- Plans -->
         <Label 
             Name="LabelPlans"
+            MouseDown="ClickOnPlans"
             Content="Plans" 
             FontSize="18"
             Margin="145,-8,0,0" 
@@ -150,7 +151,7 @@
         <Frame 
             Name="FrameMain"
             Margin="0"
-            Source="PagePlans.xaml"  
+            Source="PageNote.xaml"  
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"

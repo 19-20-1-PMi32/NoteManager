@@ -74,7 +74,7 @@
         <!-- the ToolTipText property is bound to the TextBox below -->
         <tb:TaskbarIcon
             x:Name="MyNotifyIcon"
-            IconSource="Resources/Pictures/icon1.ico"
+            IconSource="Resources/Pictures/icon2.ico"
             ToolTipText="Balloon Sample Icon"
             />
         <TabControl 
