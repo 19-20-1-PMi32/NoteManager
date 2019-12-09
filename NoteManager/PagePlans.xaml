@@ -127,6 +127,7 @@
         <ListBox 
             Name="ListPlans" 
             HorizontalAlignment="Left" 
+            HorizontalContentAlignment="Stretch"
             VerticalAlignment="Stretch" 
             Width="255" 
             SelectionChanged="ListPlans_SelectionChanged"
@@ -147,21 +148,24 @@
                             Grid.Column="0"
                             FontSize="14"
                             Text="{Binding Name}"  
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Stretch"
                             Margin="1,1"
                             />
-                        <Label
-                            Grid.Row="1"
-                            Content="{Binding BindsDirectlyToSource=True, Converter={StaticResource PlanStateNameConverter}}"
-                            Background="{Binding BindsDirectlyToSource=True, Converter={StaticResource PlanStateColorConverter}}"
-                            Foreground="White"
-                            Padding="1"
-                            HorizontalAlignment="Left"
-                            Margin="4"
-                            />
+                        <Border CornerRadius="5" Grid.Row="1"
+                                Background="{Binding BindsDirectlyToSource=True, Converter={StaticResource PlanStateColorConverter}}"
+                                Margin="4"
+                                HorizontalAlignment="Right"
+                                >
+                            <Label
+                                Content="{Binding BindsDirectlyToSource=True, Converter={StaticResource PlanStateNameConverter}}"
+                                Foreground="White"
+                                HorizontalAlignment="Right"
+                                />
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
 
         <TextBox 
