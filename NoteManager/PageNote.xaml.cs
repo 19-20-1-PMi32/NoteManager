@@ -362,7 +362,7 @@ namespace NoteManager
 
         private void ClickDoubleOnListBoxResourses(object sender, RoutedEventArgs e)
         {
-            FrameAddFiles.Source = new Uri("PagesForResourses/VideoPlayer.xaml", UriKind.Relative);
+            FrameAddFiles.Source = new Uri("PagesForResourses/PhotoViewer.xaml", UriKind.Relative);
         }
     }
 }

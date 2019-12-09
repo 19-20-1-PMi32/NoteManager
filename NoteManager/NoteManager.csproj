@@ -104,6 +104,9 @@
     <Compile Include="PagesForResourses\AdditionVideo.xaml.cs">
       <DependentUpon>AdditionVideo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagesForResourses\PhotoViewer.xaml.cs">
+      <DependentUpon>PhotoViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagesForResourses\VideoPlayer.xaml.cs">
       <DependentUpon>VideoPlayer.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagesForResourses\AdditionVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PagesForResourses\PhotoViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
