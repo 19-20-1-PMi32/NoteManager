@@ -5,45 +5,59 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NoteManager.PagesForResourses"
       mc:Ignorable="d" 
-      d:DesignHeight="315" d:DesignWidth="300"
+      d:DesignHeight="380" d:DesignWidth="400"
       Title="AdditionMusic">
 
     <Grid>
         <Image 
-            Source="..\\Resources/Pictures/IconAddFile1.png"
             HorizontalAlignment="Left"
             Height="30"
-            Margin="10,275,0,0" 
-            VerticalAlignment="Top"
+            Margin="10,0,0,10" 
+            VerticalAlignment="Bottom"
             Width="30"
             MouseDown="AddFile"
-            />
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="..\\Resources/Pictures/IconAddFile1.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="..\\Resources/Pictures/IconAddFile1Light.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
         <Image 
-            Source="..\\Resources/Pictures/buttonSaveDark.png"
-            HorizontalAlignment="Left"
-            Height="30"
-            Margin="260,275,0,0" 
-            VerticalAlignment="Top"
-            Width="30"
-            MouseDown="SaveFiles"
-            />
-        <Image Source="C:\Users\PC\source\repos\NoteManager\NoteManager\Resources\Pictures\delete.png"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
             MouseDown="DeleteFile"
-            Margin="134,277,135,7"
-            />
-        <ListBox 
-            HorizontalAlignment="Left" 
-            Name="FileList"
-            Height="115" 
-            Margin="10,155,0,0" 
-            VerticalAlignment="Top" 
-            Width="280"
-            FontSize="12"
+            Width="30"
+            Height="30"
+            Margin="0,0,10,10"
             >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="..\\Resources\Pictures\CancelGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="..\\Resources/Pictures/CancelLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
+        <ListBox 
+            Name="FileList"
+            HorizontalAlignment="Stretch" 
+            Height="69" 
+            Margin="10,266,10,0" 
+            VerticalAlignment="Top" 
+            FontSize="12"
+            
+            >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock
@@ -57,86 +71,144 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Image 
-            Source="/NoteManager;component/Resources/Pictures/BackBlackFone.png"
-            HorizontalAlignment="center" 
-            Stretch="Fill"
-            Height="129" 
-            Margin="49,10,53,0"
+        <Rectangle 
+            Fill="Black" 
+            HorizontalAlignment="Stretch" 
+            Height="265"
+            Margin="10,0" 
+            Stroke="Black" 
             VerticalAlignment="Top" 
-            Width="198"
-            MouseDown="FilePlay"
             />
-        <Image 
-            Source="/NoteManager;component/Resources/Pictures/IconMusic2.png"
-            HorizontalAlignment="Left"
-            Height="80"
-            Margin="109,30,0,0" 
+
+        <Rectangle 
+            Fill="#171b1f" 
+            HorizontalAlignment="Stretch" 
+            Height="30"
+            Margin="11,234,11,0" 
+            Stroke="Black" 
             VerticalAlignment="Top"
-            Width="80"
-            MouseDown="FilePlay"
             />
+
         <Image 
+            Name="ImagePlay"
             MouseDown="Play"
-            Source="/NoteManager;component/Resources/Pictures/buttonPlayDarkGray.png"
             HorizontalAlignment="Left"
-            Height="10"
-            Margin="13,143,0,0" 
+            Height="20"
+            Margin="14,239,0,0" 
             VerticalAlignment="Top"
-            Width="10"
-            />
+            Width="20"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="..\\Resources/Pictures/buttonPlayDarkGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="..\\Resources/Pictures/buttonPlayLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
         <Image 
+            Name="ImagePause"
             MouseDown="Pause"
-            Source="/NoteManager;component/Resources/Pictures/buttonResumeDark.png"
             HorizontalAlignment="Left"
-            Height="10"
-            Margin="28,143,0,0" 
+            Height="20"
+            Margin="37,239,0,0" 
             VerticalAlignment="Top"
-            Width="10"
-            />
+            Width="20"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="..\\Resources/Pictures/buttonResumeDark.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="..\\Resources/Pictures/buttonResumeLight.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
         <Image 
+            Name="ImageStop"
             MouseDown="Stop"
-            Source="/NoteManager;component/Resources/Pictures/buttonStopDark.png"
             HorizontalAlignment="Left"
-            Height="10"
-            Margin="43,143,0,0" 
+            Height="20"
+            Margin="57,239,0,0" 
             VerticalAlignment="Top"
-            Width="10"
-            />
+            Width="20"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="..\\Resources/Pictures/buttonStopDark.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="..\\Resources/Pictures/buttonStopLight.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
         <Label 
             Name="lableStatus"
-            Content="00:00" 
+            Content="00:00:00/00:00:00" 
             HorizontalAlignment="Left" 
-            Margin="174,133,0,0" 
+            Margin="282,235,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
             />
+
         <Label 
-            Visibility="Hidden"
             Content="/" 
             HorizontalAlignment="Left" 
             Margin="204,132,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
-            />
-        <Label 
             Visibility="Hidden"
+            />
+
+        <Label 
             Content="00:00" 
             HorizontalAlignment="Left" 
             Margin="212,132,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
+            Visibility="Hidden"
             />
+
+        <!-- Slider with time -->
+        <Slider 
+            Name="SliderLine"
+            HorizontalAlignment="Left" 
+            Margin="84,246,0,0" 
+            VerticalAlignment="Top" 
+            Width="200" 
+            />
+
+        <Image 
+            MouseDown="Play"
+            Source="..\\Resources/Pictures/IconMusic2.png"
+            HorizontalAlignment="Center"
+            Height="150"
+            Margin="124,36,126,0" 
+            VerticalAlignment="Top"
+            Width="150"
+            />
+
         <MediaElement 
             x:Name="MusicElem"
             HorizontalAlignment="Left"
-            Height="125" 
-            Margin="13,14,0,0" 
+            Height="234" 
+            Margin="11,0,0,0" 
             VerticalAlignment="Top" 
-            Width="277"
+            Width="377"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
-            MouseDown="FilePlay"
+            MouseDown="FilePlay" RenderTransformOrigin="0.5,0.5"
             />
+        
     </Grid>
 </Page>

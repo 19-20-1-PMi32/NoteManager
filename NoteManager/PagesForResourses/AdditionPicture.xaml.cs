@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
-
 namespace NoteManager.PagesForResourses
 {
     /// <summary>

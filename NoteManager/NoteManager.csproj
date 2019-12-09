@@ -327,6 +327,7 @@
     <Content Include="Resources\GMV The Show.mp3" />
     <Content Include="Resources\Me_vs_Bugs.wmv" />
     <Content Include="Resources\MR_Moment.mp3" />
+    <Content Include="Resources\music visualisation.mp4" />
     <Resource Include="Resources\Pictures\PlayVideoGray.png" />
     <Resource Include="Resources\Pictures\PlayVideoGray2.png" />
     <Resource Include="Resources\Pictures\PlayVideoLightGray.png" />
