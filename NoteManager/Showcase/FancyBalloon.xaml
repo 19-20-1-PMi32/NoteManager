@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:tb="http://www.hardcodet.net/taskbar"
              x:Name="me"
-             Height="120"
+             Height="80"
              Width="240">
     <UserControl.Resources>
         <Storyboard x:Key="FadeIn">
@@ -91,40 +91,31 @@
         <Border HorizontalAlignment="Stretch"
                 Margin="5,5,5,5"
                 BorderThickness="1,1,1,1"
-                BorderBrush="#FF997137">
+                BorderBrush="#FF111117">
             <Border.Effect>
                 <DropShadowEffect Color="#FF747474" />
             </Border.Effect>
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1"
                                      StartPoint="0.5,0">
-                    <GradientStop Color="#FF4B4B4B"
+                    <GradientStop Color="#282e33"
                                   Offset="0" />
-                    <GradientStop Color="#FF8F8F8F"
+                    <GradientStop Color="#282e33"
                                   Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Image HorizontalAlignment="Left"
-               Margin="0,10,0,0"
-               Width="72"
-               Source="../Resources/Pictures/Info.png"
-               Stretch="Fill"
-               Height="72"
-               VerticalAlignment="Top" />
-        <TextBlock Margin="72,49.2,10,0"
+
+        <TextBlock Margin="10,7,0,0"
                    VerticalAlignment="Top"
                    Foreground="#FFECAD25"
                    TextWrapping="Wrap">
-            <Run Text="This is a user control. The animation uses the attached " />
-            <Run FontStyle="Italic"
-                 FontWeight="Bold"
-                 Text="BalloonShowing " />
-            <Run Text="event." />
+            <Run Text="New reminder" />
         </TextBlock>
+        
         <Path Fill="#FFFFFFFF"
               Stretch="Fill"
-              Margin="72,38.2,34,0"
+              Margin="10,25,0,0"
               VerticalAlignment="Top"
               Height="1"
               Data="M26,107 L220.04123,107"
@@ -139,24 +130,35 @@
                 </LinearGradientBrush>
             </Path.Stroke>
         </Path>
-        <TextBlock Margin="72,10,10,0"
-                   VerticalAlignment="Top"
-                   Height="23.2"
+        <TextBlock Margin="10,30,10,10"
+                   VerticalAlignment="Stretch"
                    Text="{Binding Path=BalloonText, ElementName=me, Mode=Default}"
                    TextWrapping="Wrap"
                    Foreground="#FFECAD25"
                    FontWeight="Bold" />
-        <Image HorizontalAlignment="Right"
-               Margin="0,10,10,0"
-               VerticalAlignment="Top"
-               Width="16"
-               Height="16"
-               Source="../Resources/Pictures/Close.png"
-               Stretch="Fill"
-               Opacity="0.4"
-               ToolTip="Close Balloon"
-               x:Name="imgClose"
-               MouseDown="imgClose_MouseDown" />
+        <Image 
+            HorizontalAlignment="Right"
+            Margin="0,10,10,0"
+            VerticalAlignment="Top"
+            Width="10"
+            Height="10"
+            Stretch="Fill"
+            Opacity="0.4"
+            ToolTip="Close Balloon"
+            x:Name="imgClose"
+            MouseDown="imgClose_MouseDown" 
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="..\\Resources\Pictures\CancelGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="..\\Resources/Pictures/CancelLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
     </Grid>
 </UserControl>

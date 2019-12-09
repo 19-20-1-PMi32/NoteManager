@@ -21,12 +21,13 @@ namespace NoteManager
             MyNotifyIcon.Visibility = Visibility.Hidden;
             TabControlReminder.SizeChanged += OnTabControlSizeChanged;
             CreateRemindersForUser();
+            buttonClickSampleNotify(null, null);
         }
 
         private void buttonClickSampleNotify(object sender, RoutedEventArgs e)
         {
             FancyBalloon balloon = new FancyBalloon();
-            balloon.BalloonText = "Custom Balloon";
+            balloon.BalloonText = "Kill him. Now!";
             MyNotifyIcon.ShowCustomBalloon(balloon, PopupAnimation.Slide, 4000);
         }
 
