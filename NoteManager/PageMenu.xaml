@@ -62,39 +62,32 @@
             Content="_____________" 
             Foreground="Gray"
             FontSize="20"
-            HorizontalAlignment="Left"
-            Margin="141,-5,0,0"
+            HorizontalAlignment="Right"
+            Margin="0,-5,594,0"
             VerticalAlignment="Top" 
             Height="35" 
-            Width="65" 
+            Width="65" Grid.ColumnSpan="2" Grid.RowSpan="2" 
 
             />
 
         <!-- Notes -->
         <Label 
-            MouseDown="ClickOnNotes"
+            MouseUp="ClickOnNotes"
+            MouseEnter="EnterOnLabel"
+            MouseLeave="LeaveWithLabel"
             Name="LabelNotes"
             Content="Notes" 
             FontSize="18"
             Margin="0,-8,0,0" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="#FF007ACC" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
+            />
 
         <!-- Reminders -->
         <Label 
-            MouseDown="ClickOnReminders"
+            MouseUp="ClickOnReminders"
+            MouseEnter="EnterOnLabel"
+            MouseLeave="LeaveWithLabel"
             Name="LabelReminders"
             Content="Reminders" 
             FontSize="18"
@@ -102,41 +95,21 @@
             HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
             Height="40"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
+            />
 
         <!-- Plans -->
         <Label 
             Name="LabelPlans"
-            MouseDown="ClickOnPlans"
+            MouseUp="ClickOnPlans"
+            MouseEnter="EnterOnLabel"
+            MouseLeave="LeaveWithLabel"
             Content="Plans" 
             FontSize="18"
             Margin="145,-8,0,0" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
             Height="40"
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
+            />
 
         <Label 
             Name="LabelUserName"
