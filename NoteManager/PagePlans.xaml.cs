@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
+
 namespace NoteManager
 {
     /// <summary>
@@ -12,18 +13,15 @@ namespace NoteManager
     public partial class PagePlans : Page
     {
         List<Plan> plans;
-        List<Plan> deleted;
-        List<Plan> found;
         Plan currentEdit;
         bool isNew = true;
         public PagePlans()
         {
             InitializeComponent();
             //Initialization only for tests 
-            deleted = new List<Plan>();
             plans = GetTestPlans();
             ListPlans.ItemsSource = plans;
-            //currentEdit;
+
             DataContext = currentEdit;
         }
         public List<Plan> GetTestPlans()
@@ -69,9 +67,8 @@ namespace NoteManager
         }
         private void UpdateList(string query)
         {
-            found = SearchPlan(query).ToList();
             ListPlans.BeginInit();
-            ListPlans.ItemsSource = found;
+            ListPlans.ItemsSource = SearchPlan(query).ToList();
             ListPlans.EndInit();
         }
         private void UpdateList()
@@ -100,7 +97,6 @@ namespace NoteManager
             var selected = SelectedItem();
             if(selected != null)
             {
-                deleted.Add(selected);
                 plans.Remove(selected);
                 UpdateList();
                 ChangeCurrent(null);
