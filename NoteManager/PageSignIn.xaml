@@ -27,29 +27,39 @@
                                 VerticalAlignment="Center" 
                                 />
 
-                            <Label Margin="5,0,0,0" 
-                                   x:Name="WaterMarkLabel" 
-                                   Content="{TemplateBinding Tag}" 
-                                   VerticalAlignment="Center"
-                                   Visibility="Collapsed" 
-                                   Foreground="Gray" 
-                                   FontFamily="Arial"
-                                   />
+                            <Label 
+                                Margin="5,0,0,0" 
+                                x:Name="WaterMarkLabel" 
+                                Content="{TemplateBinding Tag}" 
+                                VerticalAlignment="Center"
+                                Visibility="Collapsed" 
+                                Foreground="Gray" 
+                                FontFamily="Arial"
+                                />
 
                         </Grid>
                         <ControlTemplate.Triggers>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
-                                    <Condition Property="Text" Value=""/>
+                                    <Condition 
+                                        Property="Text" 
+                                        Value=""
+                                        />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Visibility" 
-                                        TargetName="WaterMarkLabel" 
-                                        Value="Visible"/>
+                                <Setter 
+                                    Property="Visibility" 
+                                    TargetName="WaterMarkLabel" 
+                                    Value="Visible"
+                                    />
                             </MultiTrigger>
-                            <Trigger Property="IsEnabled" 
-                                     Value="False">
-                                <Setter Property="Foreground" 
-                                        Value="DimGray"/>
+                            <Trigger 
+                                Property="IsEnabled" 
+                                Value="False"
+                                >
+                                <Setter 
+                                    Property="Foreground" 
+                                    Value="DimGray"
+                                    />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

@@ -12,7 +12,6 @@
         <!-- Background picture-->
         <Grid.Background>
             <ImageBrush 
-        		
         			ImageSource="Resources/Pictures/BlackBlueBackground.png" 
         			Stretch="UniformToFill" 					
         			AlignmentY="Center"        					
@@ -66,8 +65,9 @@
             Margin="0,-5,594,0"
             VerticalAlignment="Top" 
             Height="35" 
-            Width="65" Grid.ColumnSpan="2" Grid.RowSpan="2" 
-
+            Width="65" 
+            Grid.ColumnSpan="2" 
+            Grid.RowSpan="2" 
             />
 
         <!-- Notes -->
@@ -111,6 +111,7 @@
             Height="40"
             />
 
+        <!-- Label User name -->
         <Label 
             Name="LabelUserName"
             Content="Admin" 
@@ -129,6 +130,5 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             />
-
     </Grid>
 </Page>

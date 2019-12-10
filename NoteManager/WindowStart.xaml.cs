@@ -7,11 +7,15 @@ namespace NoteManager
 {
     /// <summary>
     /// Interaction logic for WindowStart.xaml
-    /// Referenses on sources TrayIcon https://4px.livejournal.com/126058.html
     /// </summary>
     public partial class WindowStart : SWWindow
     {
-        public WindowStart()
+        private System.Windows.Forms.NotifyIcon TrayIcon = null;
+        private ContextMenu TrayMenu = null;
+        public WindowState CurrentWindowState { get; set; } = WindowState.Normal;
+        public bool CanClose { get; set; } = false;
+
+    public WindowStart()
         {
             InitializeComponent();
             f1.Navigate(new PageMenu());
@@ -23,9 +27,6 @@ namespace NoteManager
             createTrayIcon(); 
         }
 
-        private System.Windows.Forms.NotifyIcon TrayIcon = null;
-        private ContextMenu TrayMenu = null;
-
         private bool createTrayIcon()
         {
             bool result = false;
@@ -33,7 +34,7 @@ namespace NoteManager
             { 
                 TrayIcon = new System.Windows.Forms.NotifyIcon();
                 TrayIcon.Icon = Properties.Resources.icon2; 
-                TrayIcon.Text = "Here is tray icon text."; 
+                TrayIcon.Text = "NoteManager"; 
                 TrayMenu = Resources["TrayMenu"] as ContextMenu; 
                 TrayIcon.Click += delegate (object sender, EventArgs e) {
                     if ((e as System.Windows.Forms.MouseEventArgs).Button == System.Windows.Forms.MouseButtons.Left)
@@ -73,12 +74,6 @@ namespace NoteManager
             }
         }
 
-        private WindowState fCurrentWindowState = WindowState.Normal;
-        public WindowState CurrentWindowState
-        {
-            get { return fCurrentWindowState; }
-            set { fCurrentWindowState = value; }
-        }
 
         protected override void OnStateChanged(EventArgs e)
         {
@@ -94,14 +89,6 @@ namespace NoteManager
             }
         }
 
-        private bool fCanClose = false;
-        public bool CanClose
-        { 
-            get { return fCanClose; }
-            set { fCanClose = value; }
-        }
-
-       
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e); 
@@ -118,6 +105,11 @@ namespace NoteManager
             }
         }
 
+        /// <summary>
+        /// Event of pressing the exit button. The main window closes and the program exits.
+        /// </summary>
+        /// <param name="sender">The object of MenuItem exit.</param>
+        /// <param name="e">Specific event.</param>
         private void MenuExitClick(object sender, RoutedEventArgs e)
         {
             CanClose = true;

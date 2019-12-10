@@ -10,12 +10,13 @@
     <Window.Resources>
         <ContextMenu x:Key="TrayMenu">
             <MenuItem Header="Hide" Click="ShowHideMainWindow" />
-            <MenuItem Header="Item2" />
-            <Separator />
             <MenuItem Header="Exit" Click="MenuExitClick" />
         </ContextMenu>
     </Window.Resources>
     <Grid>
-		<Frame x:Name="f1" NavigationUIVisibility="Hidden"/>
+		<Frame 
+            x:Name="f1" 
+            NavigationUIVisibility="Hidden"
+            />
 	</Grid>
 </sw:SWWindow>
