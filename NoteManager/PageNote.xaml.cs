@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace NoteManager
 {
@@ -29,6 +30,12 @@ namespace NoteManager
             InitializeTreeDates();
             InitializeListDates();
             NoteMenu = Resources["NoteMenu"] as ContextMenu;
+        }
+
+        private void ClickOnUpdate(object sender, RoutedEventArgs e)
+        {
+            InitializeTreeDates();
+            InitializeListDates();
         }
 
         private void InitializeTreeDates()
@@ -59,8 +66,8 @@ namespace NoteManager
                     {
                         var day = new TreeViewItem() { Header = $"{item3}" };
                         var notes = from note_ in User.Notes
-                                   where note_.CreationTime.Year == item && note_.CreationTime.Month == item2 && note_.CreationTime.Day == item3
-                                   select note_.CreationTime;
+                                    where note_.CreationTime.Year == item && note_.CreationTime.Month == item2 && note_.CreationTime.Day == item3
+                                    select note_.CreationTime;
                         foreach (var item4 in notes)
                         {
                             var note = new TreeViewItem() { Header = $"{item4}" };
@@ -95,7 +102,7 @@ namespace NoteManager
 
         private void SaveNote(object sender, RoutedEventArgs e)
         {
-            if(TextBoxMain.Text != "")
+            if (TextBoxMain.Text != "")
             {
                 DateTime TimeOfCreateNote = DateTime.Now;
                 User.Notes.Add(new Note(TextBoxMain.Text, TimeOfCreateNote));
@@ -115,7 +122,7 @@ namespace NoteManager
                 TextBoxMain.Text = p.Text;
                 CurentNote = p;
             }
-            else if(TabItemTree.IsSelected)
+            else if (TabItemTree.IsSelected)
             {
                 var t = ThatTreeItemIsSelected;
                 var p = (from it in User.Notes
@@ -133,9 +140,9 @@ namespace NoteManager
 
         private void DeleteNote(object sender, RoutedEventArgs e)
         {
-            if(TabItemList.IsSelected)
+            if (TabItemList.IsSelected)
             {
-                if(ThatListItemIsSelected != null)
+                if (ThatListItemIsSelected != null)
                 {
                     User.Notes.Remove((from t in User.Notes
                                        where t.CreationTime.ToString() == (string)ThatListItemIsSelected.Content
@@ -145,9 +152,9 @@ namespace NoteManager
                     ThatListItemIsSelected = null;
                 }
             }
-            else if(TabItemTree.IsSelected)
+            else if (TabItemTree.IsSelected)
             {
-                if(ThatTreeItemIsSelected != null)
+                if (ThatTreeItemIsSelected != null)
                 {
                     User.Notes.Remove((from t in User.Notes
                                        where t.CreationTime.ToString() == (string)ThatTreeItemIsSelected.Header
@@ -165,7 +172,7 @@ namespace NoteManager
                             {
                                 var year = month.Parent as TreeViewItem;
                                 year.Items.Remove(month);
-                                if(year.Items.Count == 0)
+                                if (year.Items.Count == 0)
                                 {
                                     var years = year.Parent as TreeViewItem;
                                     years.Items.Remove(year);
@@ -187,7 +194,7 @@ namespace NoteManager
             bool isThisDay = false;
             foreach (var year in Dates.Items.SourceCollection)
             {
-                if((string)(year as TreeViewItem).Header == time.Year.ToString())
+                if ((string)(year as TreeViewItem).Header == time.Year.ToString())
                 {
                     foreach (var month in (year as TreeViewItem).Items.SourceCollection)
                     {
@@ -205,7 +212,7 @@ namespace NoteManager
                                     break;
                                 }
                             }
-                            if(!isThisDay)
+                            if (!isThisDay)
                             {
                                 var newNote = new TreeViewItem() { Header = $"{time}" };
                                 var newDay = new TreeViewItem() { Header = $"{time.Day}" };
@@ -259,7 +266,7 @@ namespace NoteManager
         private void MouseButtonRightClickHandler(object sender, MouseButtonEventArgs e)
         {
             NoteMenu.IsOpen = true;
-            if(sender is ListBoxItem)
+            if (sender is ListBoxItem)
             {
                 ThatListItemIsSelected = sender as ListBoxItem;
             }
@@ -271,7 +278,7 @@ namespace NoteManager
 
         private void MouseButtonDoubleClickHandler(object sender, MouseButtonEventArgs e)
         {
-            if(sender is TreeViewItem)
+            if (sender is TreeViewItem)
             {
                 var t = (TreeViewItem)sender;
                 var p = (from it in User.Notes
@@ -281,7 +288,7 @@ namespace NoteManager
                 CurentNote = p;
                 ShowAllFiles(new object(), new RoutedEventArgs());
             }
-            else if(sender is ListBoxItem)
+            else if (sender is ListBoxItem)
             {
                 var t = (ListBoxItem)sender;
                 var p = (from it in User.Notes
@@ -301,29 +308,29 @@ namespace NoteManager
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Videos)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
 
                 foreach (var item in CurentNote.Pictures)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
 
                 foreach (var item in CurentNote.Musics)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
 
                 foreach (var item in CurentNote.Records)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
             }
         }
 
         private void ShowVideos(object sender, RoutedEventArgs e)
         {
-            if(CurentNote != null)
+            if (CurentNote != null)
             {
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Videos)
@@ -369,102 +376,76 @@ namespace NoteManager
             }
         }
 
-        private void ClickDoubleOnListBoxResourses(object sender, RoutedEventArgs e)
+        private void ClickDoubleOnListBoxResourses()
         {
             TextBoxMain.Margin = new Thickness(200, 40, 230, 28);
             //FrameAddFiles.Source = new Uri("PagesForResourses/PhotoViewer.xaml", UriKind.Relative);
-
         }
-
-        private void InitTimer()
+        private void FileClick(object sender, SelectionChangedEventArgs e)
         {
-            MusicAndRecordElem.Visibility = Visibility.Visible;
-            MusicAndRecordElem.Play();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-
-            SliderLine.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(TimeSlider_MouseLeftButtonUp), true);
-            SliderLine.Minimum = 0;
-            timerForToddlerOfSlider = new DispatcherTimer();
-            timerForToddlerOfSlider.Interval = TimeSpan.FromMilliseconds(sliderUpdateSpeed);
-            timerForToddlerOfSlider.Tick += Timer_TickForSlider;
-            timerForToddlerOfSlider.Start();
-        }
-
-        void timer_Tick(object sender, EventArgs e)
-        {
-            if (MusicAndRecordElem.Source != null)
+            var file = SelectedFile();
+            if (file is Music)
             {
-                if (MusicAndRecordElem.NaturalDuration.HasTimeSpan)
-                    lableStatus.Content = String.Format("{0} / {1}", MusicAndRecordElem.Position.ToString(@"hh\:mm\:ss"), MusicAndRecordElem.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+                FileViewer.music = (Music)file;
+                TextBoxMain.Margin = new Thickness(200, 40, 230, 28);
+                Play(null, null);
             }
+            else if(file is Picture)
+            {
+                FileViewer.picture = (Picture)file;
+                FrameAddFiles.Source = new Uri("PagesForResourses/PhotoViewer.xaml", UriKind.Relative);
+            }
+            else if(file is Video)
+            {
+                FileViewer.video = (Video)file;
+                FrameAddFiles.Source = new Uri("PagesForResourses/VideoPlayer.xaml", UriKind.Relative);
+            }
+            else
+            {
+                FileViewer.record = (Record)file;
+            }
+            //music = (Music)ListBoxResourses.SelectedItem;
         }
+        public object SelectedFile()
+        {
+            return ListBoxResourses.SelectedItem;
+        }
+
         private void Play(object sender, RoutedEventArgs e)
         {
-            ImagePlay.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayLightGray.png"));
-            ImagePause.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeDark.png"));
-            ImageStop.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonStopDark.png"));
-            //var sel = SelectedFile();
-            //if (sel != null)
-            //    MusicAndRecordElem.Source = new Uri(sel.FilePath);
-            MusicAndRecordElem.IsMuted = false;
-            MusicAndRecordElem.Play();
+            var sel = FileViewer.music;
+
+            if (sel != null)
+                MusicElem.Source = new Uri(sel.FilePath);
+            MusicElem.IsMuted = false;
+            MusicElem.Play();
             pausePosition = null;
-            InitTimer();
+
         }
 
         private void Pause(object sender, RoutedEventArgs e)
         {
-            ImagePlay.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayDarkGray.png"));
-            ImagePause.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeLight.png"));
-            ImageStop.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonStopDark.png"));
-            if (MusicAndRecordElem.Source != null)
+            if (MusicElem.Source != null)
             {
-                if (MusicAndRecordElem.Position != TimeSpan.Zero && pausePosition != null)
+                if (MusicElem.Position != TimeSpan.Zero && pausePosition != null)
                 {
-                    MusicAndRecordElem.Position = (TimeSpan)pausePosition;
-                    MusicAndRecordElem.Play();
+                    MusicElem.Position = (TimeSpan)pausePosition;
+                    MusicElem.Play();
                     pausePosition = null;
                 }
                 else
                 {
-                    pausePosition = MusicAndRecordElem.Position;
-                    MusicAndRecordElem.Pause();
+                    pausePosition = MusicElem.Position;
+                    MusicElem.Pause();
                 }
             }
         }
 
         private void Stop(object sender, RoutedEventArgs e)
         {
-            ImagePlay.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonPlayDarkGray.png"));
-            ImagePause.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeDark.png"));
-            ImageStop.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonStopLight.png"));
-            if (MusicAndRecordElem.Source != null)
-                MusicAndRecordElem.Stop();
+            if (MusicElem.Source != null)
+                MusicElem.Stop();
             pausePosition = null;
-        }
-
-        private void Timer_TickForSlider(object sender, EventArgs e)
-        {
-            if (MusicAndRecordElem.Source != null)
-            {
-                if (MusicAndRecordElem.NaturalDuration.HasTimeSpan)
-                {
-                    TotalTimeOfVideo = MusicAndRecordElem.NaturalDuration.TimeSpan;
-                    SliderLine.Maximum = MusicAndRecordElem.NaturalDuration.TimeSpan.TotalMilliseconds;
-                    SliderLine.Value += sliderUpdateSpeed;
-                }
-            }
-        }
-
-        private void TimeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (TotalTimeOfVideo.TotalMilliseconds > 0)
-            {
-                MusicAndRecordElem.Position = TimeSpan.FromMilliseconds(SliderLine.Value);
-            }
         }
 
         private void ClosePlayer(object sender, RoutedEventArgs e)

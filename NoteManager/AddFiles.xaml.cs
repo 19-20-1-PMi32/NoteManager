@@ -2,6 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using NoteManager.DBClasses;
+using System.Collections.Generic;
+
+using NoteManager.DBClasses;
 
 namespace NoteManager
 {
@@ -13,6 +16,7 @@ namespace NoteManager
         public AddFiles()
         {
             InitializeComponent();
+            TemporaryNote.Init();
         }
 
         private void EventMouseDownOnBlackArea(object sender, RoutedEventArgs e)
@@ -23,7 +27,15 @@ namespace NoteManager
         private void ClickSave(object sender, RoutedEventArgs e)
         {
             TemporaryNote.IsUsed = true;
-            User.Notes.Add(new Note(TemporaryNote.Text, TemporaryNote.CreationTime));
+            User.Notes.Add(new Note(TemporaryNote.Text, TemporaryNote.CreationTime)
+            {
+                Videos = TemporaryNote.Videos,
+                Pictures = TemporaryNote.Pictures,
+                Musics = TemporaryNote.Musics,
+                Records = TemporaryNote.Records
+            })
+            ;
+            TemporaryNote.AnnulOfNote();
             // Annul TemporaryNote
             this.NavigationService.Source = null;
         }

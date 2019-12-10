@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
+using NoteManager.DBClasses;
+
 namespace NoteManager.PagesForResourses
 {
     /// <summary>
@@ -23,15 +25,12 @@ namespace NoteManager.PagesForResourses
     public partial class AdditionRecord : Page
     {
         string fileExtensions = "mp3,aac,flac,wav";
-        FileType type = FileType.Music;
         List<File> files;
-        List<File> deleted;
         TimeSpan? pausePosition;
         public AdditionRecord()
         {
             InitializeComponent();
             files = new List<File>();
-            deleted = new List<File>();
             FileList.ItemsSource = files;
         }
 
@@ -113,8 +112,8 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
-                AddFileToList(file);
+
+
             }
             else
             {
@@ -123,7 +122,7 @@ namespace NoteManager.PagesForResourses
         }
         private void DeleteFromList(File file)
         {
-            file.State = FileState.MustBeDeleted;
+
             FileList.BeginInit();
             files.Remove(file);
             FileList.EndInit();
@@ -134,7 +133,6 @@ namespace NoteManager.PagesForResourses
             if (file != null)
             {
                 DeleteFromList(file);
-                deleted.Add(file);
             }
         }
         private void SaveFiles(object sender, MouseEventArgs e)

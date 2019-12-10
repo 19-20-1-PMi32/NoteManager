@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NoteManager.DBClasses;
 
 namespace NoteManager.PagesForResourses
 {
@@ -23,7 +24,7 @@ namespace NoteManager.PagesForResourses
         public PhotoViewer()
         {
             InitializeComponent();
-            ImageMain.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/BackroundBlackWorld.jpg"));
+            ImageMain.Source = new BitmapImage(new Uri(FileViewer.picture.FilePath));
         }
 
         private void LeavePage(object sender, RoutedEventArgs e)

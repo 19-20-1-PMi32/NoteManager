@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Diagnostics;
 
+using NoteManager.DBClasses;
+
 namespace NoteManager.PagesForResourses
 {
     /// <summary>
@@ -23,16 +25,14 @@ namespace NoteManager.PagesForResourses
     public partial class AdditionMusic : Page
     {
         string fileExtensions = "mp3,aac,flac,wav";
-        FileType type = FileType.Music;
-        List<File> files;
-        List<File> deleted;
+        List<Music> musics;
+
         TimeSpan? pausePosition;
         public AdditionMusic()
         {
             InitializeComponent();
-            files = new List<File>();
-            deleted = new List<File>();
-            FileList.ItemsSource = files;
+            musics = TemporaryNote.Musics;
+            FileList.ItemsSource = musics;
         }
 
         private void InitTimer()
@@ -44,9 +44,9 @@ namespace NoteManager.PagesForResourses
             timer.Tick += timer_Tick;
             timer.Start();
         }
-        private File SelectedFile()
+        private Music SelectedFile()
         {
-            return (File)FileList.SelectedItem;
+            return (Music)FileList.SelectedItem;
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -92,14 +92,12 @@ namespace NoteManager.PagesForResourses
                 MusicElem.Stop();
             pausePosition = null;
         }
-        private void AddFileToList(File file)
+        private void AddFileToList(Music music)
         {
-            if (!files.Contains(file, new FileComparer()))
+            if (!musics.Contains(music, new FileComparer()))
             {
-                FileList.BeginInit();
-                files.Add(file);
-                FileList.EndInit();
-                // Push notification that item was added
+                Save(music);
+                UpdateList();
             }
             else
             {
@@ -113,33 +111,36 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
-                AddFileToList(file);
+                Music music = new Music() { FilePath = filePath, CreationTime = DateTime.Now };
+                AddFileToList(music);
             }
             else
             {
                 //Push notification that file was not added(for some reasons)
             }
         }
-        private void DeleteFromList(File file)
+        private void UpdateList()
         {
-            file.State = FileState.MustBeDeleted;
             FileList.BeginInit();
-            files.Remove(file);
+            musics = TemporaryNote.Musics;
             FileList.EndInit();
         }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = SelectedFile();
-            if (file != null)
+            var music = SelectedFile();
+            if (music != null)
             {
-                DeleteFromList(file);
-                deleted.Add(file);
+                Delete(music);
+                UpdateList();
             }
         }
-        private void SaveFiles(object sender, MouseEventArgs e)
+        private void Save(Music music)
         {
-            //logic for save file to database
+            TemporaryNote.Musics.Add(music);
+        }
+        private void Delete(Music music)
+        {
+            TemporaryNote.Musics.Remove(music);
         }
         private void FilePlay(object sender, MouseEventArgs e)
         {

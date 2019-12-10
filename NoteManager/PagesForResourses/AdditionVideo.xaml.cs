@@ -9,6 +9,8 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.Windows.Media.Imaging;
 
+using NoteManager.DBClasses;
+
 namespace NoteManager.PagesForResourses
 {
     /// <summary>
@@ -20,16 +22,14 @@ namespace NoteManager.PagesForResourses
         private DispatcherTimer timerForToddlerOfSlider;
         private ushort sliderUpdateSpeed = 100;
         string fileExtensions = "mp4,avi,mkv,mpg,wmv";
-        List<File> files;
-        List<File> deleted;
-        FileType type;
+        List<Video> files;
+
         TimeSpan? pausePosition;
         public AdditionVideo()
         {
             InitializeComponent();
-            type = FileType.Video;
-            files = new List<File>();
-            deleted = new List<File>();
+            files = TemporaryNote.Videos;
+            FileList.Items.Clear();
             FileList.ItemsSource = files;
         }
 
@@ -102,19 +102,24 @@ namespace NoteManager.PagesForResourses
             pausePosition = null;
         }
 
-        private void AddFileToList(File video)
+        private void AddFileToList(Video video)
         {
             if (!files.Contains(video, new FileComparer()))
             {
-                FileList.BeginInit();
-                files.Add(video);
-                FileList.EndInit();
+                Save(video);
+
                 // Push notification that item was added
             }
             else
             {
                 // Push notification that item was not added(for some reasons)
             }
+        }
+        private void UpdateList()
+        {
+            FileList.BeginInit();
+            FileList.ItemsSource = TemporaryNote.Videos;
+            FileList.EndInit();
         }
 
         private void AddFile(object sender, MouseEventArgs e)
@@ -124,10 +129,9 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
-                AddFileToList(file);
-                Debug.WriteLine(files.Count);
-                Debug.WriteLine(deleted.Count);
+                Video video = new Video() { FilePath = filePath, CreationTime = DateTime.Now};
+                Save(video);
+                UpdateList();
             }
             else
             {
@@ -135,34 +139,39 @@ namespace NoteManager.PagesForResourses
             }
         }
 
-        private void DeleteFronList(File file)
+        private void DeleteFronList(Video video)
         {
-            file.State = FileState.MustBeDeleted;
             FileList.BeginInit();
-            files.Remove(file);
+            files.Remove(video);
             FileList.EndInit();
         }
 
-        private File SelectedFile()
+        private Video SelectedFile()
         {
-            return (File)FileList.SelectedItem;
+            return (Video)FileList.SelectedItem;
         }
 
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = SelectedFile();
-            if (file != null)
+            var video = SelectedFile();
+            if (video != null)
             {
-                DeleteFronList(file);
-                deleted.Add(file);
-
+                DeleteFronList(video);
+                Delete(video);
             }
         }
 
-        private void SaveFiles(object sender, MouseEventArgs e)
+        private void Save(Video video)
         {
-            //logic for save file to database
+            //logic for save video to database
+            // Must be rewritten
+            TemporaryNote.Videos.Add(video);
         }
+        private void Delete(Video video)
+        {
+            // delete video from database
+        }
+
 
         private void FilePlay(object sender, MouseEventArgs e)
         {
