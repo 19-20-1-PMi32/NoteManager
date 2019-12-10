@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using NoteManager.DBClasses;
 
 namespace NoteManager
 {
@@ -32,7 +22,10 @@ namespace NoteManager
 
         private void ClickSave(object sender, RoutedEventArgs e)
         {
-            
+            TemporaryNote.IsUsed = true;
+            User.Notes.Add(new Note(TemporaryNote.Text, TemporaryNote.CreationTime));
+            // Annul TemporaryNote
+            this.NavigationService.Source = null;
         }
 
         private void ClickOnNote(object sender, RoutedEventArgs e)

@@ -126,6 +126,11 @@ namespace NoteManager
             }
         }
 
+        private void UpdateNote(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void DeleteNote(object sender, RoutedEventArgs e)
         {
             if(TabItemList.IsSelected)
@@ -366,7 +371,7 @@ namespace NoteManager
 
         private void ClickDoubleOnListBoxResourses(object sender, RoutedEventArgs e)
         {
-            TextBoxMain.Margin = new Thickness(200, 30, 230, 28);
+            TextBoxMain.Margin = new Thickness(200, 40, 230, 28);
             //FrameAddFiles.Source = new Uri("PagesForResourses/PhotoViewer.xaml", UriKind.Relative);
 
         }
@@ -460,6 +465,12 @@ namespace NoteManager
             {
                 MusicAndRecordElem.Position = TimeSpan.FromMilliseconds(SliderLine.Value);
             }
+        }
+
+        private void ClosePlayer(object sender, RoutedEventArgs e)
+        {
+            TextBoxMain.Margin = new Thickness(200, 0, 230, 28);
+            // Stop play player.
         }
     }
 }

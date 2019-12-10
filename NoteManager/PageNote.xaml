@@ -10,10 +10,8 @@
     <Page.Resources>
         <ContextMenu x:Key="NoteMenu">
             <MenuItem Header="View" Click="ViewNote"/>
+            <MenuItem Header="Update" Click="UpdateNote"/>
             <MenuItem Header="Delete" Click="DeleteNote" />
-            <MenuItem Header="Item2" />
-            <Separator />
-            <MenuItem Header="Item3"/>
         </ContextMenu>
     </Page.Resources>
     <Grid>
@@ -28,7 +26,7 @@
 
         <!-- Lable Save -->
         <Label
-            MouseDown="SaveNote"
+            MouseDown="GoToAddFiles"
             Content="Add new note" 
             FontSize="24"
             HorizontalAlignment="Center"
@@ -52,38 +50,11 @@
             MouseDoubleClick="ClickDoubleOnListBoxResourses"
             Name="ListBoxResourses"
             HorizontalAlignment="Right" 
-            Margin="0,30,0,30" 
+            Margin="0,40,0,00" 
             VerticalAlignment="Stretch" 
             Width="230"
             FontSize="20"
             />
-
-        <!-- Add -->
-        <Label 
-            Content="Add" 
-            FontSize="16"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Top"
-            HorizontalAlignment="Right"
-            Margin="0,0,0,0"
-            VerticalAlignment="Bottom"
-            Height="30"
-            MouseDown="GoToAddFiles"
-            Width="230" 
-            >
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="Background" Value="#FF171B1F" />
-                    <Setter Property="Foreground" Value="Gray" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#353c43" />
-                            <Setter Property="Foreground" Value="white" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
 
         <TabControl 
             HorizontalAlignment="Left" 
@@ -150,7 +121,7 @@
             Margin="0,0,0,0" 
             VerticalAlignment="Top" 
             Width="230" 
-            Height="30"
+            Height="40"
             FontSize="20"
             SelectedValuePath="Content"
             >
@@ -166,7 +137,7 @@
             MouseDown="Play"
             HorizontalAlignment="Left"
             Height="15"
-            Margin="210,0,0,0" 
+            Margin="210,5,0,0" 
             VerticalAlignment="Top"
             Width="15"
             >
@@ -187,7 +158,7 @@
             MouseDown="Pause"
             HorizontalAlignment="Left"
             Height="15"
-            Margin="230,0,0,0" 
+            Margin="230,5,0,0" 
             VerticalAlignment="Top"
             Width="15"
             >
@@ -208,7 +179,7 @@
             MouseDown="Stop"
             HorizontalAlignment="Left"
             Height="15"
-            Margin="250,0,0,0" 
+            Margin="250,5,0,0" 
             VerticalAlignment="Top"
             Width="15"
             >
@@ -224,11 +195,32 @@
             </Image.Style>
         </Image>
 
+        <Image 
+            Name="ImageClosePlayer"
+            MouseDown="ClosePlayer"
+            HorizontalAlignment="Right"
+            Height="10"
+            Margin="0,9,240,0" 
+            VerticalAlignment="Top"
+            Width="10"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/CancelGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/CancelLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
         <Label 
             Name="lableStatus"
             Content="00:00:00/00:00:00" 
             HorizontalAlignment="Right" 
-            Margin="0,-6,235,0" 
+            Margin="0,0,250,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
             />
@@ -236,17 +228,17 @@
         <Label 
             Name="lableNameMusic"
             Content="Name of music" 
-            HorizontalAlignment="Left" 
-            Margin="270,-6,0,0" 
+            HorizontalAlignment="Stretch" 
+            Margin="270,-1,355,0" 
             VerticalAlignment="Top"
-            Foreground="Gray"
+            Foreground="Gray" 
             />
 
         <!-- Slider with time -->
         <Slider 
             Name="SliderLine"
             HorizontalAlignment="Stretch" 
-            Margin="210,20,240,0" 
+            Margin="210,27.5,240,0" 
             VerticalAlignment="Top" 
             />
 
@@ -273,7 +265,7 @@
             Background="#FF18191D" 
             VerticalScrollBarVisibility="Visible"
             />
-
+        
         <Frame 
             Name="FrameAddFiles"
             Margin="0,0,0,0"
