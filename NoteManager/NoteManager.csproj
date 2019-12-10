@@ -69,6 +69,7 @@
     <Compile Include="DBClasses\Music.cs" />
     <Compile Include="DBClasses\Note.cs" />
     <Compile Include="DBClasses\Picture.cs" />
+    <Compile Include="DBClasses\Plan.cs" />
     <Compile Include="DBClasses\Record.cs" />
     <Compile Include="DBClasses\Reminder.cs" />
     <Compile Include="DBClasses\TemporaryNote.cs" />

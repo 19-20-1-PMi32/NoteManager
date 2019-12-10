@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-
+using NoteManager.DBClasses;
 
 namespace NoteManager
 {
@@ -152,13 +152,5 @@ namespace NoteManager
         {
             // here must be logic for update plan to database
         }
-    }
-    public class Plan
-    {
-        public string Name { get; set; }
-        public string Text { get; set; }
-        public DateTime CreationTime { get; set; }
-        public DateTime DeadLineTime { get; set; }
-        public bool IsCompleted { get; set; }
     }
 }
