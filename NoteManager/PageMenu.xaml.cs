@@ -31,6 +31,9 @@ namespace NoteManager
             LabelReminders.Foreground = new SolidColorBrush(Colors.Gray);
             LabelPlans.Foreground = new SolidColorBrush(Colors.Gray);
             CreateNotesForUser();
+
+            Notification.SetInstances(MessageBox, Message);
+
         }
 
         private static void CreateNotesForUser()
@@ -125,6 +128,10 @@ namespace NoteManager
         private void LeaveWithLabel(object sender, RoutedEventArgs e)
         {
             (sender as Label).Foreground = PreviouslyColor;
+        }
+        private void ShowMessage(object sender, RoutedEventArgs e)
+        {
+            Notification.ShowMessage(MessageType.Info, "Hello it is message box;");
         }
     }
 }
