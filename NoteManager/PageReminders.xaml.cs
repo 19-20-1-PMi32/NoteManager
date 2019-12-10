@@ -33,8 +33,8 @@ namespace NoteManager
 
         protected void OnTabControlSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ActualCoulumnText.Width = e.NewSize.Width - 252.5;
-            NoActualCoulumnText.Width = e.NewSize.Width - 252.5;
+            ActualCoulumnText.Width = e.NewSize.Width - 192.5;
+            NoActualCoulumnText.Width = e.NewSize.Width - 192.5;
         }
 
         private void ClickOnAddReminder(object sender, RoutedEventArgs e)

@@ -119,7 +119,141 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <ColorAnimation To="Gray"
+                            <ColorAnimation To="#252c32"
+                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                        FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                            FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Flat_ButtonRemoveForPlans" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="12px"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Opacity="1" Color="White"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Opacity="1" Color="#28C2FF" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <Border x:Name="border"
+                         SnapsToDevicePixels="True"
+                         BorderThickness="1"
+                         Padding="4,2"
+                         BorderBrush="Gray"
+                         CornerRadius="3"
+                         Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter 
+                        Margin="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RecognizesAccessKey="True" />
+
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="#807f7f"
+                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                        FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
+                                            FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Flat_ButtonNewForPlans" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="12px"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Opacity="1" Color="White"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Opacity="1" Color="#28C2FF" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <Border x:Name="border"
+                         SnapsToDevicePixels="True"
+                         BorderThickness="1"
+                         Padding="4,2"
+                         BorderBrush="Gray"
+                         CornerRadius="3"
+                         Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter 
+                        Margin="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RecognizesAccessKey="True" />
+
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="#588258"
                                         Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" 
                                         FillBehavior="HoldEnd" Duration="0:0:0.25" AutoReverse="False" RepeatBehavior="1x"/>
                         </Storyboard>
@@ -1450,7 +1584,7 @@
         <Setter Property="Background" Value="{StaticResource NormalBackgroundTabControl}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">

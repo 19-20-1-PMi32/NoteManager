@@ -225,6 +225,7 @@
             HorizontalAlignment="Center"
             Height="232" 
             VerticalAlignment="Top" 
+            Width="375"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
             MouseDown="FilePlay"

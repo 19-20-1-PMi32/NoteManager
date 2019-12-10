@@ -140,7 +140,7 @@
 
         <Label 
             Name="LabelUserName"
-            Content="User Name" 
+            Content="Admin" 
             Margin="0,-3,10,0"
             FontSize="14"
             Foreground="White"
