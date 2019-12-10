@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
+using NoteManager.DBClasses;
+
 namespace NoteManager.PagesForResourses
 {
     /// <summary>
@@ -22,29 +24,25 @@ namespace NoteManager.PagesForResourses
     public partial class AdditionPicture : Page
     {
         string fileExtensions = "jpg,png,bmp";
-        FileType type = FileType.Picture;
-        List<File> files;
-        List<File> deleted;
+        List<Picture> pictures;
         public AdditionPicture()
         {
             InitializeComponent();
-            files = new List<File>();
-            deleted = new List<File>();
-            FileList.ItemsSource = files;
+            pictures = TemporaryNote.Pictures;
+            FileList.ItemsSource = pictures;
         }
         
-        private void AddFileToList(File video)
+        private void AddFileToList(Picture picture)
         {
-            if (!files.Contains(video, new FileComparer()))
+            if (!pictures.Contains(picture, new FileComparer()))
             {
                 FileList.BeginInit();
-                files.Add(video);
+                pictures.Add(picture);
                 FileList.EndInit();
-                // Push notification that item was added
             }
             else
             {
-                // Push notification that item was not added(for some reasons)
+                Notification.ShowMessage("Is already in list");
             }
         }
         private void AddFile(object sender, MouseEventArgs e)
@@ -54,40 +52,39 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-                File file = new File(filePath, (int)type, (int)FileState.OnlyUploaded);
-                AddFileToList(file);
+                Picture picture = new Picture() { FilePath = filePath, CreationTime = DateTime.Now };
+                AddFileToList(picture);
             }
             else
             {
-                //Push notification that file was not added(for some reasons)
+                Notification.ShowMessage("Picture was not loaded");
             }
         }
-        private File SelectedFile()
+        private Picture SelectedFile()
         {
-            return (File)FileList.SelectedItem;
+            return (Picture)FileList.SelectedItem;
         }
-        private void DeleteFronList(File file)
+        private void DeleteFronList(Picture picture)
         {
-            file.State = FileState.MustBeDeleted;
             FileList.BeginInit();
-            files.Remove(file);
+            pictures.Remove(picture);
             FileList.EndInit();
-
-
         }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = SelectedFile();
-            if (file != null)
+            var picture = SelectedFile();
+            if (picture != null)
             {
-                DeleteFronList(file);
-                deleted.Add(file);
-
+                DeleteFronList(picture);
             }
         }
-        private void SaveFiles(object sender, MouseEventArgs e)
+        private void Save(Picture picture)
         {
-            //logic for save file to database
+
+        }
+        private void Delete(Picture picture)
+        {
+
         }
 
         private void FileList_SelectionChanged(object sender, SelectionChangedEventArgs e)

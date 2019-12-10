@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-
+using NoteManager.DBClasses;
 namespace NoteManager
 {
     [ValueConversion(typeof(Plan), typeof(string))]

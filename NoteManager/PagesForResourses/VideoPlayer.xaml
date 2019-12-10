@@ -22,9 +22,9 @@
             Name="MediaElementVideo"
             Source="E:\PROGRAMMING\My_Projects\C#\WPF\NoteManager\NoteManager\Resources\Me_vs_Bugs.wmv"
             HorizontalAlignment="Center" 
-            Margin="0,20,0,80" 
+            Margin="119,20,224,80" 
             VerticalAlignment="Stretch" 
-            Width="auto"
+            Width="457"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
             />
@@ -91,7 +91,7 @@
             VerticalAlignment="Bottom" 
             Width="430" 
             />
-        
+
         <!-- Image Cansel -->
         <Image
             Name="Cancel"

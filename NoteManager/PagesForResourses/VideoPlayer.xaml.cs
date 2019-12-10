@@ -5,6 +5,8 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
+using NoteManager.DBClasses;
+
 namespace NoteManager.PagesForResourses
 {
     /// <summary>
@@ -21,6 +23,7 @@ namespace NoteManager.PagesForResourses
         {
             InitializeComponent();
             InitializeTimer();
+            MediaElementVideo.Source =new Uri(FileViewer.video.FilePath, UriKind.Absolute);
             MediaElementVideo.Play();
             Play.Source = new BitmapImage(new Uri("pack://application:,,,/NoteManager;component/Resources/Pictures/buttonResumeLight.png"));
             timerForToddlerOfSlider.Start();

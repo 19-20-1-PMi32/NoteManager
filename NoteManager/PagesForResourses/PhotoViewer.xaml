@@ -11,6 +11,7 @@
     <Grid>
         <!-- Image Black Background -->
         <Image      
+            Name="photoViewer"
             Source="../Resources/Pictures/BackBlackFone.png" 
         	Stretch="UniformToFill" 					
             Opacity="0.7" 

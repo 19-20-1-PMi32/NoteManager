@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace NoteManager.DBClasses
 {
-    class Picture
+    class Picture : File
     {
-        public string Name { get; set; }
         public DateTime CreationTime { get; set; }
 
         public Picture() { }
 
         public Picture(string name, DateTime date)
         {
-            Name = name;
             CreationTime = date;
         }
     }

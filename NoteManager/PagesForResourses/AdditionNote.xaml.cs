@@ -24,6 +24,7 @@ namespace NoteManager.PagesForResourses
         public AdditionNote()
         {
             InitializeComponent();
+            TextBoxMain.Text = TemporaryNote.Text;
         }
 
         private void ClickOnConfirm(object sender, RoutedEventArgs e)

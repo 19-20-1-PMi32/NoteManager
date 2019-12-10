@@ -16,14 +16,22 @@ namespace NoteManager.DBClasses
         public static List<Music> Musics { get; set; }
         public static List<Record> Records { get; set; }
 
+        public static  void Init()
+        {
+            Videos = new List<Video>();
+            Musics = new List<Music>();
+            Pictures = new List<Picture>();
+            Records = new List<Record>();
+        }
+
         public static void AnnulOfNote()
         {
             IsUsed = false;
             Text = null;
-            Videos = null;
+            Videos = new List<Video>();
             Pictures = null;
             Musics = null;
-            Records = null;
+            Records = new List<Record>();
         }
     }
 }

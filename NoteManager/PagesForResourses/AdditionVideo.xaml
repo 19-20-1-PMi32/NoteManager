@@ -85,7 +85,7 @@
                     <TextBlock
                             TextTrimming="CharacterEllipsis"
                             FontSize="14"
-                            Text="{Binding FileName}"
+                            Text="{Binding Name}"
                             HorizontalAlignment="Left"
                             Margin="1,1"
                         />

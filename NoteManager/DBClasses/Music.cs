@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace NoteManager.DBClasses
 {
-    class Music
+    class Music : File
     {
-        public string Name { get; set; }
         public DateTime CreationTime { get; set; }
 
         public Music() { }
 
         public Music(string name, DateTime date)
         {
-            Name = name;
             CreationTime = date;
         }
     }

@@ -66,6 +66,7 @@
     <Compile Include="AddFiles.xaml.cs">
       <DependentUpon>AddFiles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBClasses\FileViewer.cs" />
     <Compile Include="DBClasses\Music.cs" />
     <Compile Include="DBClasses\Note.cs" />
     <Compile Include="DBClasses\Picture.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="FileComparer.cs" />
     <Compile Include="FileUploader.cs" />
     <Compile Include="File.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="PageNote.xaml.cs">
       <DependentUpon>PageNote.xaml</DependentUpon>
     </Compile>

@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace NoteManager.DBClasses
 {
-    class Video
+    class Video : File
     {
-        public string Name { get; set; }
         public DateTime CreationTime { get; set; }
 
         public Video() { }
 
         public Video(string name, DateTime date)
         {
-            Name = name;
             CreationTime = date;
         }
     }

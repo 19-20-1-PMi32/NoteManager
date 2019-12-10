@@ -31,6 +31,26 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <Border
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            CornerRadius="4"
+            Background="Black"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Panel.ZIndex="2"
+            Visibility="Hidden"
+            Name="MessageBox"
+            >
+            <Label
+                Foreground="White"
+                Name="Message"
+                FontSize="14"
+                >
+                Some message to the user
+            </Label>
+        </Border>
         <!-- Under notes -->
         <Label 
             Name="LabelUnderNotes"
