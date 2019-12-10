@@ -6,6 +6,8 @@ using System.Windows.Controls.Primitives;
 using NoteManager.DBClasses;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
+using System.Threading.Tasks;
 
 namespace NoteManager
 {
@@ -14,6 +16,8 @@ namespace NoteManager
     /// </summary>
     public partial class PageReminders : Page
     {
+        private DispatcherTimer myTimer = null;
+        private Reminder FirstInQueue = new Reminder();
 
         public PageReminders()
         {
@@ -21,14 +25,6 @@ namespace NoteManager
             MyNotifyIcon.Visibility = Visibility.Hidden;
             TabControlReminder.SizeChanged += OnTabControlSizeChanged;
             CreateRemindersForUser();
-            buttonClickSampleNotify(null, null);
-        }
-
-        private void buttonClickSampleNotify(object sender, RoutedEventArgs e)
-        {
-            FancyBalloon balloon = new FancyBalloon();
-            balloon.BalloonText = "Kill him. Now!";
-            MyNotifyIcon.ShowCustomBalloon(balloon, PopupAnimation.Slide, 4000);
         }
 
         protected void OnTabControlSizeChanged(object sender, SizeChangedEventArgs e)
@@ -45,6 +41,12 @@ namespace NoteManager
             string text = TextBoxAddReminder.Text;
             User.Reminders.Add(new Reminder(text, Hours));
             ShowReminders();
+            if(myTimer == null)
+            {
+                DoInquiry();
+            }
+            SuccessfulAddind();
+            AnnulTabItemAdd();
         }
 
         private void ShowReminders()
@@ -54,11 +56,69 @@ namespace NoteManager
 
         private void CreateRemindersForUser()
         {
-            User.Reminders = new ObservableCollection<Reminder>();
-            User.Reminders.Add(new Reminder("Kill", DateTime.Now));
-            User.Reminders.Add(new Reminder("Love", DateTime.Now));
-            User.Reminders.Add(new Reminder("Run", DateTime.Now));
             ActualReminder.ItemsSource = User.Reminders;
+        }
+
+        public void DoInquiry()
+        {
+            bool isReminder = false;
+            for(int item = 0; item < User.Reminders.Count; ++item)
+            {
+                if (User.Reminders[item].ReminderTime > DateTime.Now && !User.Reminders[item].IsQueue && !User.Reminders[item].IsShown)
+                {
+                    myTimer = new DispatcherTimer();
+                    myTimer.Interval = User.Reminders[item].ReminderTime - DateTime.Now;
+                    User.Reminders[item].IsQueue = true;
+                    FirstInQueue = User.Reminders[item];
+                    isReminder = true;
+                    break;
+                }
+
+            }
+            if (isReminder)
+            {
+                myTimer.Tick += new EventHandler(TimerEventProcessor);
+                myTimer.Start();
+            }
+        }
+
+        private void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
+        {
+            FancyBalloon balloon = new FancyBalloon();
+            balloon.BalloonText = FirstInQueue.Text;
+            MyNotifyIcon.ShowCustomBalloon(balloon, PopupAnimation.Slide, 4000);
+            myTimer.Tick -= new EventHandler(TimerEventProcessor);
+            myTimer = null;
+            for (int item = 0; item < User.Reminders.Count; ++item)
+            {
+                if (User.Reminders[item] == FirstInQueue)
+                {
+                    User.Reminders[item].IsShown = true;
+                    User.Reminders[item].IsQueue = false;
+                    DoInquiry();
+                    break;
+                }
+            }
+        }
+
+        private void AnnulTabItemAdd()
+        {
+            TextBoxHours.Text = "";
+            DatePickerDate.Text = "";
+            TextBoxAddReminder.Text = "";
+        }
+
+        private async void SuccessfulAddind()
+        {
+            AddMessage.Opacity = 1;
+            AddMessage.Content = "Adding is sucsessful!";
+
+            for (double i = 1; i >= 0; i = i - 0.05)
+            {
+                await Task.Delay(100);
+                AddMessage.Opacity = i;
+            }
+            AddMessage.Opacity = 0;
         }
     }
 }

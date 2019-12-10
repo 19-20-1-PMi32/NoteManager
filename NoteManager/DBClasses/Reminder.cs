@@ -10,11 +10,15 @@ namespace NoteManager.DBClasses
     {
         public string Text { get; set; }
         public DateTime ReminderTime { get; set; }
+        public bool IsShown { get; set; }
+        public bool IsQueue { get; set; }
 
         public Reminder(string text, DateTime date)
         {
             Text = text;
             ReminderTime = date;
+            IsShown = false;
+            IsQueue = false;
         }
 
         public Reminder() { }

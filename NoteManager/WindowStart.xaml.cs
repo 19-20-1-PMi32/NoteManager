@@ -2,6 +2,12 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using NoteManager.DBClasses;
+using NoteManager.Showcase;
+using System.Windows.Controls.Primitives;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace NoteManager
 {
@@ -14,11 +20,15 @@ namespace NoteManager
         private ContextMenu TrayMenu = null;
         public WindowState CurrentWindowState { get; set; } = WindowState.Normal;
         public bool CanClose { get; set; } = false;
+        private DispatcherTimer myTimer = new DispatcherTimer();
+        private Reminder FirstInQueue = new Reminder();
 
-    public WindowStart()
+        public WindowStart()
         {
             InitializeComponent();
             f1.Navigate(new PageMenu());
+            CreateRemindersForUser();
+            DoInquiry();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -114,6 +124,55 @@ namespace NoteManager
         {
             CanClose = true;
             Close();
+        }
+
+        public void DoInquiry()
+        {
+            bool isReminder = false;
+            for (int item = 0; item < User.Reminders.Count; ++item)
+            {
+                if (User.Reminders[item].ReminderTime > DateTime.Now && !User.Reminders[item].IsQueue && !User.Reminders[item].IsShown)
+                {
+                    myTimer.Interval = User.Reminders[item].ReminderTime - DateTime.Now;
+                    User.Reminders[item].IsQueue = true;
+                    FirstInQueue = User.Reminders[item];
+                    isReminder = true;
+                    break;
+                }
+            }
+            if (isReminder)
+            {
+                myTimer.Tick += new EventHandler(TimerEventProcessor);
+                myTimer.Start();
+            }
+        }
+
+        private void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
+        {
+            FancyBalloon balloon = new FancyBalloon();
+            balloon.BalloonText = FirstInQueue.Text;
+            MyNotifyIcon.ShowCustomBalloon(balloon, PopupAnimation.Slide, 4000);
+            myTimer.Tick -= new EventHandler(TimerEventProcessor);
+            for (int item = 0; item < User.Reminders.Count; ++item)
+            {
+                if (User.Reminders[item] == FirstInQueue)
+                {
+                    User.Reminders[item].IsShown = true;
+                    User.Reminders[item].IsQueue = false;
+                    DoInquiry();
+                    break;
+                }
+            }
+        }
+
+        private void CreateRemindersForUser()
+        {
+            User.Reminders = new ObservableCollection<Reminder>();
+            int minute = 7;
+            User.Reminders.Add(new Reminder("Kill", new DateTime(2019, 12, 10, 18, minute, 0)));
+            User.Reminders.Add(new Reminder("Love", new DateTime(2019, 12, 10, 18, minute, 10)));
+            User.Reminders.Add(new Reminder("Run", new DateTime(2019, 12, 10, 18, minute, 20)));
+            
         }
     }
 }

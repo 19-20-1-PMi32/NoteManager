@@ -245,6 +245,16 @@
                         >
 
                     </Button>
+                    
+                    <Label 
+                        Name="AddMessage"
+                        Opacity="0"
+                        HorizontalAlignment="Left" 
+                        Foreground="Green"
+                        Margin="60,0,0,70" 
+                        FontSize="14"
+                        VerticalAlignment="Bottom"
+                        />
                 </Grid>
             </TabItem>
         </TabControl>
