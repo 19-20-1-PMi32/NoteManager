@@ -39,11 +39,10 @@ namespace NoteManager.PagesForResourses
                 FileList.BeginInit();
                 pictures.Add(picture);
                 FileList.EndInit();
-                // Push notification that item was added
             }
             else
             {
-                // Push notification that item was not added(for some reasons)
+                Notification.ShowMessage("Is already in list");
             }
         }
         private void AddFile(object sender, MouseEventArgs e)

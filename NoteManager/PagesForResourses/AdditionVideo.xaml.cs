@@ -101,20 +101,6 @@ namespace NoteManager.PagesForResourses
                 VideoElem.Stop();
             pausePosition = null;
         }
-
-        private void AddFileToList(Video video)
-        {
-            if (!files.Contains(video, new FileComparer()))
-            {
-                Save(video);
-
-                // Push notification that item was added
-            }
-            else
-            {
-                // Push notification that item was not added(for some reasons)
-            }
-        }
         private void UpdateList()
         {
             FileList.BeginInit();
@@ -169,7 +155,7 @@ namespace NoteManager.PagesForResourses
         }
         private void Delete(Video video)
         {
-            // delete video from database
+            TemporaryNote.Videos.Remove(video);
         }
 
 

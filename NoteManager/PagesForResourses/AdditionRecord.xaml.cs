@@ -25,13 +25,14 @@ namespace NoteManager.PagesForResourses
     public partial class AdditionRecord : Page
     {
         string fileExtensions = "mp3,aac,flac,wav";
-        List<File> files;
+        List<Record> records;
+
         TimeSpan? pausePosition;
         public AdditionRecord()
         {
             InitializeComponent();
-            files = new List<File>();
-            FileList.ItemsSource = files;
+            records = TemporaryNote.Records;
+            FileList.ItemsSource = records;
         }
 
         private void InitTimer()
@@ -43,9 +44,9 @@ namespace NoteManager.PagesForResourses
             timer.Tick += timer_Tick;
             timer.Start();
         }
-        private File SelectedFile()
+        private Record SelectedFile()
         {
-            return (File)FileList.SelectedItem;
+            return (Record)FileList.SelectedItem;
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -91,18 +92,16 @@ namespace NoteManager.PagesForResourses
                 RecordElem.Stop();
             pausePosition = null;
         }
-        private void AddFileToList(File file)
+        private void AddFileToList(Record record)
         {
-            if (!files.Contains(file, new FileComparer()))
+            if (!records.Contains(record, new FileComparer()))
             {
-                FileList.BeginInit();
-                files.Add(file);
-                FileList.EndInit();
-                // Push notification that item was added
+                Save(record);
+                UpdateList();
             }
             else
             {
-                // Push notification that item was not added(for some reasons)
+                Notification.ShowMessage("Is already in list");
             }
         }
         private void AddFile(object sender, MouseEventArgs e)
@@ -112,32 +111,36 @@ namespace NoteManager.PagesForResourses
             string filePath = uploader.Upload();
             if (String.Empty != filePath)
             {
-
-
+                Record record = new Record() { FilePath = filePath, CreationTime = DateTime.Now };
+                AddFileToList(record);
             }
             else
             {
-                //Push notification that file was not added(for some reasons)
+                Notification.ShowMessage("Music was not loaded");
             }
         }
-        private void DeleteFromList(File file)
+        private void UpdateList()
         {
-
             FileList.BeginInit();
-            files.Remove(file);
+            records = TemporaryNote.Records;
             FileList.EndInit();
         }
         private void DeleteFile(object sender, MouseEventArgs e)
         {
-            var file = SelectedFile();
-            if (file != null)
+            var record = SelectedFile();
+            if (record != null)
             {
-                DeleteFromList(file);
+                Delete(record);
+                UpdateList();
             }
         }
-        private void SaveFiles(object sender, MouseEventArgs e)
+        private void Save(Record record)
         {
-            //logic for save file to database
+            TemporaryNote.Records.Add(record);
+        }
+        private void Delete(Record record)
+        {
+            TemporaryNote.Records.Remove(record);
         }
         private void FilePlay(object sender, MouseEventArgs e)
         {
