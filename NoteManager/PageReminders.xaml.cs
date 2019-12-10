@@ -105,7 +105,7 @@ namespace NoteManager
         {
             TextBoxHours.Text = "";
             DatePickerDate.Text = "";
-            TextBoxAddReminder.Text = "";
+            TextBoxAddReminder.Text = ""; 
         }
 
         private async void SuccessfulAddind()
