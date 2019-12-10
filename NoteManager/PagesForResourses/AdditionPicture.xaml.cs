@@ -58,7 +58,7 @@ namespace NoteManager.PagesForResourses
             }
             else
             {
-                //Push notification that file was not added(for some reasons)
+                Notification.ShowMessage("Picture was not loaded");
             }
         }
         private Picture SelectedFile()

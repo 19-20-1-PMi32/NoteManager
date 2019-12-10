@@ -135,7 +135,7 @@ namespace NoteManager.PagesForResourses
             }
             else
             {
-                //Push notification that file was not added(for some reasons)
+                Notification.ShowMessage("Video was not loaded");
             }
         }
 

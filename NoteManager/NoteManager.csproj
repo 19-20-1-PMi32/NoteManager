@@ -355,6 +355,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DBResources\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

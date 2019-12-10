@@ -129,9 +129,5 @@ namespace NoteManager
         {
             (sender as Label).Foreground = PreviouslyColor;
         }
-        private void ShowMessage(object sender, RoutedEventArgs e)
-        {
-            Notification.ShowMessage(MessageType.Info, "Hello it is message box;");
-        }
     }
 }

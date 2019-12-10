@@ -116,7 +116,7 @@ namespace NoteManager.PagesForResourses
             }
             else
             {
-                //Push notification that file was not added(for some reasons)
+                Notification.ShowMessage("Music was not loaded");
             }
         }
         private void UpdateList()
