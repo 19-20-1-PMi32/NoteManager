@@ -32,13 +32,39 @@ namespace NoteManager
             ActualCoulumnText.Width = e.NewSize.Width - 192.5;
             NoActualCoulumnText.Width = e.NewSize.Width - 192.5;
         }
-
+        private bool IsValid(Reminder reminder)
+        {
+            if (reminder.Text == String.Empty) {
+                Notification.ShowMessage("Reminder text is empty");
+                return false;
+            }
+            return true;
+        }
         private void ClickOnAddReminder(object sender, RoutedEventArgs e)
         {
             DateTime time = DatePickerDate.DisplayDate;
             string[] timeInDay = TextBoxHours.Text.Split(':');
-            DateTime Hours = new DateTime(time.Year, time.Month, time.Day, int.Parse(timeInDay[0]), int.Parse(timeInDay[1]), int.Parse(timeInDay[2]));
+            DateTime Hours;
+            if (timeInDay.Length != 3)
+            {
+                Notification.ShowMessage("Wrong time input");
+                return;
+            }
+            try
+            {
+                Hours = new DateTime(time.Year, time.Month, time.Day, int.Parse(timeInDay[0]), int.Parse(timeInDay[1]), int.Parse(timeInDay[2]));
+            }
+            catch(Exception ex)
+            {
+                Notification.ShowMessage("Wrong time or date input");
+                return;
+            }
             string text = TextBoxAddReminder.Text;
+            var r = new Reminder(text, Hours);
+            if (!IsValid(r))
+            {
+                return;
+            }
             User.Reminders.Add(new Reminder(text, Hours));
             ShowReminders();
             if(myTimer == null)

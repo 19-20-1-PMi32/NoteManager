@@ -30,8 +30,9 @@ namespace NoteManager
             LabelNotes.Foreground = new SolidColorBrush(colorBlue);
             LabelReminders.Foreground = new SolidColorBrush(Colors.Gray);
             LabelPlans.Foreground = new SolidColorBrush(Colors.Gray);
-            CreateNotesForUser();
-
+            //CreateNotesForUser();
+            User.Init();
+            
             Notification.SetInstances(MessageBox, Message);
 
         }

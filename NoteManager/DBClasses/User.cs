@@ -11,5 +11,10 @@ namespace NoteManager.DBClasses
     {
         public static List<Note> Notes { get; set; }
         public static ObservableCollection<Reminder> Reminders { get; set; }
+        public static void Init()
+        {
+            Notes = new List<Note>();
+            Reminders = new ObservableCollection<Reminder>();
+        }
     }
 }

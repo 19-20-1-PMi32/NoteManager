@@ -40,58 +40,63 @@ namespace NoteManager
 
         private void InitializeTreeDates()
         {
-            Dates.Items.Clear();
-            var NoteYears = from year in User.Notes
-                            select year.CreationTime.Year;
-            NoteYears = NoteYears.Distinct();
+            if (User.Notes != null && User.Notes.Count != 0){
+                Dates.Items.Clear();
+                var NoteYears = from year in User.Notes
+                                select year.CreationTime.Year;
+                NoteYears = NoteYears.Distinct();
 
-            foreach (var item in NoteYears)
-            {
-                var year = new TreeViewItem() { Header = $"{item}" };
-                var NoteMonths = from month in User.Notes
-                                 where month.CreationTime.Year == item
-                                 select month.CreationTime.Month;
-
-                NoteMonths = NoteMonths.Distinct();
-                foreach (var item2 in NoteMonths)
+                foreach (var item in NoteYears)
                 {
-                    var month = new TreeViewItem() { Header = $"{item2}" };
+                    var year = new TreeViewItem() { Header = $"{item}" };
+                    var NoteMonths = from month in User.Notes
+                                     where month.CreationTime.Year == item
+                                     select month.CreationTime.Month;
 
-                    var NoteDays = from days in User.Notes
-                                   where days.CreationTime.Year == item && days.CreationTime.Month == item2
-                                   select days.CreationTime.Day;
-
-                    NoteDays = NoteDays.Distinct();
-                    foreach (var item3 in NoteDays)
+                    NoteMonths = NoteMonths.Distinct();
+                    foreach (var item2 in NoteMonths)
                     {
-                        var day = new TreeViewItem() { Header = $"{item3}" };
-                        var notes = from note_ in User.Notes
-                                    where note_.CreationTime.Year == item && note_.CreationTime.Month == item2 && note_.CreationTime.Day == item3
-                                    select note_.CreationTime;
-                        foreach (var item4 in notes)
+                        var month = new TreeViewItem() { Header = $"{item2}" };
+
+                        var NoteDays = from days in User.Notes
+                                       where days.CreationTime.Year == item && days.CreationTime.Month == item2
+                                       select days.CreationTime.Day;
+
+                        NoteDays = NoteDays.Distinct();
+                        foreach (var item3 in NoteDays)
                         {
-                            var note = new TreeViewItem() { Header = $"{item4}" };
-                            day.Items.Add(note);
-                            note.MouseDoubleClick += MouseButtonDoubleClickHandler;
-                            note.MouseRightButtonUp += MouseButtonRightClickHandler;
+                            var day = new TreeViewItem() { Header = $"{item3}" };
+                            var notes = from note_ in User.Notes
+                                        where note_.CreationTime.Year == item && note_.CreationTime.Month == item2 && note_.CreationTime.Day == item3
+                                        select note_.CreationTime;
+                            foreach (var item4 in notes)
+                            {
+                                var note = new TreeViewItem() { Header = $"{item4}" };
+                                day.Items.Add(note);
+                                note.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                                note.MouseRightButtonUp += MouseButtonRightClickHandler;
+                            }
+                            month.Items.Add(day);
                         }
-                        month.Items.Add(day);
+                        year.Items.Add(month);
                     }
-                    year.Items.Add(month);
+                    Dates.Items.Add(year);
                 }
-                Dates.Items.Add(year);
             }
         }
 
         private void InitializeListDates()
         {
-            ListBoxDates.Items.Clear();
-            foreach (var item in User.Notes)
+            if (User.Notes != null && User.Notes.Count != 0)
             {
-                var date = new ListBoxItem() { Content = $"{item.CreationTime}" };
-                date.MouseDoubleClick += MouseButtonDoubleClickHandler;
-                date.MouseRightButtonUp += MouseButtonRightClickHandler;
-                ListBoxDates.Items.Add(date);
+                ListBoxDates.Items.Clear();
+                foreach (var item in User.Notes)
+                {
+                    var date = new ListBoxItem() { Content = $"{item.CreationTime}" };
+                    date.MouseDoubleClick += MouseButtonDoubleClickHandler;
+                    date.MouseRightButtonUp += MouseButtonRightClickHandler;
+                    ListBoxDates.Items.Add(date);
+                }
             }
         }
 
