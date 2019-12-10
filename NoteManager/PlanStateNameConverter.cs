@@ -21,7 +21,7 @@ namespace NoteManager
                 {
                     if (plan.DeadLineTime > DateTime.Now)
                     {
-                        name = "In progres";
+                        name = "In progress";
                     }
                     else
                     {

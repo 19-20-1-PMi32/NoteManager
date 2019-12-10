@@ -111,7 +111,7 @@ namespace NoteManager
         private async void SuccessfulAddind()
         {
             AddMessage.Opacity = 1;
-            AddMessage.Content = "Adding is sucsessful!";
+            AddMessage.Content = "Adding is successful!";
 
             for (double i = 1; i >= 0; i = i - 0.05)
             {
