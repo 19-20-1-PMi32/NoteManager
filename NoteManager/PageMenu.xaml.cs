@@ -34,7 +34,7 @@ namespace NoteManager
             User.Init();
             
             Notification.SetInstances(MessageBox, Message);
-
+            LabelUserName.Content = User.Name;
         }
 
         private static void CreateNotesForUser()

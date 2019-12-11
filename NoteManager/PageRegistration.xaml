@@ -101,6 +101,7 @@
 
         <!-- User name -->
         <TextBox 
+            Name="UserName"
             Foreground="LightGray"
             Height="30" 
             Margin="50,0,0,210" 
@@ -140,6 +141,7 @@
 
         <!-- Password 2 -->
         <TextBox 
+            Name="Password1"
             Height="30" 
             Foreground="White"
             Margin="50,0,0,134" 
@@ -179,6 +181,7 @@
 
         <!-- Password 2 -->
         <TextBox 
+            Name="Password2"
             Height="30" 
             Foreground="White"
             Margin="50,0,0,54" 

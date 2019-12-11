@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using NoteManager.DBClasses;
 
 namespace NoteManager
 {
@@ -19,7 +20,16 @@ namespace NoteManager
 
         private void SignUpAndGoToNext(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PageMenu());
+            if(UserName.Text != "")
+            {
+                if(Password1.Text == Password2.Text)
+                {
+                    User.Name = UserName.Text;
+                    User.Password = Password1.Text;
+                    this.NavigationService.Navigate(new PageMenu());
+                }
+            }
+
         }
     }
 }
