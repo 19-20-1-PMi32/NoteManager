@@ -29,11 +29,8 @@ namespace NoteManager.PagesForResourses
 
         private void ClickOnConfirm(object sender, RoutedEventArgs e)
         {
-            if(TextBoxMain.Text != "")
-            {
-                TemporaryNote.Text = TextBoxMain.Text;
-                TemporaryNote.CreationTime = DateTime.Now;
-            }
+            TemporaryNote.Text = TextBoxMain.Text;
+            TemporaryNote.CreationTime = DateTime.Now;
         }
     }
 }

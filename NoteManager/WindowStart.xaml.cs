@@ -26,8 +26,8 @@ namespace NoteManager
         public WindowStart()
         {
             InitializeComponent();
-            f1.Navigate(new PageMenu());
-            CreateRemindersForUser();
+            f1.Navigate(new PageWelcome());
+            //CreateRemindersForUser();
             DoInquiry();
         }
 
@@ -128,22 +128,25 @@ namespace NoteManager
 
         public void DoInquiry()
         {
-            bool isReminder = false;
-            for (int item = 0; item < User.Reminders.Count; ++item)
+            if (User.Reminders != null && User.Reminders.Count != 0)
             {
-                if (User.Reminders[item].ReminderTime > DateTime.Now && !User.Reminders[item].IsQueue && !User.Reminders[item].IsShown)
+                bool isReminder = false;
+                for (int item = 0; item < User.Reminders.Count; ++item)
                 {
-                    myTimer.Interval = User.Reminders[item].ReminderTime - DateTime.Now;
-                    User.Reminders[item].IsQueue = true;
-                    FirstInQueue = User.Reminders[item];
-                    isReminder = true;
-                    break;
+                    if (User.Reminders[item].ReminderTime > DateTime.Now && !User.Reminders[item].IsQueue && !User.Reminders[item].IsShown)
+                    {
+                        myTimer.Interval = User.Reminders[item].ReminderTime - DateTime.Now;
+                        User.Reminders[item].IsQueue = true;
+                        FirstInQueue = User.Reminders[item];
+                        isReminder = true;
+                        break;
+                    }
                 }
-            }
-            if (isReminder)
-            {
-                myTimer.Tick += new EventHandler(TimerEventProcessor);
-                myTimer.Start();
+                if (isReminder)
+                {
+                    myTimer.Tick += new EventHandler(TimerEventProcessor);
+                    myTimer.Start();
+                }
             }
         }
 

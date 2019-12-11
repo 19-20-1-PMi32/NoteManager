@@ -53,7 +53,7 @@
             Content="Video" 
             FontSize="25"
             HorizontalAlignment="Center" 
-            Margin="276,-3,435,417" 
+            Margin="276,-3,435,415" 
             VerticalAlignment="Center"
             MouseDown="ClickOnVideo" Width="88"
             >

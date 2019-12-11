@@ -28,28 +28,6 @@
                 </Style>
             </Image.Style>
         </Image>
-        
-        <!--
-        <Image 
-            HorizontalAlignment="Right"
-            Height="30"
-            Margin="0,0,10,10" 
-            VerticalAlignment="Bottom"
-            Width="30"
-            MouseDown="SaveFiles"
-            >
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property="Source" Value="..\\Resources/Pictures/buttonSaveDark.png"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Source" Value="..\\Resources/Pictures/buttonSaveLight.png"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
-        -->
 
         <Image 
             HorizontalAlignment="Right"
@@ -74,7 +52,7 @@
 
         <ListBox 
             HorizontalAlignment="Stretch" 
-            Height="69" 
+            Height="100" 
             Margin="10,0,10,45" 
             VerticalAlignment="Bottom" 
             FontSize="12"
@@ -96,8 +74,8 @@
         <Rectangle 
             Fill="Black" 
             HorizontalAlignment="Stretch" 
-            Height="265"
-            Margin="10,0" 
+            Height="230"
+            Margin="8,0,12,0" 
             Stroke="Black" 
             VerticalAlignment="Top" 
             />
@@ -106,7 +84,7 @@
             Fill="#171b1f" 
             HorizontalAlignment="Stretch" 
             Height="30"
-            Margin="11,234,11,0" 
+            Margin="10,199,14,0" 
             Stroke="Black" 
             VerticalAlignment="Top"
             />
@@ -116,7 +94,7 @@
             MouseDown="Play"
             HorizontalAlignment="Left"
             Height="20"
-            Margin="14,239,0,0" 
+            Margin="12,204,0,0" 
             VerticalAlignment="Top"
             Width="20"
             >
@@ -137,7 +115,7 @@
             MouseDown="Pause"
             HorizontalAlignment="Left"
             Height="20"
-            Margin="37,239,0,0" 
+            Margin="34,204,0,0" 
             VerticalAlignment="Top"
             Width="20"
             >
@@ -158,7 +136,7 @@
             MouseDown="Stop"
             HorizontalAlignment="Left"
             Height="20"
-            Margin="57,239,0,0" 
+            Margin="54,204,0,0" 
             VerticalAlignment="Top"
             Width="20"
             >
@@ -178,7 +156,7 @@
             Name="lableStatus"
             Content="00:00:00/00:00:00" 
             HorizontalAlignment="Left" 
-            Margin="282,235,0,0" 
+            Margin="280,200,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
             />
@@ -205,7 +183,7 @@
         <Slider 
             Name="SliderLine"
             HorizontalAlignment="Left" 
-            Margin="84,246,0,0" 
+            Margin="82,211,0,0" 
             VerticalAlignment="Top" 
             Width="200" 
             />
@@ -215,7 +193,7 @@
             Source="..\\Resources/Pictures/PlayVideoGray2.png"
             HorizontalAlignment="Center"
             Height="150"
-            Margin="124,36,126,0" 
+            Margin="122,22,128,0" 
             VerticalAlignment="Top"
             Width="150"
             />
@@ -223,12 +201,13 @@
         <MediaElement 
             Name="VideoElem"
             HorizontalAlignment="Center"
-            Height="232" 
+            Height="197" 
             VerticalAlignment="Top" 
             Width="375"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
-            MouseDown="FilePlay"
+            MouseDown="FilePlay" 
+            Margin="10,0,15,0"
             />
 
 

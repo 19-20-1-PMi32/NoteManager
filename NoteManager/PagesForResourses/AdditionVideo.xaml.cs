@@ -19,7 +19,7 @@ namespace NoteManager.PagesForResourses
     public partial class AdditionVideo : Page
     {
         private TimeSpan TotalTimeOfVideo;
-        private DispatcherTimer timerForToddlerOfSlider;
+        private DispatcherTimer timerForToddlerOfSlider = null;
         private ushort sliderUpdateSpeed = 100;
         string fileExtensions = "mp4,avi,mkv,mpg,wmv";
         List<Video> files;
@@ -35,19 +35,22 @@ namespace NoteManager.PagesForResourses
 
         private void InitTimer()
         {
-            VideoElem.Visibility = Visibility.Visible;
-            VideoElem.Play();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            if(timerForToddlerOfSlider == null)
+            {
+                VideoElem.Visibility = Visibility.Visible;
+                VideoElem.Play();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += timer_Tick;
+                timer.Start();
 
-            SliderLine.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(TimeSlider_MouseLeftButtonUp), true);
-            SliderLine.Minimum = 0;
-            timerForToddlerOfSlider = new DispatcherTimer();
-            timerForToddlerOfSlider.Interval = TimeSpan.FromMilliseconds(sliderUpdateSpeed);
-            timerForToddlerOfSlider.Tick += Timer_TickForSlider;
-            timerForToddlerOfSlider.Start();
+                SliderLine.AddHandler(MouseLeftButtonUpEvent, new MouseButtonEventHandler(TimeSlider_MouseLeftButtonUp), true);
+                SliderLine.Minimum = 0;
+                timerForToddlerOfSlider = new DispatcherTimer();
+                timerForToddlerOfSlider.Interval = TimeSpan.FromMilliseconds(sliderUpdateSpeed);
+                timerForToddlerOfSlider.Tick += Timer_TickForSlider;
+                timerForToddlerOfSlider.Start();
+            }
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -70,6 +73,7 @@ namespace NoteManager.PagesForResourses
             VideoElem.Play();
             pausePosition = null;
             InitTimer();
+            timerForToddlerOfSlider.Start();
         }
 
         private void Pause(object sender, RoutedEventArgs e)
@@ -82,12 +86,14 @@ namespace NoteManager.PagesForResourses
                 if (VideoElem.Position != TimeSpan.Zero && pausePosition != null) {
                     VideoElem.Position = (TimeSpan)pausePosition;
                     VideoElem.Play();
+                    timerForToddlerOfSlider.Start();
                     pausePosition = null;
                 }
                 else
                 {
                     pausePosition = VideoElem.Position;
                     VideoElem.Pause();
+                    timerForToddlerOfSlider.Stop();
                 }
             }
         }
@@ -100,6 +106,10 @@ namespace NoteManager.PagesForResourses
             if (VideoElem.Source != null)
                 VideoElem.Stop();
             pausePosition = null;
+            timerForToddlerOfSlider.Stop();
+            timerForToddlerOfSlider = null;
+            SliderLine.Value = 0;
+
         }
         private void UpdateList()
         {

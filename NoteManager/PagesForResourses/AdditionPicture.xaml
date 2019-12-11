@@ -52,8 +52,8 @@
         <ListBox 
             Name="FileList"
             HorizontalAlignment="Stretch" 
-            Height="69" 
-            Margin="10,266,10,0" 
+            Height="100" 
+            Margin="10,235,10,0" 
             VerticalAlignment="Top" 
             FontSize="12"
             SelectionChanged="FileList_SelectionChanged"
@@ -76,18 +76,17 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             MouseDown="DeleteFile"
-            Width="150"
-            Height="150"
-            Margin="0,60,0,0"
+            Width="100"
+            Height="100"
+            Margin="10,60,0,0"
             />
 
         <Image 
             Name="PictureFrame"
-            HorizontalAlignment="Left"
-            Height="251"
+            HorizontalAlignment="Center"
+            Height="220"
             Margin="10,10,0,0" 
             VerticalAlignment="Top"
-            Width="380"
             MouseDown="FilePlay"
             
             />

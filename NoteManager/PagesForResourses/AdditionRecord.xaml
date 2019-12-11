@@ -52,8 +52,8 @@
         <ListBox 
             Name="FileList"
             HorizontalAlignment="Stretch" 
-            Height="69" 
-            Margin="10,266,10,0" 
+            Height="100" 
+            Margin="10,235,10,0" 
             VerticalAlignment="Top" 
             FontSize="12"
             
@@ -63,7 +63,7 @@
                     <TextBlock
                             TextTrimming="CharacterEllipsis"
                             FontSize="14"
-                            Text="{Binding FileName}"
+                            Text="{Binding Name}"
                             HorizontalAlignment="Left"
                             Margin="1,1"
                         />
@@ -74,7 +74,7 @@
         <Rectangle 
             Fill="Black" 
             HorizontalAlignment="Stretch" 
-            Height="265"
+            Height="230"
             Margin="10,0" 
             Stroke="Black" 
             VerticalAlignment="Top" 
@@ -84,7 +84,7 @@
             Fill="#171b1f" 
             HorizontalAlignment="Stretch" 
             Height="30"
-            Margin="11,234,11,0" 
+            Margin="11,199,11,0" 
             Stroke="Black" 
             VerticalAlignment="Top"
             />
@@ -94,7 +94,7 @@
             MouseDown="Play"
             HorizontalAlignment="Left"
             Height="20"
-            Margin="14,239,0,0" 
+            Margin="14,204,0,0" 
             VerticalAlignment="Top"
             Width="20"
             >
@@ -115,7 +115,7 @@
             MouseDown="Pause"
             HorizontalAlignment="Left"
             Height="20"
-            Margin="37,239,0,0" 
+            Margin="37,204,0,0" 
             VerticalAlignment="Top"
             Width="20"
             >
@@ -136,7 +136,7 @@
             MouseDown="Stop"
             HorizontalAlignment="Left"
             Height="20"
-            Margin="57,239,0,0" 
+            Margin="57,204,0,0" 
             VerticalAlignment="Top"
             Width="20"
             >
@@ -156,7 +156,7 @@
             Name="lableStatus"
             Content="00:00:00/00:00:00" 
             HorizontalAlignment="Left" 
-            Margin="282,235,0,0" 
+            Margin="282,200,0,0" 
             VerticalAlignment="Top"
             Foreground="Gray"
             />
@@ -183,7 +183,7 @@
         <Slider 
             Name="SliderLine"
             HorizontalAlignment="Left" 
-            Margin="84,246,0,0" 
+            Margin="84,211,0,0" 
             VerticalAlignment="Top" 
             Width="200" 
             />
@@ -192,19 +192,18 @@
             MouseDown="Play"
             Source="..\\Resources/Pictures/IconRecord1.png"
             HorizontalAlignment="Center"
-            Height="150"
-            Margin="124,36,126,0" 
+            Height="100"
+            Margin="124,52,126,0" 
             VerticalAlignment="Top"
-            Width="150"
+            Width="100"
             />
 
         <MediaElement 
             x:Name="RecordElem"
             HorizontalAlignment="Left"
-            Height="234" 
+            Height="199" 
             Margin="11,0,0,0" 
             VerticalAlignment="Top" 
-            Width="377"
             LoadedBehavior="Manual"
             UnloadedBehavior="Manual" 
             MouseDown="FilePlay" RenderTransformOrigin="0.5,0.5"

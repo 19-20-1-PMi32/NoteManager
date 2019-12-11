@@ -19,30 +19,30 @@ namespace NoteManager
         {
             InitializeComponent();
             //Initialization only for tests 
-            plans = GetTestPlans();
+            plans = User.Plans;
             ListPlans.ItemsSource = plans;
 
             DataContext = currentEdit;
         }
-        public List<Plan> GetTestPlans()
-        {
-            string longText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-            int count = 10;
-            List<Plan> result = new List<Plan>(count);
-            for(int i =0; i < count; i++)
-            {
-                result.Add(new Plan()
-                {
-                    Name = "Some Name" + i.ToString(),
-                    Text = $"План {i} і небагато тексту для тестування." + longText,
-                    CreationTime = DateTime.Now.AddDays(i),
-                    DeadLineTime = DateTime.Now.AddDays(10 + i),
-                    IsCompleted = (i % 2 == 0) 
-                }); ;
-            }
-            return result;
-        }
 
+        public bool IsValid(Plan plan)
+        {
+            if (plan.Text == String.Empty)
+            {
+                Notification.ShowMessage("Wrong content input");
+                return false;
+            }
+            if (plan.Name == String.Empty)
+            {
+                return false;
+            }
+            if(plan.DeadLineTime < plan.CreationTime)
+            {
+                Notification.ShowMessage("Deadline is earlier than creation time");
+                return false;
+            }
+            return true;
+        }
         private void ListPlans_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Plan sel = ((sender as ListBox)?.SelectedItem as Plan);
@@ -109,6 +109,10 @@ namespace NoteManager
             //Here we must also check is correct new plan or changed(is name not empty and something else)
             if (isNew == true)
             {
+                if (!IsValid(currentEdit))
+                {
+                    return;
+                }
                 AddToList(currentEdit);
                 isNew = false;
                 SavePlan(currentEdit);
@@ -117,6 +121,10 @@ namespace NoteManager
             }
             if (selected != null)
             {
+                if (!IsValid(selected))
+                {
+                    return;
+                }
                 UpdatePlan(selected);
             }
 
