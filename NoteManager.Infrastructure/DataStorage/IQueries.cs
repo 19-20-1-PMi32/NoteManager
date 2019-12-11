@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace NoteManager.Infrastructure.DataStorage
 {
-    public interface IQueries
+    public interface IQueries : IAuthorizable
     {
         /// <summary>
         /// Checks if user credentials maches an existing user in storage. If provided credentials 
@@ -18,19 +18,15 @@ namespace NoteManager.Infrastructure.DataStorage
         /// <summary>
         /// Get users DailyNote by its date
         /// </summary>
-        /// <param name="userLogin"></param>
-        /// <param name="userPassword"></param>
         /// <returns></returns>
-        RepositoryResponse<IDailyNote> GetDailyNotes(string userLogin, string userPassword, DateTime assignmentDate);
+        RepositoryResponse<IDailyNote> GetDailyNotes(DateTime assignmentDate);
 
         /// <summary>
         /// Get text records (title, editDate), from specific DailyNote
         /// </summary>
-        /// <param name="userLogin"></param>
-        /// <param name="userPassword"></param>
         /// <param name="dailyNoteDate">DailyNote's date</param>
         /// <returns></returns>
-        RepositoryResponse<IEnumerable<IDataRecord>> GetTextRecords(string userLogin, string userPassword, DateTime dailyNoteDate);
+        RepositoryResponse<IEnumerable<IDataRecord>> GetTextRecords(DateTime dailyNoteDate);
 
         /// <summary>
         /// Get media records (title, editDate), from spesific DailyNote by it's MediaType
@@ -40,27 +36,23 @@ namespace NoteManager.Infrastructure.DataStorage
         /// <param name="dailyNoteDate"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        RepositoryResponse<IEnumerable<IDataRecord>> GetMediaRecords(string userLogin, string userPassword, DateTime dailyNoteDate, MediaType type);
+        RepositoryResponse<IEnumerable<IDataRecord>> GetMediaRecords(DateTime dailyNoteDate, MediaType type);
 
         /// <summary>
         /// Get ITextData by it's label and date of parent DailyRecord
         /// </summary>
-        /// <param name="userLogin"></param>
-        /// <param name="userPassword"></param>
         /// <param name="label"></param>
         /// <param name="dailyNoteDate"></param>
         /// <returns></returns>
-        RepositoryResponse<ITextRecord> GetTextData(string userLogin, string userPassword, string label, DateTime dailyNoteDate);
+        RepositoryResponse<ITextRecord> GetTextData(string label, DateTime dailyNoteDate);
 
         /// <summary>
         /// Get IMediaData with specified MediaType by it's label and date of parent DailyRecord 
         /// </summary>
-        /// <param name="userLogin"></param>
-        /// <param name="userPassword"></param>
         /// <param name="label"></param>
         /// <param name="dailyNoteDate"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        RepositoryResponse<ITextRecord> GetTextData(string userLogin, string userPassword, string label, DateTime dailyNoteDate, MediaType type);
+        RepositoryResponse<ITextRecord> GetTextData(string label, DateTime dailyNoteDate, MediaType type);
     }
 }
