@@ -88,7 +88,7 @@
                     <ListBox 
                         Name="ListBoxDates"
                         HorizontalAlignment="Stretch" 
-                        Margin="0,0,0,0" 
+                        Margin="0,0,0,22" 
                         VerticalAlignment="Stretch"
                         />
                 </Grid>
@@ -113,13 +113,26 @@
                     <TreeView 
                          Name="Dates"
                          HorizontalAlignment="Left" 
-                         Margin="0,0,0,0" 
+                         Margin="0,0,0,22" 
                          VerticalAlignment="Stretch" 
                          Width="190"
                          />
                 </Grid>
             </TabItem>
         </TabControl>
+
+        <Button 
+            Content="Update" 
+            HorizontalAlignment="Left" 
+            Margin="7,0,0,3" 
+            VerticalAlignment="Bottom" 
+            Width="187"
+            FontSize="12"
+            FontFamily="Verdana"
+            Background="#666666"
+            Click="ClickOnUpdate"
+            Style="{StaticResource Flat_ButtonRemoveForPlans}" Height="25"
+            />
 
         <ComboBox 
             Name="ComboBoxFiles"
@@ -285,6 +298,6 @@
             Name="FrameAddFiles"
             Margin="0,0,0,0"
             />
-        <Button Click="ClickOnUpdate" Content="Update" HorizontalAlignment="Left" Margin="210,427,0,0" VerticalAlignment="Top" Width="75"/>
+        
     </Grid>
 </Page>
