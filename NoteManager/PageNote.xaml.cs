@@ -335,7 +335,7 @@ namespace NoteManager
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Videos)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
             }
         }
@@ -347,7 +347,7 @@ namespace NoteManager
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Pictures)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
             }
         }
@@ -359,7 +359,7 @@ namespace NoteManager
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Musics)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
             }
         }
@@ -371,7 +371,7 @@ namespace NoteManager
                 ListBoxResourses.Items.Clear();
                 foreach (var item in CurentNote.Records)
                 {
-                    ListBoxResourses.Items.Add(item.Name);
+                    ListBoxResourses.Items.Add(item);
                 }
             }
         }
