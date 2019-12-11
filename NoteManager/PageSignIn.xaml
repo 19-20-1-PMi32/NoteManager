@@ -1,0 +1,226 @@
+﻿<Page x:Class="NoteManager.PageSignIn"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NoteManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageSignIn">
+
+    <!-- Everything code down is for WaterMark in TextBox -->
+    <Page.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                BorderThickness="1"
+                                />
+
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                Margin="5,0,0,0" 
+                                VerticalAlignment="Center" 
+                                />
+
+                            <Label 
+                                Margin="5,0,0,0" 
+                                x:Name="WaterMarkLabel" 
+                                Content="{TemplateBinding Tag}" 
+                                VerticalAlignment="Center"
+                                Visibility="Collapsed" 
+                                Foreground="Gray" 
+                                FontFamily="Arial"
+                                />
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition 
+                                        Property="Text" 
+                                        Value=""
+                                        />
+                                </MultiTrigger.Conditions>
+                                <Setter 
+                                    Property="Visibility" 
+                                    TargetName="WaterMarkLabel" 
+                                    Value="Visible"
+                                    />
+                            </MultiTrigger>
+                            <Trigger 
+                                Property="IsEnabled" 
+                                Value="False"
+                                >
+                                <Setter 
+                                    Property="Foreground" 
+                                    Value="DimGray"
+                                    />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <!-- Background picture-->
+        <Grid.Background>
+            <ImageBrush 
+        			ImageSource="Resources/Pictures/BlackBlueBackground.png" 
+        			Stretch="UniformToFill" 					
+        			AlignmentY="Center"        					
+        			AlignmentX="Center"
+        		/>
+        </Grid.Background>
+
+        <!-- Login -->
+        <Label 
+            Content="Login" 
+            FontSize="16"
+            Foreground="LightGray"
+            HorizontalAlignment="Center" 
+            Margin="0,0,200,215" 
+            VerticalAlignment="Center"
+            />
+
+        <!-- Under User name-->
+        <Label 
+            Content="____________________________________________________" 
+            FontSize="16"
+            Foreground="LightGray"
+            HorizontalAlignment="Center" 
+            Margin="80,0,0,200" 
+            VerticalAlignment="Center" Width="231"
+            />
+
+        <!-- User name -->
+        <TextBox 
+            Foreground="LightGray"
+            Height="30" 
+            Margin="50,0,0,210" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Width="200" 
+            Background="{x:Null}" 
+            MaxLines="50" 
+            FontSize="16" 
+            BorderBrush="{x:Null}"
+            Style="{StaticResource MyWaterMarkStyle}"
+		    Tag="User name"
+		    Text="{Binding CategorySearch,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+		    TextSearch.Text="Login" 
+            />
+
+        <!-- Password -->
+        <Label 
+            Content="Password" 
+            FontSize="16"
+            Foreground="LightGray"
+            HorizontalAlignment="Center" 
+            Margin="0,0,225,135" 
+            VerticalAlignment="Center"
+            />
+
+        <!-- Under Password-->
+        <Label 
+            Content="____________________________________________________" 
+            FontSize="16"
+            Foreground="LightGray"
+            HorizontalAlignment="Center" 
+            Margin="80,0,0,120" 
+            VerticalAlignment="Center" Width="231"
+            />
+
+        <!-- Password -->
+        <TextBox 
+            Height="30" 
+            Foreground="White"
+            Margin="50,0,0,134" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Width="200" 
+            Background="{x:Null}" 
+            MaxLines="50" 
+            FontSize="16" 
+            BorderBrush="{x:Null}"
+            Style="{StaticResource MyWaterMarkStyle}"
+		    Tag="Password"
+		    Text="{Binding CategorySearch,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+		    TextSearch.Text="Password" 
+            />
+
+        <!-- Next -->
+        <Button 
+            Click="GoToNext"
+            Content="Next" 
+            Style="{StaticResource Flat_Button}"
+            HorizontalAlignment="Center" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Center" 
+            FontSize="24"
+            Width="225" 
+            Height="40" 
+            FontFamily="Verdana" 
+            Background="#FF007ACC"
+            Foreground="White" BorderBrush="{x:Null}"
+            />
+        
+        <!-- No account? -->
+        <Label 
+            Content="No account?" 
+            FontSize="16"
+            Foreground="Gray"
+            HorizontalAlignment="Center" 
+            Margin="0,80,100,0" 
+            VerticalAlignment="Center"
+            />
+
+        <!-- Create one! -->
+        <Label 
+            Content="Create one!" 
+            FontSize="16"
+            HorizontalAlignment="Center" 
+            Margin="90,80,0,0" 
+            VerticalAlignment="Center"
+            MouseDown="GoToRegistratin"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="#FF007ACC" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#0393f3" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <!-- Arrow return -->
+        <Image 
+            HorizontalAlignment="Left" 
+            Height="20" 
+            Margin="10,10,0,0"
+            VerticalAlignment="Top" 
+            Width="20"
+            MouseDown="EventReturn"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/GrayArrow.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/LightGrayArrow.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+    </Grid>
+</Page>

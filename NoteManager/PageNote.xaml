@@ -1,0 +1,303 @@
+﻿<Page x:Class="NoteManager.PageNote"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NoteManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageNote">
+    <Page.Resources>
+        <ContextMenu x:Key="NoteMenu">
+            <MenuItem Header="View" Click="ViewNote"/>
+            <MenuItem Header="Update" Click="UpdateNote"/>
+            <MenuItem Header="Delete" Click="DeleteNote" />
+        </ContextMenu>
+    </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush 
+        			ImageSource="Resources/Pictures/Background3.png" 
+        			Stretch="UniformToFill" 					
+        			AlignmentY="Center"        					
+        			AlignmentX="Center"
+        		/>
+        </Grid.Background>
+
+        <!-- Lable Save -->
+        <Label
+            MouseDown="GoToAddFiles"
+            Content="Add new note" 
+            FontSize="24"
+            HorizontalAlignment="Center"
+            Margin="0,0,0,-5"
+            VerticalAlignment="Bottom"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <!-- ListBox Files -->
+        <ListBox 
+            Name="ListBoxResourses"
+            HorizontalAlignment="Right" 
+            Margin="0,40,0,00" 
+            VerticalAlignment="Stretch" 
+            Width="230"
+            FontSize="20"
+            SelectionChanged="FileClick"
+            >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            </ListBox>
+
+        <TabControl 
+            HorizontalAlignment="Left" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Stretch" 
+            Width="200"
+            >
+            <TabItem
+                Name="TabItemList"
+                Header="List" 
+                Width="93" 
+                Margin="6,0,-5,0"
+                FontSize="14"
+                VerticalAlignment="Bottom" Height="37"
+                >
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush 
+        			        ImageSource="Resources/Pictures/BlackBlueBackground.png" 
+        			        Stretch="UniformToFill" 					
+        			        AlignmentY="Center"        					
+        			        AlignmentX="Center"
+        		        />
+                    </Grid.Background>
+                    <ListBox 
+                        Name="ListBoxDates"
+                        HorizontalAlignment="Stretch" 
+                        Margin="0,0,0,22" 
+                        VerticalAlignment="Stretch"
+                        />
+                </Grid>
+            </TabItem>
+            <TabItem 
+                Name="TabItemTree"
+                Header="Tree" 
+                Width="93"
+                FontSize="14"
+                Height="37" Margin="2,0,-4,0"
+                >
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush 
+        			        ImageSource="Resources/Pictures/BlackBlueBackground.png" 
+        			        Stretch="UniformToFill" 					
+        			        AlignmentY="Center"        					
+        			        AlignmentX="Center"
+        		        />
+                    </Grid.Background>
+                    <!-- TreeView Dates -->
+                    <TreeView 
+                         Name="Dates"
+                         HorizontalAlignment="Left" 
+                         Margin="0,0,0,22" 
+                         VerticalAlignment="Stretch" 
+                         Width="190"
+                         />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Button 
+            Content="Update" 
+            HorizontalAlignment="Left" 
+            Margin="7,0,0,3" 
+            VerticalAlignment="Bottom" 
+            Width="187"
+            FontSize="12"
+            FontFamily="Verdana"
+            Background="#666666"
+            Click="ClickOnUpdate"
+            Style="{StaticResource Flat_ButtonRemoveForPlans}" Height="25"
+            />
+
+        <ComboBox 
+            Name="ComboBoxFiles"
+            HorizontalAlignment="Right" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Top" 
+            Width="230" 
+            Height="40"
+            FontSize="20"
+            SelectedValuePath="Content"
+            >
+            <ComboBoxItem Content="All files" IsSelected="True" Selected="ShowAllFiles" MouseDown="ShowAllFiles"/>
+            <ComboBoxItem Content="Videos" Selected="ShowVideos" />
+            <ComboBoxItem Content="Pictures" Selected="ShowPictures" />
+            <ComboBoxItem Content="Musics" Selected="ShowMusics"/>
+            <ComboBoxItem Content="Records" Selected="ShowRecords"/>
+        </ComboBox>
+
+        <Image 
+            Name="ImagePlay"
+            MouseDown="Play"
+            HorizontalAlignment="Left"
+            Height="15"
+            Margin="210,5,0,0" 
+            VerticalAlignment="Top"
+            Width="15"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/buttonPlayDarkGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/buttonPlayLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Image 
+            Name="ImagePause"
+            MouseDown="Pause"
+            HorizontalAlignment="Left"
+            Height="15"
+            Margin="230,5,0,0" 
+            VerticalAlignment="Top"
+            Width="15"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/buttonResumeDark.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/buttonResumeLight.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Image 
+            Name="ImageStop"
+            MouseDown="Stop"
+            HorizontalAlignment="Left"
+            Height="15"
+            Margin="250,5,0,0" 
+            VerticalAlignment="Top"
+            Width="15"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/buttonStopDark.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/buttonStopLight.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Image 
+            Name="ImageClosePlayer"
+            MouseDown="ClosePlayer"
+            HorizontalAlignment="Right"
+            Height="10"
+            Margin="0,9,240,0" 
+            VerticalAlignment="Top"
+            Width="10"
+            >
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="Resources/Pictures/CancelGray.png"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" Value="Resources/Pictures/CancelLightGray.png"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+
+        <Label 
+            Name="lableStatus"
+            Content="00:00:00/00:00:00" 
+            HorizontalAlignment="Right" 
+            Margin="0,0,250,0" 
+            VerticalAlignment="Top"
+            Foreground="Gray"
+            />
+
+        <Label 
+            Name="lableNameMusic"
+            Content="Name of music" 
+            HorizontalAlignment="Stretch" 
+            Margin="270,-1,355,0" 
+            VerticalAlignment="Top"
+            Foreground="Gray" 
+            />
+
+        <!-- Slider with time -->
+        <Slider 
+            Name="SliderLine"
+            HorizontalAlignment="Stretch" 
+            Margin="210,27.5,240,0" 
+            VerticalAlignment="Top" 
+            />
+
+        <MediaElement 
+            Source="Resources/MR_Moment.mp3"
+            Name="MusicAndRecordElem"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top" 
+            LoadedBehavior="Manual"
+            UnloadedBehavior="Manual" 
+            />
+
+        <!-- TextBox Main -->
+        <TextBox 
+            IsReadOnly="True"
+            Name="TextBoxMain"
+            Foreground="White"
+            FontSize="16"
+            HorizontalAlignment="Stretch" 
+            Margin="200,0,230,28" 
+            TextWrapping="Wrap" 
+            Text=""
+            VerticalAlignment="Stretch" 
+            Background="#FF18191D" 
+            VerticalScrollBarVisibility="Visible"
+            />
+
+        <MediaElement 
+            x:Name="MusicElem"
+            Width="1"
+            Height="1"
+            LoadedBehavior="Manual"
+            UnloadedBehavior="Manual" 
+             RenderTransformOrigin="0.5,0.5"
+            />
+
+        <Frame 
+            Name="FrameAddFiles"
+            Margin="0,0,0,0"
+            />
+        
+    </Grid>
+</Page>

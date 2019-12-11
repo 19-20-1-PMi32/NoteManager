@@ -1,0 +1,158 @@
+﻿<Page x:Class="NoteManager.AddFiles"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NoteManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddFiles">
+
+    <Grid>
+        <Image      
+            Source="Resources/Pictures/BackBlackFone.png" 
+        	Stretch="UniformToFill" 					
+            Opacity="0.4" 
+            HorizontalAlignment="Stretch" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Stretch" 
+            MouseDown="EventMouseDownOnBlackArea"
+            />
+
+        <Image Source="Resources/Pictures/BackaddFoles.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0,0,0,0" 
+               Stretch="Fill"
+               Width="400"
+               Height="450"
+               />
+
+        <Label 
+            Content="Note" 
+            FontSize="25"
+            HorizontalAlignment="Center" 
+            Margin="209,-3,503,415" 
+            VerticalAlignment="Center"
+            MouseDown="ClickOnNote" 
+            Width="88"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label 
+            Content="Video" 
+            FontSize="25"
+            HorizontalAlignment="Center" 
+            Margin="276,-3,435,415" 
+            VerticalAlignment="Center"
+            MouseDown="ClickOnVideo" Width="88"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label 
+            Content="Picture" 
+            FontSize="25"
+            HorizontalAlignment="Center" 
+            Margin="350,-3,346,415" 
+            VerticalAlignment="Center"
+            MouseDown="ClickOnPicture" Width="104"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label 
+            Content="Music" 
+            FontSize="25"
+            HorizontalAlignment="Center" 
+            Margin="437,-3,276,415" 
+            VerticalAlignment="Center"
+            MouseDown="ClickOnMusic" Width="87"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <Label 
+            Content="Record" 
+            FontSize="25"
+            HorizontalAlignment="Center" 
+            Margin="508,-3,191,415" 
+            VerticalAlignment="Center"
+            MouseDown="ClickOnRecord" Width="101"
+            >
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <!-- Next -->
+        <Button 
+            Click="ClickSave"
+            Content="Save" 
+            Style="{StaticResource Flat_Button}"
+            HorizontalAlignment="Center" 
+            Margin="0,415,0,0" 
+            VerticalAlignment="Center" 
+            FontSize="14"
+            Width="80" 
+            Height="30" 
+            FontFamily="Verdana" 
+            Background="#FF007ACC"
+            Foreground="White" 
+            BorderBrush="{x:Null}"
+            />
+
+        <Frame 
+            Name="FrameAddFiles"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,40,0,30" 
+            Width="400"
+            Height="380"
+            Source="PagesForResourses/AdditionNote.xaml"  
+            />
+    </Grid>
+</Page>

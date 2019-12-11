@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29318.209
+VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Persistence.DataModel", "NoteManager.Persistence.DataModel\NoteManager.Persistence.DataModel.csproj", "{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteManager.WebAPI", "NoteManager.WebAPI\NoteManager.WebAPI.csproj", "{6BACF613-2AE8-49A5-8B05-C8F3F5D7BAEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.WebAPI", "NoteManager.WebAPI\NoteManager.WebAPI.csproj", "{6BACF613-2AE8-49A5-8B05-C8F3F5D7BAEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager", "NoteManager\NoteManager.csproj", "{E92BC9EF-7E67-407C-838C-C373B86BAFA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceWeave.Controls", "SourceWeave.Controls\SourceWeave.Controls.csproj", "{7286E3A4-21F9-45DA-A0CD-2B2037289F99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Persistence.DataModel", "NoteManager.Persistence.DataModel\NoteManager.Persistence.DataModel.csproj", "{92A725D5-E68D-4D85-A053-DFD39CB8612D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Pesistence.API", "NoteManager.Pesistence.API\NoteManager.Pesistence.API.csproj", "{169F155E-5556-4C78-9E15-87E42B5F091C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteManager.Infrastructure", "NoteManager.Infrastructure\NoteManager.Infrastructure.csproj", "{D873E248-8899-4063-9084-69DC82F58C18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +21,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55CD9893-A84E-4B6A-A094-D0F3B3AFB020}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BACF613-2AE8-49A5-8B05-C8F3F5D7BAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BACF613-2AE8-49A5-8B05-C8F3F5D7BAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BACF613-2AE8-49A5-8B05-C8F3F5D7BAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BACF613-2AE8-49A5-8B05-C8F3F5D7BAEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E92BC9EF-7E67-407C-838C-C373B86BAFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E92BC9EF-7E67-407C-838C-C373B86BAFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E92BC9EF-7E67-407C-838C-C373B86BAFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E92BC9EF-7E67-407C-838C-C373B86BAFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7286E3A4-21F9-45DA-A0CD-2B2037289F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7286E3A4-21F9-45DA-A0CD-2B2037289F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7286E3A4-21F9-45DA-A0CD-2B2037289F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7286E3A4-21F9-45DA-A0CD-2B2037289F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A725D5-E68D-4D85-A053-DFD39CB8612D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169F155E-5556-4C78-9E15-87E42B5F091C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D873E248-8899-4063-9084-69DC82F58C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
