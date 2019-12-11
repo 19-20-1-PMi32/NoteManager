@@ -1,6 +1,8 @@
 ﻿namespace NoteManager.Infrastructure.DataStorage
 {
-    interface IUserStorage
+    public enum ResponseStatus
     {
+        Success,
+        Fail
     }
 }

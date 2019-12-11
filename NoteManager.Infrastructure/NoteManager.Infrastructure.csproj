@@ -48,8 +48,12 @@
     <Compile Include="DataContracts\ITextRecord.cs" />
     <Compile Include="DataContracts\IUser.cs" />
     <Compile Include="DataContracts\MediaType.cs" />
-    <Compile Include="DataStorage\IDailyNoteStorage.cs" />
-    <Compile Include="DataStorage\IUserStorage.cs" />
+    <Compile Include="DataStorage\IAuthorizable.cs" />
+    <Compile Include="DataStorage\ICommands.cs" />
+    <Compile Include="DataStorage\IQueries.cs" />
+    <Compile Include="DataStorage\RepositoryResponse.cs" />
+    <Compile Include="DataStorage\RepositoryResponseGeneric.cs" />
+    <Compile Include="DataStorage\ResponseStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
