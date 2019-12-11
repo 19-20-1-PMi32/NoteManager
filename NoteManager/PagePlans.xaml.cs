@@ -34,6 +34,7 @@ namespace NoteManager
             }
             if (plan.Name == String.Empty)
             {
+                Notification.ShowMessage("Wrong name input");
                 return false;
             }
             if(plan.DeadLineTime < plan.CreationTime)
