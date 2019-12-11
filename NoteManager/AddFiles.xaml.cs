@@ -23,23 +23,37 @@ namespace NoteManager
             this.NavigationService.Source = null;
         }
 
+        private bool IsValid()
+        {
+            if (TemporaryNote.Text == String.Empty)
+            {
+                return false;
+            }
+            return true;
+        }
         private void ClickSave(object sender, RoutedEventArgs e)
         {
-            TemporaryNote.IsUsed = true;
-
-            var note = new Note(TemporaryNote.Text, TemporaryNote.CreationTime)
+            if (IsValid())
             {
-                Videos = TemporaryNote.Videos,
-                Pictures = TemporaryNote.Pictures,
-                Musics = TemporaryNote.Musics,
-                Records = TemporaryNote.Records
-            };
-            User.Notes.Add(note);
+                TemporaryNote.IsUsed = true;
 
-            TemporaryNote.AnnulOfNote();
-            // Annul TemporaryNote
-            this.NavigationService.Source = null;
-            
+                var note = new Note(TemporaryNote.Text, TemporaryNote.CreationTime)
+                {
+                    Videos = TemporaryNote.Videos,
+                    Pictures = TemporaryNote.Pictures,
+                    Musics = TemporaryNote.Musics,
+                    Records = TemporaryNote.Records
+                };
+                User.Notes.Add(note);
+
+                TemporaryNote.AnnulOfNote();
+                // Annul TemporaryNote
+                this.NavigationService.Source = null;
+            }
+            else
+            {
+                Notification.ShowMessage("Note is empty, please add more information");
+            }
         }
 
         private void ClickOnNote(object sender, RoutedEventArgs e)

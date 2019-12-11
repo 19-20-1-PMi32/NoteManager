@@ -22,6 +22,7 @@ namespace NoteManager.DBClasses
             Musics = new List<Music>();
             Pictures = new List<Picture>();
             Records = new List<Record>();
+            Text = String.Empty;
         }
 
         public static void AnnulOfNote()
