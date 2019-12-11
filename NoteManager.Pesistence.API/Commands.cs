@@ -60,6 +60,7 @@ namespace NoteManager.Pesistence.API
                         _authorizedIdentity.UserData.DailyRecords.Add(newDailyRecord);
                     }
                 }
+                return null;
             }
         }
 
