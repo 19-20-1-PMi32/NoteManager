@@ -72,7 +72,7 @@
     "fs": "0.0.1-security",
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "office-ui-fabric-react": "7.17.0",
     "react": "16.8.6",
     "react-dnd": "^7.0.2",
